@@ -1,5 +1,6 @@
 'use strict';
-
+// let inputNombrePersonalUsuario;//***
+let inputId;
 let inputNombre;
 let inputApellido;
 let inputDireccion;
@@ -12,9 +13,7 @@ let inputEmergNombre;
 let inputEmergApellido;
 let inputEmergTelefono;
 
-//loads---------------------------------------------------
-EstudiantesInit();
-imprimirListaEstud();
+
 
 function EstudiantesInit () {
     // moverContenedorPricipal();
@@ -28,18 +27,27 @@ function EstudiantesInit () {
     // }
 
     let botonRegEstud = document.querySelector('#btnRegEstud');
+    let botonActualizarEstudiante = document.querySelector('#btnActualizarEstudiante'); // * * * agregar este * * *
+    let inputFiltro = document.querySelector('#txtFiltro');
 
+    // botonActualizarEstudiante.hidden = true; // * * * agregar este * * *
+
+    // if (botonActualizarEstudiante != undefined) {
+    //     botonActualizarEstudiante.hidden = true;
+    // }
+    
     if (botonRegEstud != undefined) {
         botonRegEstud.addEventListener('click' , obtenerDatosEstudiante);
     }
-    
-    let inputFiltro = document.querySelector('#txtFiltro');
-    
+    if (botonActualizarEstudiante != undefined) {
+        botonActualizarEstudiante.addEventListener('click' , obtenerDatosEditar);
+    }
     
     if (inputFiltro != undefined) {
         inputFiltro.addEventListener('keyup' , filtrarListaEstud);
     }
-
+    
+    //  inputNombrePersonalUsuario = document.querySelector('#txtNombrePersonalUsuario'); //***
      inputNombre = document.querySelector('#txtNombre');
      inputApellido = document.querySelector('#txtApellido');
      inputDireccion = document.querySelector('#txtDireccion');
@@ -51,6 +59,8 @@ function EstudiantesInit () {
      inputEmergNombre = document.querySelector('#txtContactEmergNombre');
      inputEmergApellido = document.querySelector('#txtContactEmergApellido');
      inputEmergTelefono = document.querySelector('#txtContactEmergTelefono');
+     inputId = document.querySelector('#txtId'); // * * * agregar este * * *
+
 }
 
 function obtenerDatosEstudiante(){
@@ -58,6 +68,8 @@ function obtenerDatosEstudiante(){
     let infoEstud =[];
     let bError = false;
 
+    // let _id = inputId.value;
+    // let sNombrePersonalUsuario = inputNombrePersonalUsuario; //*** */
     let sNombre = inputNombre.value;    
     let sApellido = inputApellido .value;
     let sDireccion = inputDireccion.value; 
@@ -69,8 +81,9 @@ function obtenerDatosEstudiante(){
     let sEmergNombre = inputEmergNombre.value; 
     let sEmergApellido = inputEmergApellido.value; 
     let sEmergTelefono = Number(inputEmergTelefono.value); 
+    
 
-    infoEstud.push(sNombre, sApellido, sDireccion, sTelefono, sEmail, sCedula, sCarrera, sMaterias, sEmergNombre, sEmergApellido, sEmergTelefono);
+    infoEstud.push(sNombre, sApellido, sDireccion, sTelefono, sEmail, sCedula, sCarrera, sMaterias, sEmergNombre, sEmergApellido, sEmergTelefono); //_id,
     
     bError = validarEstudiante();
     if(bError == true){
@@ -99,10 +112,119 @@ function obtenerDatosEstudiante(){
 
        }
 
-        limpiarFormulario();
+        limpiarFormularioEstudiante();
     }
     
 };
+function obtenerDatosEditar(){ // * * * agregar este * * *
+
+    let infoEstud =[];
+    let bError = false;
+
+    let sNombre = inputNombre.value;    
+    let sApellido = inputApellido .value;
+    let sDireccion = inputDireccion.value; 
+    let sTelefono = Number(inputTelefono.value);
+    let sEmail = inputEmail.value;
+    let sCedula = Number(inputCedula.value); 
+    let sCarrera = inputCarrera.value; 
+    let sMaterias = inputMaterias.value; 
+    let sEmergNombre = inputEmergNombre.value; 
+    let sEmergApellido = inputEmergApellido.value; 
+    let sEmergTelefono = Number(inputEmergTelefono.value); 
+    let listaEstud = obtenerListaEstud();
+
+
+    infoEstud.push(sNombre, sApellido, sDireccion, sTelefono, sEmail, sCedula, sCarrera, sMaterias, sEmergNombre, sEmergApellido, sEmergTelefono); //_id, 
+
+    // bError = validarEstudiante();
+    if(bError == true){
+        swal({
+            type : 'warning',
+            title : 'No se pudo editar el usuario',
+            // text: 'Por favor revise los campos en rojo',
+            confirmButtonText : 'Entendido'
+        });
+        console.log('No se pudo registrar el usuario');
+    }else{
+        let resultado = actualizarPersona(infoEstud);
+
+       if (resultado == true){
+        swal({
+            type : 'success',
+            title : 'Actualización exitosa',
+            text: 'El usuario se actualizó adecuadamente',
+            confirmButtonText : 'Entendido'
+        })
+        .then(
+            function(){
+                obtenerPagina ('estudiante/indexTablaEstud.html');
+                //window.location.href = "../../html/estudiante/indexTablaEstud.html"
+            }
+        );
+
+       }
+       listaEstud = obtenerListaEstud();
+    //    imprimirListaEstud();
+        limpiarFormularioEstudiante();
+        // botonActualizarEstudiante.hidden = true;
+        // botonRegEstud.hidden = false;
+    }
+    
+};
+
+
+
+
+
+
+
+
+
+
+    
+//     let infoEstud =[];
+//     let bError = false;   
+
+//     let sNombre = inputNombre.value;    
+//     let sApellido = inputApellido .value;
+//     let sDireccion = inputDireccion.value; 
+//     let sTelefono = Number(inputTelefono.value);
+//     let sEmail = inputEmail.value;
+//     let sCedula = Number(inputCedula.value); 
+//     let sCarrera = inputCarrera.value; 
+//     let sMaterias = inputMaterias.value; 
+//     let sEmergNombre = inputEmergNombre.value; 
+//     let sEmergApellido = inputEmergApellido.value; 
+//     let sEmergTelefono = Number(inputEmergTelefono.value); 
+//     let _id = inputId.value;
+    
+//     //bError = validar();
+//     if(bError == true){
+//         swal({
+//             type : 'warning',
+//             title : 'No se pudo registrar el usuario',
+//             text: 'Por favor revise los campos en rojo',
+//             confirmButtonText : 'Entendido'
+//         });
+//         console.log('No se pudo registrar el usuario');
+//     }else{
+//         // console.log(imagenUrl);
+//         actualizarPersona(_id, sNombre, sApellido, sDireccion, sTelefono, sEmail, sCedula, sCarrera, sMaterias, sEmergNombre, sEmergApellido, sEmergTelefono);
+//         swal({
+//             type : 'success',
+//             title : 'Usuario actualizado',
+//             text: 'El usuario se actualizó adecuadamente',
+//             confirmButtonText : 'Entendido'
+//         });
+//         listaEstud = obtenerListaEstud();
+//         imprimirListaEstud();
+//         limpiarFormularioEstudiante();
+//         botonActualizarEstudiante.hidden = true;
+//         botonRegEstud.hidden = false;
+//     }
+    
+// };
 
 function imprimirListaEstud(){
     let listaEstud = obtenerListaEstud();
@@ -118,6 +240,9 @@ function imprimirListaEstud(){
         let cTelefono = fila.insertCell();
         let cEmail = fila.insertCell();
         let cCedula = fila.insertCell();
+        let cConfiguracion = fila.insertCell();  // * * * agregar este * * *
+        // let cAcciones = fila.insertCell();
+       
 
 
         cNombre.innerHTML = listaEstud[i].Nombre;
@@ -125,6 +250,24 @@ function imprimirListaEstud(){
         cTelefono.innerHTML = listaEstud[i].Telefono;
         cEmail.innerHTML = listaEstud[i].Correo;
         cCedula.innerHTML = listaEstud[i].Cedula;
+        // cAcciones.innerHTML = listaFiltrada[i].Acciones;
+
+        //Íconos para editar
+        let aModificar = document.createElement('a'); // * * * agregar todos estos * * *
+        aModificar.classList.add('fas');
+        aModificar.classList.add('fa-eye');
+        aModificar.dataset._id =  listaEstud[i]['_id'];
+
+        let aBorrar = document.createElement('a');
+        aBorrar.classList.add('fas');
+        aBorrar.classList.add('fa-trash');
+        aBorrar.dataset._id =  listaEstud[i]['_id'];
+
+        aModificar.addEventListener('click', llenarDatosFormulario); //funcion buscar_por_id
+        aBorrar.addEventListener('click', borrarPersona);
+
+        cConfiguracion.appendChild(aModificar);
+        cConfiguracion.appendChild(aBorrar);
     }
 
 };
@@ -155,6 +298,7 @@ function filtrarListaEstud(){
         let cTelefono = fila.insertCell();
         let cEmail = fila.insertCell();
         let cCedula = fila.insertCell();
+        // let cAcciones = fila.insertCell();
 
 
         cNombre.innerHTML = listaFiltrada[i].Nombre;
@@ -162,6 +306,7 @@ function filtrarListaEstud(){
         cTelefono.innerHTML = listaFiltrada[i].Telefono;
         cEmail.innerHTML = listaFiltrada[i].Correo;
         cCedula.innerHTML = listaFiltrada[i].Cedula;
+        // cAcciones.innerHTML = listaFiltrada[i].Acciones;
     }
 
 };
@@ -257,8 +402,9 @@ function validarEstudiante(){
     return bError;
 };
 
-function limpiarFormulario(){
-    
+function limpiarFormularioEstudiante(){
+
+        // inputNombrePersonalUsuario = ''; //*** 
         inputNombre.value = '';
         inputApellido.value = '';
         inputDireccion.value = '';
@@ -270,4 +416,63 @@ function limpiarFormulario(){
         inputEmergNombre.value = '';
         inputEmergApellido.value = '';
         inputEmergTelefono.value = '';   
+        // imagen.src = '';
     }     
+
+// * * * inicio: videos de Pabs * * * Modificar (parte 1, 2, 3), nodejs * * *
+
+    function llenarDatosFormulario(){ //**** V I S T O *****  es la de buscar_por_id
+        
+        let botonRegEstud = document.querySelector('#btnRegEstud');
+        let botonActualizarEstudiante = document.querySelector('#btnActualizarEstudiante');
+        // botonRegEstud.hidden = true;
+        // botonActualizarEstudiante.hidden = false;
+
+        if (botonRegEstud != undefined) {
+            botonRegEstud.hidden = true;
+        }
+
+        // if (botonActualizarEstudiante != undefined) {
+        //     botonActualizarEstudiante.hidden = false;
+        // }
+    
+        //Blinding    
+        let _id =  this.dataset._id;// se obtiene el id del usuario seleccionado
+        let usuario = obtenerPersonaPorId(_id); // * * * funcion obtenerPersonaPorId se debe crear en el servicio, porque va a ser la petición 
+    //if usuario is not null
+// ajax obtenerPaginaRegistro
+        // obtenerPagina ('estudiante/indexRegEstud.html');
+        obtenerPagina ('estudiante/vistaEstud.html');
+        
+        setTimeout(function (){
+
+            inputNombre.value =  usuario['Nombre'];
+            inputApellido.value = usuario['Apellido'];
+            // inputNombrePersonalUsuario = usuario[inputNombre.value & inputApellido.value]; //***
+            inputDireccion.value = usuario['Direccion'];
+            inputTelefono.value = usuario['Telefono'];
+            inputEmail.value = usuario['Correo'];
+            inputCedula.value = usuario['Cedula'];
+            inputCarrera.value = usuario['Carrera'];
+            inputMaterias.value = usuario['Materias'];
+            inputEmergNombre.value = usuario['NombreEmergencia'];
+            inputEmergApellido.value = usuario['ApellidoEmergencia'];
+            inputEmergTelefono.value = usuario['TelefonoEmergencia'];   
+            // nunca se muestra la contraseña
+        
+            // imagen.src = usuario['foto']; //es un elemento tipo img, por eso es con src y no con value
+            inputId.value =  usuario['_id'];
+          
+          }, 100);
+    
+        
+    };
+    
+    function borrarPersona(){ // maCo: aun no he visto el video
+        let id = this.dataset._id;
+        borrarPersonaPorId(id);
+        listaEstud = obtenerListaEstud();
+        imprimirListaEstud();
+    
+    }
+// * * * fin: videos de Pabs * * * Modificar (parte 1, 2, 3), nodejs * * *
