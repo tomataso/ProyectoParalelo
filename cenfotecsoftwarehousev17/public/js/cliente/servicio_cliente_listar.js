@@ -75,9 +75,8 @@ function ftnGeneradorContrasenna() {
     return retVal;
 }
 
-// VIDEOS PABS
 
-function obtenerPersonaPorId(pid){  //pid: parametro id
+function obtenerPersonaPorId(pid){
     let usuario = '';
     let peticion = $.ajax({
         url : 'http://localhost:4000/api/buscar_usuario_id', // url lo copio del route

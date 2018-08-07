@@ -2,17 +2,15 @@
 let tablaClientes;
 let inputBuscarCliente;
 
-//loads-------------------------------------------------------
-initClientes();
+// initClientes();   ------NO SE NECESITA
 ListarClientes();
 
+// function initClientes(){
+//     inputBuscarCliente = document.querySelector('#inputBuscarCliente');
+//     tablaClientes = document.querySelector('#tblClientes');
 
-function initClientes(){
-    inputBuscarCliente = document.querySelector('#inputBuscarCliente');
-    tablaClientes = document.querySelector('#tblClientes');
-
-    inputBuscarCliente.addEventListener('keyup' , function(){ftnFiltrarListaClientes()});
-}
+//     inputBuscarCliente.addEventListener('keyup' , function(){ftnFiltrarListaClientes()});
+// } 
 
 function ListarClientes(){
     let ListaCliente = obtenerListaClientes();
@@ -109,25 +107,6 @@ function ftnEliminarCliente(){
     });
     ListaCliente();
 };
-
-//AUN FALTA INCOORPORAR ESTA FUNCION
-// function llenarDatosFormulario(){
-//     botonRegistrar.hidden = true;
-//     botonActualizar.hidden = false;
-    
-//     idPersonaSeleccionada =  this.dataset._id;// se obtiene el id del usuario seleccionado
-    
-//     let usuario = obtenerPersonaPorId(idPersonaSeleccionada);
-
-//     inputNombre.value =  usuario['nombre_completo'];
-//     inputEmail.value = usuario['correo'];
-//     inputTelefono.value = usuario['telefono'];
-//     inputEdad.value = usuario['edad'];
-
-//     imagen.src = usuario['foto'];
-
-// };
-
 
 
 function  ftnFiltrarListaClientes (){

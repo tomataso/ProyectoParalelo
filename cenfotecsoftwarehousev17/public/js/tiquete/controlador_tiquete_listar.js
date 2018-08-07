@@ -1,21 +1,18 @@
 'use srticit';
-
-// variables globales----------------------------------------
 const inputBusqueda = document.querySelector('#inputBusqueda');
 const tablaTiquetes = document.querySelector('#tblTiquetes');
 
-//listeners--------------------------------------------------
-inputBusqueda.addEventListener('keyup' , function(){FiltrarListaTiquetes()});
 
-//loads------------------------------------------------------
+inputBusqueda.addEventListener('keyup' , function(){FiltrarListaTiquetes()});
 window.onload = function(){
     ListarTiquetes();
 };
 
+
 function ListarTiquetes(){
     // borrar esta linea cuando el sistema esté montado
-    sessionStorage.setItem("UsuarioAutenticado", JSON.stringify({"_id":"5b4ae5c6ac267b4a0cc3a1f1","Nombre":"maria","Cedula":"456123","Provincia":"San Jose","Distrito":"San Jose","Canton":"montes de oca","Ubicacion":"san pedro","PrimerNombre":"Juan Carlos","PrimerApellido":"González","Telefono":"88668921","Correo":"123456","Desactivado":false,"Contrasenna":"mZcE0","TipoUsuario":2,}));
-    let ListaTiquete = obtenerTiquetePorId(getUsuarioAutenticado()._id);
+    // sessionStorage.setItem("UsuarioAutenticado", JSON.stringify({"_id":"5b4ae5c6ac267b4a0cc3a1f1","Nombre":"maria","Cedula":"456123","Provincia":"San Jose","Distrito":"San Jose","Canton":"montes de oca","Ubicacion":"san pedro","PrimerNombre":"Juan Carlos","PrimerApellido":"González","Telefono":"88668921","Correo":"123456","Desactivado":false,"Contrasenna":"mZcE0","TipoUsuario":2,}));
+    // let ListaTiquete = obtenerTiquetePorId(getUsuarioAutenticado()._id);
     console.log("lista tiquetes");
     console.log(ListaTiquete);
     let tbody = document.querySelector('#tblTiquetes tbody');

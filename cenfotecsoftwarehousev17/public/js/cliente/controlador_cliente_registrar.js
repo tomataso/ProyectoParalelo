@@ -15,10 +15,7 @@ let inputId;
 let idClientePorActualizar;
 let idPersonaSeleccionada;
 
-
-
-//loads-----------------------------------------------------------------------
-ClienteRegistrarInit();
+// ClienteRegistrarInit(); ----- NO SE NECESITA
 
 
 // ClienteMostrarInit();
@@ -56,34 +53,33 @@ ClienteRegistrarInit();
 // }
 
 
-function ClienteRegistrarInit () {
-let botonRegistrar = document.querySelector('#btnRegistrarCliente');
-let inputFiltro = document.querySelector('#inputBuscarCliente');
+// function ClienteRegistrarInit () {
+// let botonRegistrar = document.querySelector('#btnRegistrarCliente');
+// let inputFiltro = document.querySelector('#inputBuscarCliente');
 
 
-if (botonRegistrar != undefined) {
-    botonRegistrar.addEventListener('click' , obtenerDatosCliente);
-}
+// if (botonRegistrar != undefined) {
+//     botonRegistrar.addEventListener('click' , obtenerDatosCliente);
+// }
 
-if (inputFiltro != undefined) {
-    inputFiltro.addEventListener('keyup' , FiltrarListaClientes);
-}
+// if (inputFiltro != undefined) {
+//     inputFiltro.addEventListener('keyup' , FiltrarListaClientes);
+// }
 
 
-inputNombreCliente = document.querySelector('#txtNombre');
-inputCedulaCliente = document.querySelector('#txtCedula');
-inputProvincia = document.querySelector('#txtProvincia');
-inputCanton = document.querySelector('#txtCanton');
-inputDistrito = document.querySelector('#txtDistrito');
-inputPrimerNombre = document.querySelector('#txtPrimerNombre');
-inputPrimerApellido = document.querySelector('#txtPrimerApellido');
-inputTelefonoCliente = document.querySelector('#txtTelefono');
-inputCorreo = document.querySelector('#txtCorreo');
-// inputUbicacion = marker.getPosition().lat() + ',' + marker.getPosition().lng();
-desactivar = false;
-inputId = document.querySelector('#txtId');
-}
-
+// inputNombreCliente = document.querySelector('#txtNombre');
+// inputCedulaCliente = document.querySelector('#txtCedula');
+// inputProvincia = document.querySelector('#txtProvincia');
+// inputCanton = document.querySelector('#txtCanton');
+// inputDistrito = document.querySelector('#txtDistrito');
+// inputPrimerNombre = document.querySelector('#txtPrimerNombre');
+// inputPrimerApellido = document.querySelector('#txtPrimerApellido');
+// inputTelefonoCliente = document.querySelector('#txtTelefono');
+// inputCorreo = document.querySelector('#txtCorreo');
+// // inputUbicacion = marker.getPosition().lat() + ',' + marker.getPosition().lng();
+// desactivar = false;
+// inputId = document.querySelector('#txtId');
+// }
 
 function obtenerDatosCliente(){
     let infoCliente =[];
@@ -343,7 +339,7 @@ function imprimirListaClientes() {
 
 };
 
-function llenarDatosFormulario(){ //**** V I S T O *****  es la de buscar_por_id
+function llenarDatosFormulario(){ 
         
 
 

@@ -26,7 +26,7 @@ function actualizarEstadoCliente(pCliente, estado) {
     return respuesta;
 }
 
-/*Sobre Registro Cliente*/
+
 function obtenerListaClientes(){
     let lista = [];
 
@@ -137,9 +137,6 @@ function ftnGeneradorContrasenna() {
     return retVal;
 }
 
-// VIDEOS PABS
-
-
 function actualizarPersona(pCliente){
     let respuesta = '';
     let peticion = $.ajax({
@@ -175,8 +172,6 @@ function actualizarPersona(pCliente){
 
       return respuesta;
 };
-
-
 
 function borrarPersonaPorId(pid){ 
     let respuesta = '';

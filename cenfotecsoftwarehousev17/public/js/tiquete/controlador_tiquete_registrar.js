@@ -4,16 +4,15 @@
 // sessionStorage.setItem("UsuarioAutenticado", JSON.stringify({"_id":"5b4d44b967e4930c585faefd","Nombre":"maria","Cedula":"456123","Provincia":"San Jose","Distrito":"San Jose","Canton":"montes de oca","Ubicacion":"san pedro","PrimerNombre":"Juan Carlos","PrimerApellido":"González","Telefono":"88668921","Correo":"123456","Desactivado":false,"Contrasenna":"mZcE0","TipoUsuario":2,}));
 
 let botonRegistrar = document.querySelector('#btnRegistrarTiquete');
-
-botonRegistrar.addEventListener('click' , obtenerDatos);
-DatalistProyectosDelUsuario();
-
 let inputCedula = document.querySelector('#txtCedula');
 let inputcodigo_tiquete = document.querySelector('#txtcodigo_tiquete');
 let inputcodigo_proyecto = document.querySelector('#txtcodigo_proyecto');
 let inputdescripcion = document.querySelector('#txtdescripcion');
 let inputfecha = document.querySelector('#txtfecha');
 
+
+botonRegistrar.addEventListener('click' , obtenerDatos);
+DatalistProyectosDelUsuario();
 
 
 
