@@ -117,8 +117,8 @@ function obtenerDatosCliente(){
             confirmButtonText : 'Entendido'
         }).then(
             function(){
-                obtenerPagina ('cliente/cliente_listar.html');
-                // window.location.href = "../../html/cliente/cliente_listar.html"
+                // obtenerPagina ('cliente/cliente_listar.html');
+                window.location.href = "../../html/cliente/cliente_listar.html"
             }
         );
         limpiarFormulario();

@@ -1,5 +1,5 @@
 'use strict';
-//para que se conecte a la base de datos de mongo, necesito de mongoose
+
 const tiqueteModel = require('./tiquete.model');
 
 module.exports.registrarTiquete = function(req, res){
@@ -12,6 +12,7 @@ module.exports.registrarTiquete = function(req, res){
         fecha : req.body.fecha,
         imagen : req.body.imagen,
         usuarioId : req.body.usuarioId,
+        TextoTiquete : req.body.TextoTiquete,
        
     });
 

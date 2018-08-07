@@ -44,7 +44,8 @@ function registrarTiquete(pTiquete){
             descripcion : pTiquete[4],
             fecha : pTiquete[5],
             imagen : pTiquete[6],
-            usuarioId : pTiquete[7]
+            usuarioId : pTiquete[7],
+            TextoTiquete : pTiquete [8]
         }
       });
 
