@@ -36,17 +36,23 @@
 				<nav>
 					<a href="../sistema/sistema_registrar.html" id="btnEstudiantesIndex"><div class="link">Configuraciones generales</div></a>
 					<a href="../usuario/usuario_listar.html" id="btnUsuariosIndex"><div class="link">Usuarios</div></a>
+					<!-- Proyectos -->
 					<a href="../proyecto/proyecto_registrar.html" id="btnRegistrarProyectosIndex"><div class="link">Registrar proyecto</div></a>
 					<a href="../proyecto/proyecto_listar_admin.html" id="btnListarProyectosIndex"><div class="link">Listar proyecto</div></a>
+					<!-- Profesor -->
 					<a href="../profesor/profesor_registrar.html" id="btnRegistrarProfesorIndex"><div class="link">Registrar Profesor</div></a>
 					<a href="../profesor/profesor_listar.html" id="btnListarProfesorIndex"><div class="link">Listar profesor</div></a>
+					<!-- Estudiante -->
 					<a href="../estudiante/indexRegEstud.html" id="btnRegistrarEstudianteIndex"><div class="link">Registrar estudiante</div></a>
 					<a href="../estudiante/indexTablaEstud.html" id="btnListarEstudianteIndex"><div class="link">Listar estudiante</div></a>	
+					<!-- Cliente -->
 					<a href="../cliente/cliente_registrar.html" id="btnRegistrarClienteIndex"><div class="link">Registrar cliente</div></a>
 					<a href="../cliente/cliente_listar.html" id="btnListarClienteIndex"><div class="link">Listar cliente</div></a>
 					<a href="../mensaje/mensaje_enviado_listar.html" id="btnReporteIndex"><div class="link">Reporte horas estudiante</div></a>
+					<!-- Tiquetes -->
           <a href="../tiquete/tiquete_listar_administrador.html" id="btnListarTiquetesIndex"><div class="link">Listar de tiquetes</div></a>
-          <a href="../tiquete/tiquete_registrar_administrador.html" id="btnListarTiquetesIndex"><div class="link">Listar de tiquetes</div></a>
+					<a href="../tiquete/tiquete_registrar_administrador.html" id="btnListarTiquetesIndex"><div class="link">Listar de tiquetes</div></a>
+					<!-- Mensajes -->
 					<a href="../mensaje/mensaje_registrar.html" id="btnCrearMensajeIndex"><div class="link">Crear mensaje</div></a>
 					<a href="../mensaje/mensaje_recibido_listar.html" id="btnMensajesRecibidosIndex"><div class="link">Mensajes recibidos</div></a>	
 					<a href="../mensaje/mensaje_enviado_listar.html" id="btnMensajesEnviadosIndex"><div class="link">Mensaje enviados</div></a>
@@ -59,79 +65,64 @@
 
         <!-- Agregar wrapper aquí -->
         <div class="wrapper">
-            <main>
-                <h3 class="titulo-lista">Registro de Estudiantes</h3>
-              <form action="">
-                <div class="field">
-                  <input type="text" id="txtId" hidden>
-                  <input type="text" name="txtNombre" id="txtNombre" placeholder="Primer nombre">
-                  <label for="txtNombre">Primer nombre</label>
-                </div>
-                <div class="field">
-                  <input type="text" name="txtApellido" id="txtApellido" placeholder="Primer apellido">
-                  <label for="txtApellido">Primer apellido</label>
-                </div>
-                <div class="field">
-                  <input type="text" name="txtDireccion" id="txtDireccion" placeholder="Dirección">
-                  <label for="txtDireccion">Dirección</label>
-                </div>
-                <div class="field">
-                  <input type="tel" name="txtTelefono" id="txtTelefono" placeholder="+506-8888-8888">
-                  <label for="txtTelefono">Teléfono</label>
-                </div>
-                <div class="field">
-                  <input type="email" name="txtEmail" id="txtEmail" placeholder="mcorralese@example.com">
-                  <label for="txtEmail">Correo electrónico</label>
-                </div>
-                <div class="field">
-                  <input type="number" name="txtCedula" id="txtCedula" placeholder="Cédula">
-                  <label for="txtCedula">Cédula</label>
-                </div>
-                <div class="field">
-                  <input type="text" name="txtCarrera" id="txtCarrera" placeholder="Carrera">
-                  <label for="txtCarrera">Carrera</label>
-                </div>
-                <div class="field">
-                  <input type="text" name="txtMateriasAprob" id="txtMateriasAprob" placeholder="Materias aprobadas">
-                  <label for="txtMateriasAprob">Materias aprobadas</label>
-                </div>
-                <div class="field">
-                  <input type="text" name="txtContactEmergNombre" id="txtContactEmergNombre" placeholder="Primer nombre contacto de Emergencia">
-                  <label for="txtContactEmergNombre">Primer nombre contacto de Emergencia</label>
-                </div>
-                <div class="field">
-                  <input type="text" name="txtContactEmergApellido" id="txtContactEmergApellido" placeholder="Primer nombre contacto de Emergencia">
-                  <label for="txtContactEmergApellido">Primer apellido contacto de Emergencia</label>
-                </div>
-                <div class="field">
-                  <input type="tel" name="txtContactEmergTelefono" id="txtContactEmergTelefono" placeholder="+506-8888-8888">
-                  <label for="txtContactEmergTelefono">Teléfono contacto de Emergencia</label>
-                </div>
-                <button type="button" id="btnRegEstud">Registrar</button>
-                <!-- <button type="button" id="btnActualizarEstudiante">Registrar</button> -->
-              </form>
-              <table id="tblEstud" class="ocultar">
-                <thead>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Dirección</th>
-                  <th>Teléfono</th>
-                  <th>Correo electrónico</th>
-                  <th>Cédula</th>
-                  <th>Carrera</th>
-                  <th>Materias</th>
-                  <th>Nombre de emergencia</th>
-                  <th>Apellido de emergencia</th>
-                  <th>Teléfono de emergencia</th>
-                  <!-- para reservar espacio de los botones de modificar y borrar -->
-                  <th>Acciones</th> 
-                </thead>
-                <tbody>
-          
-                </tbody>
-              </table>
-            </main>
+          <h3 class="titulo-lista">Registro de Tiquete</h3>
+        
+          <form id="FormularioCliente">
+    
+          <div class="field">
+            <input type="text" placeholder="Cedula Juridica" id="txtCedula">
+            <label for="txtCedula">Cedula Juridica</label>
           </div>
+    
+          <div class="field">
+            <input type="text" placeholder="Codigo del tiquete" id="txtcodigo_tiquete">
+            <label for="txtcodigo_tiquete">Codigo del tiquete</label>
+          </div>
+    
+          <div class="field">
+            <input type="text" placeholder="Codigo del proyecto" id="txtcodigo_proyecto">
+            <label for="txtcodigo_proyecto">Codigo Proyecto</label>
+          </div>
+    
+          <div class="field" >
+            <select name="" id="sltProyectos">
+                <label for="sltProyectos">Proyecto asociado</label>   
+                <option value="#">Seleccione un proyecto</option>
+            </select>
+           
+          </div>
+    
+          <div class="field">
+            <input type="text" placeholder="Descripcion" id="txtdescripcion">
+            <label for="txtdescripcion">Descripcion</label>
+          </div>
+    
+    
+          <div class="field">
+            <input type="text" placeholder="Fecha" id="txtfecha">
+            <label for="txtfecha">Fecha</label>
+          </div>
+    
+    
+          <div class="field">
+            <div><button type="button" id="btnSeleccionarImagen">Adjuntar imagen</button></div>
+            <img src="" alt="Foto" id="txtImagen" width="128px" height"128px">
+    
+    
+            <div class="field">
+              <input type="textarea" placeholder="TextoTiquete" id="txtTextoTiquete">
+              <label for="txtTextoTiquete">Comentar Tiquete</label>
+            </div>
+      
+    
+            <!--<button type="button" id="btnadjuntar_imagenes">Adjuntar imagenes</button></div>
+            <img src="" alt="Foto" id="txtImagen" width="128px" height"128px">-->
+    
+      </div>
+      <button type="button" id="btnRegistrarTiquete" class="btn-registrar">Registrar</button>
+      </form>
+      </div>
+        
 			</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.5/sweetalert2.all.js"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
@@ -143,11 +134,6 @@
 		<script src="../../js/inicioSesion/login.service.js"></script>
 		<script src="../../js/inicioSesion/auth.service.js"></script>
     <script src="../../js/inicioSesion/login.controller.js"></script>
-    <script src="../../js/estudiante/servicioRegEstud.js"></script>
-    <script src="../../js/estudiante/controladorRegEstud.js"></script>
+    <script src="../../js/tiquete/controlador_tiquete_listar.js"></script>
+    <script src="../../js/tiquete/servicio_tiquete_listar.js"></script>
 		</div>
-	</div>
-
-</body>
-
-</html>
