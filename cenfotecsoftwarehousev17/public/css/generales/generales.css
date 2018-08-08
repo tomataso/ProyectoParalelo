@@ -480,7 +480,17 @@ margin-top: 15%;
 }
 
 
-
+.img_perfil{
+  
+  width: 38%;
+  height: 79%;
+  border-radius: 100%; 
+  border: 10px solid #fbb803; 
+  position: absolute;
+  left: 55%;  
+  top: 15%;
+  overflow: hidden;
+}
 
 
 

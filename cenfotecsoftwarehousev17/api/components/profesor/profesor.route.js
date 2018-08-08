@@ -6,38 +6,41 @@ const profesor = require('./profesor.api');
 
 
 router.route('/registrarProfesores')
-    .post(function(req, res){
-    profesor.registrar(req, res);
-});
-
-
-
+    .post(function (req, res) {
+        profesor.registrar(req, res);
+    });
 
 router.route('/listarProfesores')
-    .get(function(req, res){
+    .get(function (req, res) {
         profesor.listar(req, res);
-});
+    });
 
 
 router.route('/buscarProfesor')
-    .get(function(req, res){
+    .get(function (req, res) {
         profesor.buscarProfesor(req, res);
-});
+    });
 
 router.route('/desactivarProfesor')
-    .post(function(req, res){
+    .post(function (req, res) {
         profesor.desactivar(req, res);
-});
+    });
 
 
 router.route('/agregarTitulo')
     .post(function (req, res) {
-        entrenador.agregarGradoAcademicoProfesor(req, res);
+        profesor.agregarGradoAcademicoProfesor(req, res);
     });
 
-    router.route('/agregarCursoI')
+router.route('/agregarCursoI')
     .post(function (req, res) {
-        entrenador.agregarCursosImpartidosProfesor(req, res);
+        profesor.agregarCursosImpartidosProfesor(req, res);
+    });
+
+
+router.route('/actualizarProfesor')
+    .post(function (req, res) {
+        proyecto.actualizarProfesor(req, res);
     });
 
 

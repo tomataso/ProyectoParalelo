@@ -1,7 +1,7 @@
 'use strict';
 
-const btnEditarProyecto = document.querySelector('#btnEditar');
-const btnGuardarProyecto = document.querySelector('#btnGuardar');
+const btnEditarProfesor = document.querySelector('#btnEditar');
+const btnGuardarProfesor = document.querySelector('#btnGuardar');
 
 const btnVerGradoAcademico = document.querySelector('#btnVerGradoAcademico');
 const btnVerCursosImpartidos = document.querySelector('#btnVerCursosImpartidos');
@@ -22,78 +22,124 @@ const inputAExperienciaProfesor = document.querySelector('#txtAexperiencia');
 const inputTipoProfesor = document.querySelector('#txtTipoProfesor');
 const inputContrasennaProfesor = document.querySelector('#txtContrasenna');
 
+let profesorSeleccionado = null;
+
+btnEditarProfesor.addEventListener('click',function(){
+
+    btnEditarProfesor.classList.add('modificar');
+    btnGuardarProfesor.classList.remove('modificar');
+
+    ftnHabilitarCampos();
+
+    swal({
+        type : 'success',
+        title : 'Campos Habilitados',
+        text: 'Modificar datos y dar click en botón \"Guardar\"',
+        confirmButtonText : 'Entendido'
+    });
+    
+});
+
+btnGuardarProfesor.addEventListener('click',function(){
+    
+    const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        buttonsStyling: false,
+      })
+      
+      swalWithBootstrapButtons({
+        title: 'Modificar Profesor',
+        text: "¿Deseas guardar los cambios realizados?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, guardar!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+
+      }).then((result) => {
+
+        if (result.value) {   
+
+            obtenerDatosProfesor();
+            
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons(
+            'Cancelado!',
+            'Los cambios no fueron guardados',
+            'error'
+          )
+        }
+        // OJO ----------------------------------------------------------------------------
+            ftnMostrarProfesor(profesorSeleccionado._id,obtenerListaProfesores());
+
+            ftnDeshabilitarCampos();
+            btnEditarProfesor.classList.remove('modificar');
+            btnGuardarProfesor.classList.add('modificar');
+      })    
+});
+
+// Ready
+btnVerGradoAcademico.addEventListener('click',function(){
+
+    window.location.replace('../../html/profesor/profesor_asignar_titulos.html');
+    
+});
+
+// Ready
+btnVerCursosImpartidos.addEventListener('click',function(){
+
+    window.location.replace('../../html/profesor/profesor_asignar_curosI.html');
+    
+});
 
 
+window.onload = function(){
 
-function obtenerIdProfesor() {
-    let paginaUrl = window.location.href;
-    let locacion = paginaUrl.lastIndexOf("?") + 3;
-    let id = paginaUrl.slice(locacion,paginaUrl.lenght); 
- 
-    return id;
- }; 
-
-function ProfesorMostrarInit () {
     let idProfesor = obtenerIdProfesor();
-    ftnMostrarProfesor(idProfesor);
+    let profesores = obtenerListaProfesores();
+
+    ftnMostrarProfesor(idProfesor,profesores);
     ftnDeshabilitarCampos();
-
-    let botonVerTitulo = document.querySelector('#btnVerGradoAcademico');
-    botonVerTitulo.addEventListener('click', ftnAsignarTitulo);
-
-    let botonVerCursosI = document.querySelector('#btnVerCursosImpartidos');
-    botonVerCursosI.addEventListener('click', ftnAsignarCursosI);
-  
-}
-
-function ftnAsignarTitulo(){
-	let id = obtenerIdProfesor();
-    // ojo con el path
-    //window.location.replace('./profesor_asignar_titulos.html?id' + id );
-    obtenerPagina('profesor/profesor_asignar_titulos.htmlid' + id);
-};
-
-function ftnAsignarCursosI(){
-	let id = obtenerIdProfesor();
-    // ojo con el path
-   // window.location.replace('./profesor_asignar_cursosI.html?id' + id );
-   obtenerPagina('profesor/profesor_asignar_cursosI.html?id' + id );
 };
 
 
-function ftnMostrarProyecto (idProfesor){
 
-    let profesorSeleccionado = null;
+function ftnMostrarProfesor (idProfesor,profesores){
 
+    let profesorftnSeleccionado = null;
 
-    proyectos.forEach(element => {
+    profesores.forEach(element => {
         if (element._id == idProfesor) {
-            profesorSeleccionado = element;
+            profesorftnSeleccionado = element;
         }
     });
 
-    inputNombreProfesor.value = profesorSeleccionado.Nombre;
-    inputApellidoProfesor.value = profesorSeleccionado.Apellido;
-    inputCedulaProfesor.value = profesorSeleccionado.Cedula;
-    inputTelefonoProfesor.value = profesorSeleccionado.Telefono;
-    inputCorreoProfesor.value = profesorSeleccionado.Correo;
+    profesorSeleccionado = profesorftnSeleccionado;
 
-    inputProvinciaProfesor.value = profesorSeleccionado.Provincia;
-    inputCantonProfesor.value = profesorSeleccionado.Canton;
-    inputDistritoProfesor.value = profesorSeleccionado.Distrito;
-    inputDireccionExactaProfesor.value = profesorSeleccionado.DireccionExacta;
+    inputNombreProfesor.value = profesorftnSeleccionado.Nombre;
+    inputApellidoProfesor.value = profesorftnSeleccionado.Apellido;
+    inputCedulaProfesor.value = profesorftnSeleccionado.Cedula;
+    inputTelefonoProfesor.value = profesorftnSeleccionado.Telefono;
+    inputCorreoProfesor.value = profesorftnSeleccionado.Correo;
 
-    inputAExperienciaProfesor.value = profesorSeleccionado.Aexperiencia;
-    inputTipoProfesor.value = profesorSeleccionado.TipoProfesor;
-    inputContrasennaProfesor.value = profesorSeleccionado.Contrasenna;
+    inputProvinciaProfesor.value = profesorftnSeleccionado.Provincia;
+    inputCantonProfesor.value = profesorftnSeleccionado.Canton;
+    inputDistritoProfesor.value = profesorftnSeleccionado.Distrito;
+    inputDireccionExactaProfesor.value = profesorftnSeleccionado.DireccionExacta;
 
-// Revisar esto
-    let imagen = document.createElement('img');
-    imagen.src = profesorSeleccionado.FotoPerfilProfesor;
-    imagen.classList.add('imageSettings');
+    inputAExperienciaProfesor.value = profesorftnSeleccionado.Aexperiencia;
+    inputTipoProfesor.value = profesorftnSeleccionado.TipoProfesor;
+    inputContrasennaProfesor.value = profesorftnSeleccionado.Contrasenna;
+
 
    
 };
+
+
 
 function ftnDeshabilitarCampos (){
 
@@ -111,14 +157,25 @@ function ftnDeshabilitarCampos (){
     inputAExperienciaProfesor.setAttribute('disabled',true);
     inputTipoProfesor.setAttribute('disabled',true);
     inputContrasennaProfesor.setAttribute('disabled',true);
+  
 
 };
+
+function obtenerIdProfesor() {
+
+    return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
+ }; 
+
+
+
 
 
 function obtenerDatosProfesor() {
 
     let infoProfesor = [];
     let bError = false;
+
+    let  idProfesor = profesorSeleccionado._id;
 
     let sNombre = inputNombreProfesor.value;
     let sApellido = inputApellidoProfesor.value;
@@ -131,42 +188,55 @@ function obtenerDatosProfesor() {
     let sDistrito = inputDistritoProfesor.value;
     let sDireccionExacta = inputDireccionExactaProfesor.value;
 
-
+   // let sGAcademico = inputGAcademicoProfesor.value;
     let sAexperiencia = Number(inputAExperienciaProfesor.value);
-
+    // let sCImpartidos = inputCImpartidosProfesor.value;
     let sTipoProfesor = inputTipoProfesor.value;
-    let sDesactivado = false;
+    let sContrasenna = inputContrasennaProfesor.value;
 
 
-    infoProfesor.push(sNombre, sApellido, sCedula, sTelefono, sCorreo, sProvincia, sCanton, sDistrito, sDireccionExacta, sAexperiencia, sTipoProfesor, sDesactivado);
+    infoProfesor.push(idProfesor, sNombre, sApellido, sCedula, sTelefono, sCorreo, sProvincia, sCanton, sDistrito, sDireccionExacta, sAexperiencia, sTipoProfesor, sContrasenna );
 
     bError = validarProfesor();
-
-    if (bError == true) {
+    if(bError == true){
         swal({
-            type: 'warning',
-            title: 'No se pudo registrar el profesor',
+            type : 'warning',
+            title : 'Datos erróneos!',
             text: 'Por favor revise los campos en rojo',
-            confirmButtonText: 'Entendido'
+            confirmButtonText : 'Entendido'
         });
-        console.log('No se pudo registrar el profesor');
-    } else {
-        registrarProfesor(infoProfesor);
-        swal({
-            type: 'success',
-            title: 'Registro exitoso',
-            text: 'El Profesor se registró adecuadamente',
-            confirmButtonText: 'Entendido'
-        }).then(
-            function(){
-                //Revisar no redireciona el path
-                obtenerPagina ('profesor/profesor_mostrar');
-            }
-        );
-        limpiarFormulario();
-    }
+        console.log('No se pudo modificar el profesor');
+    }else{
 
-}
+        actualizarProfesorG(infoProfesor);
+
+
+        ftnDeshabilitarCampos();
+
+        btnEditarProfesor.classList.remove('modificar');
+        btnGuardarProfesor.classList.add('modificar');
+        swal({
+            type : 'success',
+            title : 'Modificación exitosa',
+            text: 'El profesor se modificó adecuadamente',
+            confirmButtonText : 'Entendido'
+        });
+    }
+    
+};
+
+
+
+
+function ftnHabilitarCampos (){
+
+    inputNombre.removeAttribute('disabled');
+    inputDescripcion.removeAttribute('disabled');
+    selectEstado.removeAttribute('disabled');
+    inputFechaEntrega.removeAttribute('disabled');
+    selectCliente.removeAttribute('disabled');
+   
+};
 
 
 
@@ -276,26 +346,6 @@ function validarProfesor() {
     return bError;
 }
 
-
-
-function limpiarFormulario() {
-
-    inputNombreProfesor.value = '';
-    inputApellidoProfesor.value = '';
-    inputCedulaProfesor.value = '';
-    inputTelefonoProfesor.value = '';
-    inputCorreoProfesor.value = '';
-
-
-    inputProvinciaProfesor.value = '';
-    inputCantonProfesor.value = '';
-    inputDistritoProfesor.value = '';
-    inputDireccionExactaProfesor.value = '';
-
- 
-    inputAExperienciaProfesor.value = '';
- 
-}
 
 
 

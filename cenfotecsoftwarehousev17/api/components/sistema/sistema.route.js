@@ -16,4 +16,15 @@ router.route('/obtenerPagina')
     response.sendfile('public/html/'+request.query.url); //'public/html/estudiante/indexTablaEstud.html'
 });
 
+router.route('/listarParametro')
+    .get(function(req, res){
+        parametro.listar(req, res);
+});
+
+
+router.route('/actualizarParametro')
+    .post(function (req, res) {
+        parametro.actualizarParametro(req, res);
+    });
+
 module.exports = router;

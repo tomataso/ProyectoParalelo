@@ -61,6 +61,7 @@
             <form>
 				<h3 class="titulo-lista">Parámetros Generales</h3>
                 <div class="field">
+
                   <input type="text" name="Periodo" id="Periodo" placeholder="Período">
                   <label for="Periodo">Período:</label>
                 </div>
@@ -75,8 +76,9 @@
                   <label for="PorcentajeBecaxHoraTrabajada">Porcentaje de beca por hora trabajada</label>
                 </div>
     
-    
-                <button type="button" id="btnGuardar" class="btn-registrar">Guardar</button> 
+				
+				<button type="button" id="btnEditar" class="btn-registrar">Editar</button> 
+                <button type="button" id="btnGuardar" class="btn-registrar modificar">Guardar</button> 
                
             </form>
     
@@ -92,9 +94,11 @@
 		crossorigin="anonymous"></script>
 		<script src="../../js/inicioSesion/login.service.js"></script>
 		<script src="../../js/inicioSesion/auth.service.js"></script>
-    <script src="../../js/inicioSesion/login.controller.js"></script>
-    <script src="../../js/sistema/servicio_sistema_registrar.js"></script>
-    <script src="../../js/sistema/controlador_sistema_registrar.js"></script>
+	<script src="../../js/inicioSesion/login.controller.js"></script>
+	
+
+    <script src="../../js/sistema/servicio_sistema_parametros.js"></script>
+    <script src="../../js/sistema/controlador_sistema_parametros.js"></script>
 		</div>
 	</div>
 

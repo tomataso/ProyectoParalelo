@@ -123,3 +123,15 @@ module.exports.agregarCursosImpartidosProfesor = function (req, res) {
         }
     )
 };
+
+module.exports.actualizarProfesor = function (req, res) {
+    ProfesorModel.findByIdAndUpdate(req.body._id, { $set: req.body },
+        function (err, user) {
+            if (err) {
+                res.json({ success: false, msg: 'No se ha actualizado.' + handleError(err) });
+
+            } else {
+                res.json({ success: true, msg: 'Se ha actualizado correctamente.' + res });
+            }
+        });
+};

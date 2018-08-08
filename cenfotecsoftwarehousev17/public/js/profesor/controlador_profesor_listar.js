@@ -27,30 +27,61 @@ function ListarProfesores(){
         if(listaProfesor[i]['Desactivado']){
             continue;
         } else{
-        
+
+            let celdaNombre = fila.insertCell();        
             let fila = tbody.insertRow();
-            let celdaNombre = fila.insertCell();
             let celdaApellido = fila.insertCell();
             let celdaCedula = fila.insertCell();
             let celdaTelefono = fila.insertCell();
             let celdaCorreo = fila.insertCell();
 
             let celdaTipoProfesor =  fila.insertCell();
-
-
+            celdaCedula.innerHTML = listaProfesor[i]['Cedula'];
             celdaNombre.innerHTML = listaProfesor[i]['Nombre'];
             celdaApellido.innerHTML = listaProfesor[i]['Apellido'];
-            celdaCedula.innerHTML = listaProfesor[i]['Cedula'];
+
             celdaTelefono.innerHTML = listaProfesor[i]['Telefono'];
             celdaCorreo.innerHTML = listaProfesor[i]['Correo'];
 
             celdaTipoProfesor.innerHTML = listaProfesor[i]['TipoProfesor'];
+
+            let btnVer = document.createElement('a');
+            btnVer.name = listaProyecto[i]['_id'];
+            btnVer.classList.add('fas');
+            btnVer.classList.add('fa-eye');
+            btnVer.addEventListener('click', ftnMostrarProfesor);
+
+            btns.appendChild(btnVer);
+
         }
     }
 
 };
 
+// -----------------------------------------
+function ftnMostrarProfesor(){
+    let id = this.name;
+    
+    // en cual servicio esta esta funcion
+    let usuario = getUsuarioAutenticado();
 
+    ftnGuardarIdSeleccionado(id);
+    
+    switch (usuario.TipoUsuario) {
+        case 0:
+            window.location.replace('../../html/profesor/profesor_mostrar.html');
+            break;
+    
+        default:
+            break;
+    }   
+};
+
+function ftnGuardarIdSeleccionado (pId){
+
+    sessionStorage.setItem("idFilaSeleccionado", JSON.stringify(pId));
+};
+//-------------------------------------------
 
 function filtrarListaProfesores(){
     let criterioBusqueda = inputBuscarProfesor.value.toUpperCase();
