@@ -29,8 +29,10 @@ function obtenerListaProfesores(){
     return listaProfesores;
 }
 
-// cambiar esto
-function actualizarProfesorG(pProyecto){
+
+
+
+function actualizarProfesorG(pProfesor){
     let respuesta = '';
     let peticion = $.ajax({
         url : 'http://localhost:4000/api/actualizarProfesor',
@@ -39,22 +41,21 @@ function actualizarProfesorG(pProyecto){
         dataType : 'json',
         async : false,
         data:{
+            _id : pProfesor[0],
+            Nombre : pProfesor[1],
+            Apellido : pProfesor[2],
+            Cedula : pProfesor[3],
+            Telefono : pProfesor[4],
+            Correo : pProfesor[5],
 
-            _id : pProyecto[0],
-            Nombre : pProyecto[1],
-            Apellido : pProyecto[2],
-            Cedula : pProyecto[3],
-            Telefono : pProyecto[4],
-            Correo : pProyecto[5],
+            Provincia : pProfesor[6],
+            Canton : pProfesor[7],
+            Distrito : pProfesor[8],
+            DireccionExacta : pProfesor[9],
 
-            Provincia : pProyecto[6],
-            Canton : pProyecto[7],
-            Distrito : pProyecto[8],
-            DireccionExacta : pProyecto[9],
-
-            Aexperiencia : pProyecto[10],
-            TipoUsuario : pProyecto[11],
-            Contrasenna : pProyecto[12]
+            Aexperiencia : pProfesor[10],
+            TipoUsuario : pProfesor[11],
+            Contrasenna : pProfesor[12]
         }
       });
     
@@ -68,7 +69,4 @@ function actualizarProfesorG(pProyecto){
 
       return respuesta;
 };
-
-
-
 
