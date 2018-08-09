@@ -40,7 +40,7 @@ function ListarProfesores(){
     } else if(rolSeleccionado == "defecto"){
  
         swal({
-            type : 'warning',
+            type : 'info',
             title : 'Seleccionar tipo de profesor',
             text: 'Por favor, seleccionar el tipo de profesor a asignar.',
             confirmButtonText : 'Entendido'

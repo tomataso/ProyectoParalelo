@@ -17,6 +17,7 @@ window.onload = function(){
 //funciones--------------------------------------------------
 function ListarProyectos(){
     let listaProyecto = obtenerListaProyectos();
+    let listaClientes = obtenerListaClientes();
     let tbody = document.querySelector('#tblProyectos tbody');
     tbody.innerHTML = '';
 
@@ -34,6 +35,7 @@ function ListarProyectos(){
             let celdaFechaEntrega = fila.insertCell();
             let btns = fila.insertCell();
             let cliente = listaProyecto[i]['clienteProyecto'];
+            let clienteValidado = null;
             let fechaEntrega = ftnFechaProyecto(listaProyecto[i]['fechaEntrega']);
             
 
@@ -51,7 +53,12 @@ function ListarProyectos(){
 
             celdaCodigo.innerHTML = listaProyecto[i]['codigo'];
             celdaNombre.innerHTML = listaProyecto[i]['nombre'];
-            celdaCliente.innerHTML = cliente[0].nombreCliente;
+            clienteValidado = ftnValidarCliente(listaClientes,cliente[0].idCliente);
+            if(clienteValidado[0]){
+                celdaCliente.innerHTML = "Cliente no disponible";
+            } else  {
+                celdaCliente.innerHTML = clienteValidado[1];
+            }
             celdaEstado.innerHTML = listaProyecto[i]['estado'];
             celdaFechaEntrega.innerHTML = fechaEntrega;
             btns.appendChild(btnVer);
@@ -174,3 +181,19 @@ function ftnFechaProyecto (pFecha){
   
     return textoFecha;
 }
+
+function ftnValidarCliente (pLista,pId){
+
+    let control = [true,null];
+
+    pLista.forEach(element => {
+        if(element._id == pId){
+            if(!element.Desactivado){
+                control[0] = false;
+                control[1] = element.Nombre;
+            }
+        }         
+    });
+
+    return control;
+};
