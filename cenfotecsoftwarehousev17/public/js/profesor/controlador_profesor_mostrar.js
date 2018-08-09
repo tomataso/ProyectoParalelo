@@ -230,11 +230,20 @@ function obtenerDatosProfesor() {
 
 function ftnHabilitarCampos (){
 
-    inputNombre.removeAttribute('disabled');
-    inputDescripcion.removeAttribute('disabled');
-    selectEstado.removeAttribute('disabled');
-    inputFechaEntrega.removeAttribute('disabled');
-    selectCliente.removeAttribute('disabled');
+    inputNombreProfesor.removeAttribute('disabled');
+    inputApellidoProfesor.removeAttribute('disabled');
+    inputCedulaProfesor.removeAttribute('disabled');
+    inputTelefonoProfesor.removeAttribute('disabled');
+    inputCorreoProfesor.removeAttribute('disabled');
+
+    inputProvinciaProfesor.removeAttribute('disabled');
+    inputCantonProfesor.removeAttribute('disabled');
+    inputDistritoProfesor.removeAttribute('disabled');
+    inputDireccionExactaProfesor.removeAttribute('disabled');
+
+    inputAExperienciaProfesor.removeAttribute('disabled');
+    inputTipoProfesor.removeAttribute('disabled');
+    inputContrasennaProfesor.removeAttribute('disabled');
    
 };
 

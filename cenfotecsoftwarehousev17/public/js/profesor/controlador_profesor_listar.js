@@ -22,34 +22,39 @@ function ListarProfesores(){
     let tbody = document.querySelector('#tblProfesores tbody');
     tbody.innerHTML = '';
 
+   
+
     for(let i = 0; i < listaProfesor.length; i++){
         
         if(listaProfesor[i]['Desactivado']){
             continue;
         } else{
 
-            let celdaNombre = fila.insertCell();        
             let fila = tbody.insertRow();
-            let celdaApellido = fila.insertCell();
+
             let celdaCedula = fila.insertCell();
+            let celdaNombre = fila.insertCell(); 
+            let celdaApellido = fila.insertCell();
+            let celdaTipoProfesor =  fila.insertCell();
             let celdaTelefono = fila.insertCell();
             let celdaCorreo = fila.insertCell();
+            let btns = fila.insertCell();
 
-            let celdaTipoProfesor =  fila.insertCell();
-            celdaCedula.innerHTML = listaProfesor[i]['Cedula'];
-            celdaNombre.innerHTML = listaProfesor[i]['Nombre'];
-            celdaApellido.innerHTML = listaProfesor[i]['Apellido'];
-
-            celdaTelefono.innerHTML = listaProfesor[i]['Telefono'];
-            celdaCorreo.innerHTML = listaProfesor[i]['Correo'];
-
-            celdaTipoProfesor.innerHTML = listaProfesor[i]['TipoProfesor'];
 
             let btnVer = document.createElement('a');
-            btnVer.name = listaProyecto[i]['_id'];
+            btnVer.name = listaProfesor[i]['_id'];
             btnVer.classList.add('fas');
             btnVer.classList.add('fa-eye');
             btnVer.addEventListener('click', ftnMostrarProfesor);
+
+            
+
+            celdaCedula.innerHTML = listaProfesor[i]['Cedula'];
+            celdaNombre.innerHTML = listaProfesor[i]['Nombre'];
+            celdaApellido.innerHTML = listaProfesor[i]['Apellido'];
+            celdaTipoProfesor.innerHTML = listaProfesor[i]['TipoProfesor'];
+            celdaTelefono.innerHTML = listaProfesor[i]['Telefono'];
+            celdaCorreo.innerHTML = listaProfesor[i]['Correo'];
 
             btns.appendChild(btnVer);
 
