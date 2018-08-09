@@ -29,7 +29,7 @@ function obtenerListaProfesores(){
     return listaProfesores;
 }
 
-
+// cambiar esto
 function actualizarProfesorG(pProyecto){
     let respuesta = '';
     let peticion = $.ajax({

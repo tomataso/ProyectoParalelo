@@ -40,7 +40,7 @@ router.route('/agregarCursoI')
 
 router.route('/actualizarProfesor')
     .post(function (req, res) {
-        proyecto.actualizarProfesor(req, res);
+        profesor.actualizarProfesor(req, res);
     });
 
 

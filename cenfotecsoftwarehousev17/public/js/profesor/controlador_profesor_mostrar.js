@@ -72,13 +72,15 @@ btnGuardarProfesor.addEventListener('click',function(){
             'Los cambios no fueron guardados',
             'error'
           )
-        }
-        // OJO ----------------------------------------------------------------------------
-            ftnMostrarProfesor(profesorSeleccionado._id,obtenerListaProfesores());
+                  // OJO ----------------------------------------------------------------------------
+                  ftnMostrarProfesor(profesorSeleccionado._id,obtenerListaProfesores());
 
-            ftnDeshabilitarCampos();
-            btnEditarProfesor.classList.remove('modificar');
-            btnGuardarProfesor.classList.add('modificar');
+                  ftnDeshabilitarCampos();
+                  ftnQuitarValidaciones();
+                  btnEditarProfesor.classList.remove('modificar');
+                  btnGuardarProfesor.classList.add('modificar');
+        }
+
       })    
 });
 
@@ -204,7 +206,11 @@ function obtenerDatosProfesor() {
             title : 'Datos erróneos!',
             text: 'Por favor revise los campos en rojo',
             confirmButtonText : 'Entendido'
-        });
+        }).then(
+            function(){
+                ftnQuitarValidacionesClick();
+            }
+        );
         console.log('No se pudo modificar el profesor');
     }else{
 
@@ -215,6 +221,7 @@ function obtenerDatosProfesor() {
 
         btnEditarProfesor.classList.remove('modificar');
         btnGuardarProfesor.classList.add('modificar');
+        ftnMostrarProfesor();
         swal({
             type : 'success',
             title : 'Modificación exitosa',
@@ -358,7 +365,69 @@ function validarProfesor() {
 
 
 
+function ftnQuitarValidacionesClick (){
 
+    let tiposInputs = ['input','select','textarea'];
+    let inputsFormulario = [];
+    let inputsRequest = null;
+    let inputSeleccionado = null;
+
+    for (let i = 0; i < tiposInputs.length; i++) {    
+        
+        inputsRequest = document.getElementsByTagName(tiposInputs[i]);
+
+        if(inputsRequest == undefined || inputsRequest == ''){
+            continue;
+        } else {
+            
+            inputsFormulario.push(inputsRequest);
+            
+        }  
+    }
+
+    for (let i = 0; i < inputsFormulario.length; i++) {
+        inputSeleccionado = inputsFormulario[i]
+
+        for (let j = 0; j < inputSeleccionado.length; j++) {
+            
+            inputSeleccionado[j].addEventListener('click', function(){
+                this.classList.remove('error-input');
+            });   
+            
+        }        
+    }
+};
+
+function ftnQuitarValidaciones (){
+
+    let tiposInputs = ['input','select','textarea'];
+    let inputsFormulario = [];
+    let inputsRequest = null;
+    let inputSeleccionado = null;
+
+    for (let i = 0; i < tiposInputs.length; i++) {    
+        
+        inputsRequest = document.getElementsByTagName(tiposInputs[i]);
+
+        if(inputsRequest == undefined || inputsRequest == ''){
+            continue;
+        } else {
+            
+            inputsFormulario.push(inputsRequest);
+            
+        }  
+    }
+
+    for (let i = 0; i < inputsFormulario.length; i++) {
+        inputSeleccionado = inputsFormulario[i]
+
+        for (let j = 0; j < inputSeleccionado.length; j++) {
+            
+            inputSeleccionado[j].classList.remove('error-input');
+            
+        }        
+    }
+};
 
 
 
