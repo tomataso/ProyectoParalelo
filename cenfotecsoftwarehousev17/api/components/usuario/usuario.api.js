@@ -7,7 +7,7 @@ module.exports.registrar = function(req, res){
         Correo : req.body.Correo,
         Contrasenna : req.body.Contrasenna,
         TipoUsuario : req.body.TipoUsuario,
-        desactivado : req.body.desactivado
+        Desactivado : req.body.Desactivado
     });
 
     nuevoUsuario.save(function(error){
@@ -33,7 +33,7 @@ module.exports.desactivar = function(req, res){
     usuarioModel.update(
         {_id: req.body._id}, 
         {
-            desactivado : req.body.desactivado
+            Desactivado : req.body.Desactivado
         },
         function(error){
             if(error){

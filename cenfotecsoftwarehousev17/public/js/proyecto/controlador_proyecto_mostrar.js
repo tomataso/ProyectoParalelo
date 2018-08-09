@@ -68,11 +68,12 @@ btnGuardarProyecto.addEventListener('click',function(){
             'Los cambios no fueron guardados',
             'error'
           )
-        }
             ftnMostrarProyecto(proySeleccionado._id,obtenerProyectos());
             ftnDeshabilitarCampos();
+            ftnQuitarValidaciones();
             btnEditarProyecto.classList.remove('modificar');
             btnGuardarProyecto.classList.add('modificar');
+        }
       })    
 });
 
@@ -105,8 +106,6 @@ window.onload = function(){
 function ftnMostrarProyecto (idProyecto,proyectos){
 
     let proyectoSeleccionado = null;
-    let optionCliente = selectCliente.getElementsByTagName('option');
-    let optionEstado = selectEstado.getElementsByTagName('option');
     let valorOption = null;
 
     proyectos.forEach(element => {
@@ -122,16 +121,16 @@ function ftnMostrarProyecto (idProyecto,proyectos){
     inputNombre.value = proyectoSeleccionado.nombre;
     inputDescripcion.value = proyectoSeleccionado.descripcion;
     inputFechaEntrega.value = ftnFomatoFecha(proyectoSeleccionado.fechaEntrega);
-    ftnAsignarOpcion(selectCliente,optionCliente,proyectoSeleccionado.clienteProyecto[0].idCliente);
-    ftnAsignarOpcion(selectEstado,optionEstado,proyectoSeleccionado.estado)
+    ftnAsignarOpcion(selectCliente,proyectoSeleccionado.clienteProyecto[0].idCliente);
+    ftnAsignarOpcion(selectEstado,proyectoSeleccionado.estado)
    
 };
 
-function ftnAsignarOpcion (pSelect,pOpcion,pId){
+function ftnAsignarOpcion (pSelect,pId){
     let valorOption = null;
     
-    for (let i = 0; i < pOpcion.length; i++) {
-        valorOption = pOpcion[i].value;
+    for (let i = 0; i < pSelect.length; i++) {
+        valorOption = pSelect[i].value;
         if(valorOption == pId){
             pSelect.selectedIndex = i;
             break;
@@ -217,7 +216,11 @@ function obtenerDatosProyecto(){
             title : 'Datos erróneos!',
             text: 'Por favor revise los campos en rojo',
             confirmButtonText : 'Entendido'
-        });
+        }).then(
+            function (){
+                ftnQuitarValidacionesClick();
+            }
+        );
         console.log('No se pudo modificar el proyecto');
     }else{
         actualizarProyectoGeneral(infoProyectoGeneral);
@@ -297,4 +300,68 @@ function ftnHabilitarCampos (){
     inputFechaEntrega.removeAttribute('disabled');
     selectCliente.removeAttribute('disabled');
    
+};
+
+function ftnQuitarValidacionesClick (){
+
+    let tiposInputs = ['input','select','textarea'];
+    let inputsFormulario = [];
+    let inputsRequest = null;
+    let inputSeleccionado = null;
+
+    for (let i = 0; i < tiposInputs.length; i++) {    
+        
+        inputsRequest = document.getElementsByTagName(tiposInputs[i]);
+
+        if(inputsRequest == undefined || inputsRequest == ''){
+            continue;
+        } else {
+            
+            inputsFormulario.push(inputsRequest);
+            
+        }  
+    }
+
+    for (let i = 0; i < inputsFormulario.length; i++) {
+        inputSeleccionado = inputsFormulario[i]
+
+        for (let j = 0; j < inputSeleccionado.length; j++) {
+            
+            inputSeleccionado[j].addEventListener('click', function(){
+                this.classList.remove('error-input');
+            });   
+            
+        }        
+    }
+};
+
+function ftnQuitarValidaciones (){
+
+    let tiposInputs = ['input','select','textarea'];
+    let inputsFormulario = [];
+    let inputsRequest = null;
+    let inputSeleccionado = null;
+
+    for (let i = 0; i < tiposInputs.length; i++) {    
+        
+        inputsRequest = document.getElementsByTagName(tiposInputs[i]);
+
+        if(inputsRequest == undefined || inputsRequest == ''){
+            continue;
+        } else {
+            
+            inputsFormulario.push(inputsRequest);
+            
+        }  
+    }
+
+    for (let i = 0; i < inputsFormulario.length; i++) {
+        inputSeleccionado = inputsFormulario[i]
+
+        for (let j = 0; j < inputSeleccionado.length; j++) {
+            
+            inputSeleccionado[j].classList.remove('error-input');
+            
+        }        
+    }
 };

@@ -87,8 +87,7 @@ table td:last-child {
 }
 a.fa-trash {
   cursor: pointer;
-  color: transparent;
-  /* color: #d83504; */
+  color: #d83504;
   padding-left: 11%;
 }
 a.fa-eye {
@@ -96,6 +95,18 @@ a.fa-eye {
   cursor: pointer;
   padding-right: 11%;
 }
+
+.buscador-select{
+  display: inline;
+}
+
+.select-header{
+  left: 45%;
+  top: 10%;
+  position: absolute;
+  text-transform: uppercase;
+}
+
 
 /* Estilos pseudo clases ------------------------------------------------------------------------------------ */
 

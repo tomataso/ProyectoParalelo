@@ -60,7 +60,11 @@ function obtenerDatosProyecto(){
             title : 'No se pudo registrar el proyecto',
             text: 'Por favor revise los campos en rojo',
             confirmButtonText : 'Entendido'
-        });
+        }).then(
+            function(){
+                ftnQuitarValidacionesClick();   
+            }   
+        );
         console.log('No se pudo registrar el proyecto');
     }else{
         registrarProyecto(infoProyecto);
@@ -167,6 +171,40 @@ function ftnCamposAnnadidos (pFecha){
 
     inputFechaCreacion.value = pFecha;
     selectEstado.selectedIndex = 1;
+};
+
+function ftnQuitarValidacionesClick (){
+
+    let tiposInputs = ['input','select','textarea'];
+    let inputsFormulario = [];
+    let inputsRequest = null;
+    let inputSeleccionado = null;
+
+    for (let i = 0; i < tiposInputs.length; i++) {    
+        
+        inputsRequest = document.getElementsByTagName(tiposInputs[i]);
+
+        if(inputsRequest == undefined || inputsRequest == ''){
+            continue;
+        } else {
+            
+            inputsFormulario.push(inputsRequest);
+            
+        }  
+    }
+
+    for (let i = 0; i < inputsFormulario.length; i++) {
+        inputSeleccionado = inputsFormulario[i]
+
+        for (let j = 0; j < inputSeleccionado.length; j++) {
+            
+
+            inputSeleccionado[j].addEventListener('click', function(){
+                this.classList.remove('error-input');
+            });   
+            
+        }        
+    }
 };
 
 

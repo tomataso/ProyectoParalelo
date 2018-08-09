@@ -3,7 +3,7 @@ function autenticarCredenciales (correo, contrasenna){
     let valido = false;
 
     for (let i = 0; i < listaUsuarios.length; i++) {
-        if (listaUsuarios[i]["Correo"] == correo && listaUsuarios[i]["Contrasenna"] == contrasenna) {
+        if (listaUsuarios[i]["Correo"] == correo && listaUsuarios[i]["Contrasenna"] == contrasenna && listaUsuarios[i]["Desactivado"] != true) {
             valido = true;
             return valido;
         }
@@ -18,7 +18,7 @@ function iniciarSesion(correo, contrasenna) {
     let valido = false;
 
     for (let i = 0; i < listaUsuarios.length; i++) {
-        if (listaUsuarios[i]["Correo"] == correo && listaUsuarios[i]["Contrasenna"] == contrasenna) {
+        if (listaUsuarios[i]["Correo"] == correo && listaUsuarios[i]["Contrasenna"] == contrasenna && listaUsuarios[i]["Desactivado"] != true) {
             setUsuarioSessionStorage(listaUsuarios[i]);
             valido = true;
             return valido;

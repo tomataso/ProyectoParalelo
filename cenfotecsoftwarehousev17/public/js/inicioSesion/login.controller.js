@@ -16,11 +16,10 @@ aSalirUsuario.addEventListener('click' , function(){
 });
 
 //loads------------------------------------------------------
-window.onload = function(){
 
     ftnRevisionCredenciales();
-    
-};   
+
+//funciones-------------------------------------------------------
 
 function obtenerUrl() {
     let paginaUrl = window.location.href;
@@ -73,8 +72,6 @@ function ftnRevisionCredenciales (){
 function getCredencialesUsuario() {
     let correo = document.querySelector("#txtCorreoInicio").value;
     let contrasenna = document.querySelector("#txtContrasennaInicio").value;
-
-    document.querySelector("#btnInicioSesion").classList.add("ocultar");
 
     let valido = validarCredenciales(correo, contrasenna);
 
