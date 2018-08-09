@@ -43,3 +43,20 @@ function getUsuarioAutenticado() {
     return JSON.parse(sessionStorage.getItem("UsuarioAutenticado"));
 }
 
+function validaciónMenu (){
+
+    let menuIndexs = [];
+    let elementos = document.getElementsByTagName('a');
+    let control = null;
+    let rol = getUsuarioAutenticado().TipoUsuario;
+    
+    
+    
+    
+    
+    for (let i = 0; i < elementos.length; i++) {    
+        
+   
+           
+    }
+};
