@@ -27,8 +27,7 @@ function registrarProyecto(pProyecto){
             estado : pProyecto[4],
             fechaEntrega : pProyecto[5],
             desactivado : pProyecto[6],
-            idCliente : pProyecto[7],
-            nombreCliente : pProyecto[8]
+            idCliente : pProyecto[7]
         }
       });
     

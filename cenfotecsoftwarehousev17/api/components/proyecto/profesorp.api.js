@@ -6,10 +6,6 @@ module.exports.registrar = function(req, res){
     let nuevoProfesor = new profProyModel({
         idProyecto : req.body.idProyecto,
         idProfesor : req.body.idProfesor,
-        datosProfesor : [{
-            cedulaProfesor : req.body.cedulaProfesor,
-            nombreProfesor : req.body.nombreProfesor
-        }],
         rolProfesor : req.body.rolProfesor,
         desactivado : req.body.desactivado
     });

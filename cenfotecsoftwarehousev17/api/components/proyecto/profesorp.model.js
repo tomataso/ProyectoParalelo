@@ -4,12 +4,6 @@ let mongoose = require('mongoose');
 let profProySchema = new mongoose.Schema({
     idProyecto : {type : String, required : true},
     idProfesor : {type : String, required : true},
-    datosProfesor : [
-        {
-            cedulaProfesor: {type: String, required: true},
-            nombreProfesor: {type: String, required: true},
-        }
-    ],
     rolProfesor : {type: String, required : true},
     desactivado : {type : Boolean, required : true}
 });

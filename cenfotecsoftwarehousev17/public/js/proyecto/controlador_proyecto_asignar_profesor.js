@@ -50,7 +50,7 @@ function ListarProfesores(){
 
     for(let i = 0; i < listaDatos.length; i++){
 
-        if(rolSeleccionado != listaDatos[i]['TipoProfesor'] && listaDatos[i]['TipoProfesor'] != "ambos"){
+        if(rolSeleccionado != listaDatos[i]['TipoProfesor'] && listaDatos[i]['TipoProfesor'] != "ambos" || listaDatos[i]['Desactivado']){
             continue;
         }else{
             let fila = tbody.insertRow();
@@ -58,13 +58,12 @@ function ListarProfesores(){
             let celdaNombre = fila.insertCell();
             let btns = fila.insertCell();
 
-            let btnAsignar = document.createElement('input');
-            btnAsignar.type = 'button';
-            btnAsignar.value = 'Asignar';
+            let btnAsignar = document.createElement('a');
             btnAsignar.name = listaDatos[i]['_id'];
-            btnAsignar.classList.add('btn-list');
+            btnAsignar.classList.add('fas');
+            btnAsignar.classList.add('fa-user-plus');
             btnAsignar.addEventListener('click', function(){
-                let pDatos = [listaDatos[i]['Cedula'],listaDatos[i]['Nombre'],listaDatos[i]['Apellido'],obtenerIdProyecto(),listaDatos[i]['_id']];
+                let pDatos = [obtenerIdProyecto(),listaDatos[i]['_id']];
                 obtenerDatosProfesor(pDatos)
             });
             
@@ -76,23 +75,19 @@ function ListarProfesores(){
     
     }
 
+    ftnProfesoresAsignados();
 };
 
 function obtenerIdProyecto() {
-    let paginaUrl = window.location.href;
-    let locacion = paginaUrl.lastIndexOf("?") + 3;
-    let id = paginaUrl.slice(locacion,paginaUrl.lenght); 
- 
-    return id;
+
+    return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
  }; 
 
 function obtenerDatosProfesor(pDatos){
 
     let infoBd =[];
-    let idProyecto = pDatos[3];
-    let idProfesor = pDatos[4];
-    let cedulaProfesor = pDatos[0];    
-    let nombreProfesor = pDatos[1] + " " + pDatos[2];
+    let idProyecto = pDatos[0];
+    let idProfesor = pDatos[1];
     let rolProfesor = dropTipoProfesor.value;
     let desactivado = false;
 
@@ -106,7 +101,7 @@ function obtenerDatosProfesor(pDatos){
         return;
     }
 
-    infoBd.push(idProyecto,idProfesor,cedulaProfesor,nombreProfesor,rolProfesor,desactivado);
+    infoBd.push(idProyecto,idProfesor,rolProfesor,desactivado);
     if(rolProfesor == "lider"){
         asignarProfesor(infoBd);
         swal({
@@ -138,6 +133,7 @@ function obtenerDatosProfesor(pDatos){
 
 function ListarProfesoresAsignados(){ 
     let listaDatos = obtenerListaProfesoresAsignados();
+    let listaProfesores = obtenerListaProfesores();
     let tbody = document.querySelector('#tblProfesoresAsignados tbody');
     let datosProfesor = null;
     let idProyecto = obtenerIdProyecto();
@@ -156,19 +152,23 @@ function ListarProfesoresAsignados(){
             let rolProfesor = fila.insertCell();
             let btns = fila.insertCell();
 
-            let btndesasignar = document.createElement('input');
-            btndesasignar.type = 'button';
-            btndesasignar.value = 'Desasignar';
-            btndesasignar.name = listaDatos[i]['_id'];
-            btndesasignar.classList.add('btn-list');
-            btndesasignar.addEventListener('click', ftnDesasignarProfesor);
+            let btnDesasignar = document.createElement('a');
+            btnDesasignar.name = listaDatos[i]['_id'];
+            btnDesasignar.classList.add('fas');
+            btnDesasignar.classList.add('fa-user-minus');
+            btnDesasignar.addEventListener('click', ftnDesasignarProfesor);
 
-            celdaCedula.name = listaDatos[i]['idProfesor'];
-            celdaCedula.innerHTML = datosProfesor[0].cedulaProfesor;
-            celdaNombre.innerHTML = datosProfesor[0].nombreProfesor;
-            rolProfesor.innerHTML = ftnTipoProfesor(listaDatos[i]['rolProfesor']);
-            rolProfesor.name = listaDatos[i]['rolProfesor'];
-            btns.appendChild(btndesasignar);
+            let profesorValidado = ftnValidarProfesor(listaProfesores,listaDatos[i]['idProfesor']);
+            if(profesorValidado[0]){
+               continue;
+            } else {
+                celdaCedula.name = listaDatos[i]['idProfesor'];
+                celdaCedula.innerHTML = profesorValidado[1];
+                celdaNombre.innerHTML = profesorValidado[2];
+                rolProfesor.innerHTML = ftnTipoProfesor(listaDatos[i]['rolProfesor']);
+                rolProfesor.name = listaDatos[i]['rolProfesor'];
+                btns.appendChild(btnDesasignar);
+            }
         }
     }
 
@@ -355,4 +355,21 @@ function  ftnValidarAsignacion (pRol){
     }
 
     return validar;
+};
+
+function ftnValidarProfesor (pLista,pId){
+
+    let control = [true,null,null];
+
+    pLista.forEach(element => {
+        if(element._id == pId){
+            if(!element.Desactivado){
+                control[0] = false;
+                control[1] =  element.Cedula
+                control[2] = element.Nombre + " " + element.Apellido;
+            }
+        }         
+    });
+
+    return control;
 };

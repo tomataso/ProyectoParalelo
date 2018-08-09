@@ -68,10 +68,7 @@ function asignarEstudiante(pEstudiante){
         data:{
             idProyecto : pEstudiante[0],
             idEstudiante : pEstudiante[1],
-            cedulaEstudiante : pEstudiante[2],
-            nombreEstudiante : pEstudiante[3],
-            coordinador : pEstudiante[4],
-            desactivado : pEstudiante[5]
+            desactivado : pEstudiante[2]
         }
       });
     

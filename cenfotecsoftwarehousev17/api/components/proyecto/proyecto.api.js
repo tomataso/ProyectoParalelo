@@ -11,8 +11,7 @@ module.exports.registrar = function(req, res){
         fechaEntrega : req.body.fechaEntrega,
         desactivado : req.body.desactivado,
         clienteProyecto : [{
-            idCliente : req.body.idCliente,
-            nombreCliente : req.body.nombreCliente
+            idCliente : req.body.idCliente
         }]
     });
 
@@ -66,8 +65,7 @@ module.exports.actualizarGeneral = function (req, res) {
 module.exports.actualizarDrop = function (req, res) {
     proyectoModel.findOneAndUpdate({"_id": req.body._id, "clienteProyecto._id": req.body.idClienteBd},
         { "$set" : {
-                "clienteProyecto.$.idCliente" : req.body.idCliente,
-                "clienteProyecto.$.nombreCliente" : req.body.nombreCliente
+                "clienteProyecto.$.idCliente" : req.body.idCliente
         } 
         },
         function (err, user) {

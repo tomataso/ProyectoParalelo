@@ -68,10 +68,8 @@ function asignarProfesor(pProfesor){
         data:{
             idProyecto : pProfesor[0],
             idProfesor : pProfesor[1],
-            cedulaProfesor : pProfesor[2],
-            nombreProfesor : pProfesor[3],
-            rolProfesor : pProfesor[4],
-            desactivado : pProfesor[5]
+            rolProfesor : pProfesor[2],
+            desactivado : pProfesor[3]
         }
       });
     

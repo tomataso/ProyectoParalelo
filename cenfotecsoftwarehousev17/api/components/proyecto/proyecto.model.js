@@ -23,8 +23,7 @@ let proyectoSchema = new mongoose.Schema({
     desactivado : {type: Boolean, required: true},
     clienteProyecto : [
         {
-            idCliente: {type: String, required: true},
-            nombreCliente: {type: String, required: true},
+            idCliente: {type: String, required: true}
         }
     ]
 });

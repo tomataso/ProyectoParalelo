@@ -73,6 +73,7 @@ const tiquete = require('./components/tiquete/tiquete.route');
 const cursoI = require ('./components/cursosImpartidos/cursosI.route');
 const titulo = require('./components/titulos/titulos.route');
 const administrador = require('./components/usuario/usuario.route');
+const proyectoProfesor = require('./components/proyecto/profesorp.route');
 
 /**
  * Le indicamos que le de acceso externo a las rutas inicializadas
@@ -88,6 +89,7 @@ app.use('/api', tiquete);
 app.use('/api', cursoI);
 app.use('/api', titulo);
 app.use('/api', administrador);
+app.use('/api', proyectoProfesor);
 
 // Se guarda todo lo que se ha realizado
 module.exports = app;

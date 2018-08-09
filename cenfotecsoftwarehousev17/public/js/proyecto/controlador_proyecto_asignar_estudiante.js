@@ -25,50 +25,46 @@ function ListarEstudiantes(){
     let tbody = document.querySelector('#tblEstudiantes tbody');
     tbody.innerHTML = '';
 
-    for(let i = 0; i < listaDatos.length; i++){
+    if(listaDatos[i]['Desactivado']){
+        continue;
+    } else {
+        for(let i = 0; i < listaDatos.length; i++){
         
-        let fila = tbody.insertRow();
-        let celdaCedula = fila.insertCell();
-        let celdaNombre = fila.insertCell();
-        let btns = fila.insertCell();
+            let fila = tbody.insertRow();
+            let celdaCedula = fila.insertCell();
+            let celdaNombre = fila.insertCell();
+            let btns = fila.insertCell();
 
-        let btnAsignar = document.createElement('input');
-        btnAsignar.type = 'button';
-        btnAsignar.value = 'Asignar';
-        btnAsignar.name = listaDatos[i]['_id'];
-        btnAsignar.classList.add('btn-list');
-        btnAsignar.addEventListener('click', function(){
-            let pDatos = [listaDatos[i]['Cedula'],listaDatos[i]['Nombre'],listaDatos[i]['Apellido'],obtenerIdProyecto(),listaDatos[i]['_id']];
-            obtenerDatosEstudiante(pDatos)
-        });
-        
-        celdaCedula.name = listaDatos[i]['_id'];
-        celdaCedula.innerHTML = listaDatos[i]['Cedula'];
-        celdaNombre.innerHTML = listaDatos[i]['Nombre'] + " " + listaDatos[i]['Apellido'];
-        btns.appendChild(btnAsignar);
+            let btnAsignar = document.createElement('a');
+            btnAsignar.name = listaDatos[i]['_id'];
+            btnAsignar.classList.add('fas');
+            btnAsignar.classList.add('fa-user-plus');
+            btnAsignar.addEventListener('click', function(){
+                let pDatos = [obtenerIdProyecto(),listaDatos[i]['_id']];
+                obtenerDatosEstudiante(pDatos)
+            });
+            
+            celdaCedula.name = listaDatos[i]['_id'];
+            celdaCedula.innerHTML = listaDatos[i]['Cedula'];
+            celdaNombre.innerHTML = listaDatos[i]['Nombre'] + " " + listaDatos[i]['Apellido'];
+            btns.appendChild(btnAsignar);
+        }
     }
-
 };
 
 function obtenerIdProyecto() {
-    let paginaUrl = window.location.href;
-    let locacion = paginaUrl.lastIndexOf("?") + 3;
-    let id = paginaUrl.slice(locacion,paginaUrl.lenght); 
- 
-    return id;
+    
+    return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
  }; 
 
 function obtenerDatosEstudiante(pDatos){
 
     let infoBd =[];
-    let idProyecto = pDatos[3];
-    let idEstudiante = pDatos[4];
-    let cedulaEstudiante = pDatos[0];    
-    let nombreEstudiante = pDatos[1] + " " + pDatos[2];
-    let coordinador = false;
+    let idProyecto = pDatos[0];
+    let idEstudiante = pDatos[1];
     let desactivado = false;
 
-    infoBd.push(idProyecto,idEstudiante,cedulaEstudiante,nombreEstudiante,coordinador,desactivado);
+    infoBd.push(idProyecto,idEstudiante,desactivado);
     asignarEstudiante(infoBd);
     swal({
         type : 'success',
@@ -83,14 +79,12 @@ function obtenerDatosEstudiante(pDatos){
 
 function ListarEstudiantesAsignados(){ //falta mostrar solo los estudiantes relacionados al proyecto escogido previamente.
     let listaDatos = obtenerListaEstudiantesAsignados();
+    let listaEstudiante = obtenerListaEstudiantes();
     let tbody = document.querySelector('#tblEstudiantesAsignados tbody');
-    let datosEstudiante = null;
     let idProyecto = obtenerIdProyecto();
     tbody.innerHTML = '';
 
     for(let i = 0; i < listaDatos.length; i++){
-
-        datosEstudiante = listaDatos[i]['datosEstudiante'];
 
         if(listaDatos[i]['desactivado'] || listaDatos[i]['idProyecto'] != idProyecto){
             continue;
@@ -100,17 +94,21 @@ function ListarEstudiantesAsignados(){ //falta mostrar solo los estudiantes rela
             let celdaNombre = fila.insertCell();
             let btns = fila.insertCell();
 
-            let btndesasignar = document.createElement('input');
-            btndesasignar.type = 'button';
-            btndesasignar.value = 'Desasignar';
-            btndesasignar.name = listaDatos[i]['_id'];
-            btndesasignar.classList.add('btn-list');
-            btndesasignar.addEventListener('click', ftnDesasignarEstudiante);
-
-            celdaCedula.name = listaDatos[i]['idEstudiante'];
-            celdaCedula.innerHTML = datosEstudiante[0].cedulaEstudiante;
-            celdaNombre.innerHTML = datosEstudiante[0].nombreEstudiante;
-            btns.appendChild(btndesasignar);
+            let btnDesasignar = document.createElement('a');
+            btnDesasignar.name = listaDatos[i]['_id'];
+            btnDesasignar.classList.add('fas');
+            btnDesasignar.classList.add('fa-user-minus');
+            btnDesasignar.addEventListener('click', ftnDesasignarEstudiante);
+            
+            let = estudianteValidado = ftnValidarEstudiante(listaEstudiante,listaDatos[i]['idEstudiante']);
+            if(estudianteValidado[0]){
+                continue;
+            } else{
+                celdaCedula.name = listaDatos[i]['idEstudiante'];
+                celdaCedula.innerHTML = estudianteValidado[1];
+                celdaNombre.innerHTML = estudianteValidado[2];
+                btns.appendChild(btnDesasignar);
+            } 
         }
     }
 
@@ -268,4 +266,21 @@ function ftNoListar (criterioBusqueda){
             }    
         }      
     }
+};
+
+function ftnValidarEstudiante (pLista,pId){
+
+    let control = [true,null,null];
+
+    pLista.forEach(element => {
+        if(element._id == pId){
+            if(!element.Desactivado){
+                control[0] = false;
+                control[1] =  element.Cedula
+                control[2] = element.Nombre + " " + element.Apellido;
+            }
+        }         
+    });
+
+    return control;
 };

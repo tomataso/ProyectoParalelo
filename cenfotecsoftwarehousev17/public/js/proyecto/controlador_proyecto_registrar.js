@@ -48,10 +48,9 @@ function obtenerDatosProyecto(){
     let sFechaEntrega = inputFechaEntrega.value;
     let bDesactivado = false;
     let optionCliente = selectCliente.options.selectedIndex;
-    let sClienteNombre = selectCliente.options[optionCliente].innerHTML;
     let sClienteId = selectCliente.value;
 
-    infoProyecto.push(gCodigo,gFechaCreacion,sNombre,sDescripcion,sEstado,sFechaEntrega,bDesactivado,sClienteId,sClienteNombre);
+    infoProyecto.push(gCodigo,gFechaCreacion,sNombre,sDescripcion,sEstado,sFechaEntrega,bDesactivado,sClienteId);
     
     bError = validar();
     if(bError == true){
@@ -155,7 +154,10 @@ function ftnCreadorDropCliente(pElemento,pListaDatos){
 
     for (let i = 0; i < pListaDatos.length; i++) {
         
-        let id = pListaDatos[i]['_id'];
+        if(pListaDatos[i]['Desactivado']){
+            continue;
+        } else {
+            let id = pListaDatos[i]['_id'];
         let nombre = pListaDatos[i]['Nombre'];
         let optionElement = document.createElement("option")
         let nodeTexto = document.createTextNode(nombre);
@@ -163,7 +165,7 @@ function ftnCreadorDropCliente(pElemento,pListaDatos){
         optionElement.appendChild(nodeTexto);
         optionElement.setAttribute('value',id);
         pElemento.appendChild(optionElement);
-        
+        }
     }
 };
 
