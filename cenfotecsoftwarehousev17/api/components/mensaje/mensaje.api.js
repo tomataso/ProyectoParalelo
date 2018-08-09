@@ -1,13 +1,9 @@
 'use strict';
 
-// MODIFICADO 13/7/2018 AGREGAR VERSION
-
-
-//para que se conecte a la base de datos de mongo, necesito de mongoose
 const MensajeModel = require('./mensaje.model');
 
 
-module.exports.listar = function(req, res){
+module.exports.listarMensaje = function(req, res){
     MensajeModel.find().then(
         function(mensajes){
             res.send(mensajes);
@@ -21,4 +17,67 @@ module.exports.buscarMensaje = function(req, res){
             res.send(mensaje);
         });
 };
+
+const MensajeModel = require('./mensaje.model');
+
+module.exports.registrarMensaje = function(req, res){
+
+    let MensajeModel = new MensajeModel({
+
+        Fecha : req.body.Fecha,
+        UsuarioEmisor: req.body.UsuarioEmisor,
+        UsuarioReceptor : req.body.UsuarioReceptor,
+
+        Asunto : req.body.Asunto,
+        Correo : req.body.Correo,
+        Cuerpo : req.body.Cuerpo,
+
+        Keyconversacion1 : req.body.Keyconversacion1,
+        Keyconversacion2 : req.body.Keyconversacion2,
+        Desactivado: req.body.Desactivado,
+
+        
+    });
+
+    nuevoMensaje.save(function(error){
+        if(error){
+            res.json({success : false, msg : 'No se pudo enviar el mensaje, ha ocurrido un error' + error});
+        }else{
+            res.json({success : true, msg : 'Se envio el mensaje con éxito'});
+        }
+
+    });
+
+};
+
+module.exports.listarMensaje = function(req, res){
+    MensajeModel.find().then(
+        function(mensajes){
+            res.send(mensajes);
+        });
+};
+
+module.exports.desactivarMensaje = function(req, res){
+    
+    MensajeModel.update(
+        {_id: req.body._id}, 
+        {
+            Desactivado : req.body.Desactivado
+        },
+        function(error){
+            if(error){
+                res.json({success : false, msg : 'No se pudo eliminar el mensaje, ocurrió el siguiente error' + error});
+            }else{
+                res.json({success : true, msg : 'Se eliminó el mensaje con éxito'});
+            }
+        }
+    )
+};
+
+
+
+
+
+
+
 
