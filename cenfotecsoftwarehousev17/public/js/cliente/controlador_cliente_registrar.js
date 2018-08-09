@@ -15,6 +15,20 @@ let inputId;
 let idClientePorActualizar;
 let idPersonaSeleccionada;
 
+inputNombreCliente = document.querySelector('#txtNombre');
+inputCedulaCliente = document.querySelector('#txtCedula');
+inputProvincia = document.querySelector('#txtProvincia');
+inputCanton = document.querySelector('#txtCanton');
+inputDistrito = document.querySelector('#txtDistrito');
+inputPrimerNombre = document.querySelector('#txtPrimerNombre');
+inputPrimerApellido = document.querySelector('#txtPrimerApellido');
+inputTelefonoCliente = document.querySelector('#txtTelefono');
+inputCorreo = document.querySelector('#txtCorreo');
+desactivar = false;
+
+let botonRegistrar = document.querySelector('#btnRegistrarCliente');
+botonRegistrar.addEventListener('click' , obtenerDatosCliente);
+
 // ClienteRegistrarInit(); ----- NO SE NECESITA
 
 

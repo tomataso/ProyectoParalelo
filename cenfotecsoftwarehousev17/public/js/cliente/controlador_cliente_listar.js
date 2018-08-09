@@ -48,7 +48,7 @@ function ListarClientes(){
             let aModificar = document.createElement('a'); // * * * agregar todos estos * * *
             aModificar.classList.add('fas');
             aModificar.classList.add('fa-eye');
-            aModificar.dataset._id =  ListaCliente[i]['_id']; 
+            aModificar.dataset._id =  ListaCliente[i]['_id'];         
 
             // modificar estado del cliente. Copiar esto
             let btnModificarEstado = document.createElement('button'); 
@@ -78,7 +78,9 @@ function ListarClientes(){
             aBorrar.classList.add('fa-trash'); 
             aBorrar.dataset._id =  ListaCliente[i]['_id'];
 
-            // aModificar.addEventListener('click', llenarDatosFormulario); //funcion buscar_por_idß
+            aModificar.addEventListener('click', function(){
+                ftnMostrarCliente(ListaCliente[i]['_id']);
+            }); //funcion buscar_por_idß
             aBorrar.addEventListener('click', ftnEliminarCliente);
 
             cConfiguracion.appendChild(btnModificarEstado);
@@ -90,10 +92,42 @@ function ListarClientes(){
 
 };
 
+function ftnMostrarCliente(idCliente){
+    let id = idCliente;
+    let usuario = getUsuarioAutenticado();
 
-function ftnMostrarCliente(){
+    ftnGuardarIdSeleccionado(id);
+    
+    switch (usuario.TipoUsuario) {
+        case 0:
+            window.location.replace('../../html/cliente/cliente_mostrar.html');
+            break;
+    
+        default:
+            break;
+    }   
+};
+
+
+function ftnMostrarPoryecto(){
     let id = this.name;
-    window.location.replace('../../html/cliente/cliente_mostrar.html');
+    let usuario = getUsuarioAutenticado();
+
+    ftnGuardarIdSeleccionado(id);
+    
+    switch (usuario.TipoUsuario) {
+        case 0:
+            window.location.replace('../../html/proyecto/proyecto_mostrar_admin.html');
+            break;
+    
+        default:
+            break;
+    }   
+};
+
+function ftnGuardarIdSeleccionado (pId){
+
+    sessionStorage.setItem("idFilaSeleccionado", JSON.stringify(pId));
 };
 
 function ftnEliminarCliente(){
