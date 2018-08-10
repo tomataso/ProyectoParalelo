@@ -1,10 +1,9 @@
 'use strict';
 
+   imprimirListaEstud();
+
 // let botonRegEstud = document.querySelector('#btnRegEstud');
-// let botonActualizarEstudiante = document.querySelector('#btnActualizarEstudiante'); // * * * agregar este * * *
-// let inputFiltro = document.querySelector('#txtFiltro');
-// let botonRegEstud = document.querySelector('#btnRegEstud');
-// let botonActualizarEstudiante = document.querySelector('#btnActualizarEstudiante');
+// let botonActualizarEstudiante = document.querySelector('#btnActualizarEstudiante'); 
 let inputFiltro = document.querySelector('#txtFiltro');
 let inputNombre = document.querySelector('#txtNombre');
 let inputApellido = document.querySelector('#txtApellido');
@@ -38,7 +37,7 @@ function obtenerDatosEstudiante() {
     let infoEstud = [];
     let bError = false;
 
-    // let _id = inputId.value;
+    let _id = inputId.value;
     let sNombre = inputNombre.value;
     let sApellido = inputApellido.value;
     let sDireccion = inputDireccion.value;
@@ -52,7 +51,7 @@ function obtenerDatosEstudiante() {
     let sEmergTelefono = Number(inputEmergTelefono.value);
 
 
-    infoEstud.push(sNombre, sApellido, sDireccion, sTelefono, sEmail, sCedula, sCarrera, sMaterias, sEmergNombre, sEmergApellido, sEmergTelefono); //_id,
+    infoEstud.push(_id, sNombre, sApellido, sDireccion, sTelefono, sEmail, sCedula, sCarrera, sMaterias, sEmergNombre, sEmergApellido, sEmergTelefono); //
 
     bError = validarEstudiante();
     if (bError == true) {
@@ -172,16 +171,16 @@ function imprimirListaEstud() {
         aModificar.classList.add('fa-eye');
         aModificar.dataset._id = listaEstud[i]['_id'];
 
-        let aBorrar = document.createElement('a');
-        aBorrar.classList.add('fas');
-        aBorrar.classList.add('fa-trash');
-        aBorrar.dataset._id = listaEstud[i]['_id'];
+        // let aBorrar = document.createElement('a');
+        // aBorrar.classList.add('fas');
+        // aBorrar.classList.add('fa-trash');
+        // aBorrar.dataset._id = listaEstud[i]['_id'];
 
         aModificar.addEventListener('click', llenarDatosFormulario); //funcion buscar_por_id
-        aBorrar.addEventListener('click', borrarPersona);
+        // aBorrar.addEventListener('click', borrarPersona);
 
         cConfiguracion.appendChild(aModificar);
-        cConfiguracion.appendChild(aBorrar);
+        // cConfiguracion.appendChild(aBorrar);
     }
 
 };
@@ -212,7 +211,7 @@ function filtrarListaEstud() {
         let cTelefono = fila.insertCell();
         let cEmail = fila.insertCell();
         let cCedula = fila.insertCell();
-        // let cAcciones = fila.insertCell();
+        let cAcciones = fila.insertCell();
 
 
         cNombre.innerHTML = listaFiltrada[i].Nombre;
@@ -220,9 +219,8 @@ function filtrarListaEstud() {
         cTelefono.innerHTML = listaFiltrada[i].Telefono;
         cEmail.innerHTML = listaFiltrada[i].Correo;
         cCedula.innerHTML = listaFiltrada[i].Cedula;
-        // cAcciones.innerHTML = listaFiltrada[i].Acciones;
+        cAcciones.innerHTML = listaFiltrada[i].Acciones;
     }
-
 };
 
 // function validarEstudiante() {
@@ -356,9 +354,9 @@ function llenarDatosFormulario() { //**** V I S T O *****  es la de buscar_por_i
     //if usuario is not null
     // ajax obtenerPaginaRegistro
     // obtenerPagina ('estudiante/indexRegEstud.html');
-    window.location.href = "../../html/estudiante/indexTablaEstud.html"
+     window.location.href = "../../html/estudiante/vistaEstud.html"
 
-    // setTimeout(function () {
+    setTimeout(function () {
 
         inputNombre.value = usuario['Nombre'];
         inputApellido.value = usuario['Apellido'];
@@ -376,7 +374,7 @@ function llenarDatosFormulario() { //**** V I S T O *****  es la de buscar_por_i
         // imagen.src = usuario['foto']; //es un elemento tipo img, por eso es con src y no con value
         inputId.value = usuario['_id'];
 
-    // }, 100);
+    }, 100);
 
 
 };
@@ -388,4 +386,4 @@ function llenarDatosFormulario() { //**** V I S T O *****  es la de buscar_por_i
 //     imprimirListaEstud();
 
 // }
-// // * * * fin: videos de Pabs * * * Modificar (parte 1, 2, 3), nodejs * * *
+// // // * * * fin: videos de Pabs * * * Modificar (parte 1, 2, 3), nodejs * * *

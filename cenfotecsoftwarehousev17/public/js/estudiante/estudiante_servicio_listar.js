@@ -94,6 +94,7 @@ function obtenerPersonaPorId(pid, callback){  //pid: parametro id
       });
     
       peticion.done(function(response){
+        alert('Sí pasé por aquí');
         usuario = response.usuario;
         if (callback) {
             callback();
@@ -101,7 +102,7 @@ function obtenerPersonaPorId(pid, callback){  //pid: parametro id
       });
     
       peticion.fail(function( jqXHR, textStatus ){
-          alert('error');
+          alert('Porquería');
          console.log(jqXHR);
          console.log(textStatus);
       });
@@ -120,7 +121,7 @@ function actualizarPersona(paInfoEstud){
         dataType : 'json',
         async : false,
         data:{
-            // _id : _pid,
+            _id : _pid,
             Nombre : paInfoEstud[0],
 	        Apellido : paInfoEstud[1],
 	        Direccion : paInfoEstud[2],
