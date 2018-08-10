@@ -13,7 +13,7 @@ let MensajeSchema = new mongoose.Schema({
     Keyconversacion1 : {type : String, required : true},
     Keyconversacion2 : {type : String, required : true},
 
-    desactivado : {type: Boolean, required: true},
+    Desactivado : {type: Boolean, required : true},
 
     
 });

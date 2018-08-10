@@ -18,11 +18,11 @@ module.exports.buscarMensaje = function(req, res){
         });
 };
 
-const MensajeModel = require('./mensaje.model');
+
 
 module.exports.registrarMensaje = function(req, res){
 
-    let MensajeModel = new MensajeModel({
+    let nuevoMensaje = new MensajeModel({
 
         Fecha : req.body.Fecha,
         UsuarioEmisor: req.body.UsuarioEmisor,

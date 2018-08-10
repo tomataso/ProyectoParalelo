@@ -74,6 +74,7 @@ const cursoI = require ('./components/cursosImpartidos/cursosI.route');
 const titulo = require('./components/titulos/titulos.route');
 const administrador = require('./components/usuario/usuario.route');
 const proyectoProfesor = require('./components/proyecto/profesorp.route');
+const mensaje = require('./components/mensaje/mensaje.route');
 
 /**
  * Le indicamos que le de acceso externo a las rutas inicializadas
@@ -90,6 +91,7 @@ app.use('/api', cursoI);
 app.use('/api', titulo);
 app.use('/api', administrador);
 app.use('/api', proyectoProfesor);
+app.use('/api', mensaje);
 
 // Se guarda todo lo que se ha realizado
 module.exports = app;

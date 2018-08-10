@@ -27,7 +27,7 @@
 
 <body>
 
-	<div class="wrapper">
+	<div class="wrapper blanco">
 		<div class="menuCont">
 			<input type="checkbox" id="check" onclick="">
 			<label for="check" id="icone"><i class="fas fa-bars"></i></label>
@@ -53,41 +53,34 @@
 		</div>
 
 		<div class="main">
-			<div id="contenedorPrincipal" class="CPpositionOn">
+			<div id="contenedorPrincipal" class="CPpositionOff">
 
-				<div class="wrapper"> 
-					<div class="tituloPrincipal divisor">
-						<h1><span>CENFOTEC</span>SOFTWARE HOUSE</h1>
-						<p class="slogan">Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la <strong class="strong">Universidad Cenfotec</strong> para la comunidad.</p>
-					</div>
-					<div class="info divisor">
-						<div class="card">
-							<img class="cardFoto" src="../../img/maria.jpg" alt="perfil_maria">
-							<div class="container">
-								<div class="logoContainer">
-									<img src="../../img/codecLogo.png" alt="codec_logo">
-								</div>
-								<a href="../fichatecnica/ficha_tecnica.html" class="buttonDash btnInfo">Conózcanos</a>
-							</div>
-						</div>
-						<div class="card">
-							<img class="cardLogo" src="../../img/CSHLogo.png" alt="Cenfotec Software House Logo">
-							<div class="container">
-									<p><span>CENFOTEC </span>SOFTWARE HOUSE</p>
-								<a href="http://www.cenfotecsoftwarehouse.com/" class="buttonDash btnCSH">Ir</a>
-							</div>
-						</div>
-						<div class="card">
-								<img class="cardGuia" src="../../img/listaIcon.png" alt="">
-							<div class="container">
-									<p>GUÍA DE USO</p>
-								<a href="../general/guia.html" class="buttonDash btnGuia">Ver</a>
-							</div>
-						</div>
-					</div>
-				
+        <!-- Agregar wrapper aquí -->
+        <div class="wrapper">
+            <h3 class="titulo-lista"> Asignar Cursos</h3>
+            <form action="">
+              <div class=" field filtro">
+                <input type="text" name="inputBuscarProfesor" id="inputBuscarProfesor" placeholder="Busqueda">
+                <label for="inputBuscarProfesor">
+                  <i class="fas fa-search"></i> Búsqueda</label>
+              </div>
+            </form>
+
+            <div class="wrapper-listar">
+              <table id="tblCursosI">
+                <thead class="encabezados">
+
+                  <th>Codigo</th>
+                  <th>Títulos</th>
+                  <th>Acciones</th>
+                </thead>
+                <tbody>
+          
+                </tbody>
+              </table>
+            </div>
+          </div>
 			</div>
-		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.5/sweetalert2.all.js"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -97,7 +90,10 @@
 		crossorigin="anonymous"></script>
 		<script src="../../js/inicioSesion/login.service.js"></script>
 		<script src="../../js/inicioSesion/auth.service.js"></script>
-		<script src="../../js/inicioSesion/login.controller.js"></script>
+    <script src="../../js/inicioSesion/login.controller.js"></script>
+
+    <script src="../../js/profesor/servicio_profesor_titulo.js"></script>
+    <script src="../../js/profesor/controlador_profesor_titulos.js"></script>
 		</div>
 	</div>
 

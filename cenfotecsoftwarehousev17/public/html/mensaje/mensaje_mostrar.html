@@ -27,7 +27,7 @@
 
 <body>
 
-	<div class="wrapper">
+	<div class="wrapper blanco">
 		<div class="menuCont">
 			<input type="checkbox" id="check" onclick="">
 			<label for="check" id="icone"><i class="fas fa-bars"></i></label>
@@ -53,42 +53,59 @@
 		</div>
 
 		<div class="main">
-			<div id="contenedorPrincipal" class="CPpositionOn">
+			<div id="contenedorPrincipal" class="CPpositionOff">
 
-				<div class="wrapper"> 
-					<div class="tituloPrincipal divisor">
-						<h1><span>CENFOTEC</span>SOFTWARE HOUSE</h1>
-						<p class="slogan">Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la <strong class="strong">Universidad Cenfotec</strong> para la comunidad.</p>
-					</div>
-					<div class="info divisor">
-						<div class="card">
-							<img class="cardFoto" src="../../img/maria.jpg" alt="perfil_maria">
-							<div class="container">
-								<div class="logoContainer">
-									<img src="../../img/codecLogo.png" alt="codec_logo">
-								</div>
-								<a href="../fichatecnica/ficha_tecnica.html" class="buttonDash btnInfo">Conózcanos</a>
-							</div>
-						</div>
-						<div class="card">
-							<img class="cardLogo" src="../../img/CSHLogo.png" alt="Cenfotec Software House Logo">
-							<div class="container">
-									<p><span>CENFOTEC </span>SOFTWARE HOUSE</p>
-								<a href="http://www.cenfotecsoftwarehouse.com/" class="buttonDash btnCSH">Ir</a>
-							</div>
-						</div>
-						<div class="card">
-								<img class="cardGuia" src="../../img/listaIcon.png" alt="">
-							<div class="container">
-									<p>GUÍA DE USO</p>
-								<a href="../general/guia.html" class="buttonDash btnGuia">Ver</a>
-							</div>
-						</div>
-					</div>
+        <!-- Agregar wrapper aquí -->
+        <div class="wrapper">
+          <h3 class="titulo-lista">Mensaje</h3>
+      <form action="">
+          <div class=" field filtro">
+            <input type="text" name="inputBusqueda" id="inputBusqueda" placeholder="Busqueda">
+            <label for="inputBusqueda"><i class="fas fa-search"></i>  Búsqueda</label>
+          </div>
+        </form>
 				
+      <div>
+        <table id="tblMensajes">
+          <thead class="encabezados">
+              <th>Fecha</th>
+              <th>Usuario</th>
+              <th>Asunto</th>
+              <th>Texto</th>
+          </thead>
+          <tbody>
+              
+          </tbody>
+        </table>
+      </div>
+
+
+      <form>
+        <h3 class="titulo-lista">EnviarMensaje</h3>
+        
+        <div class="field">
+          <input type="date" id="fechaMensaje" placeholder="Fecha de Mensaje"></input>
+          <label for="fechaMensaje">Fecha</label>
+        </div>  
+     
+        <div class="field">
+          <input type="text" id="txtAsunto" placeholder="Asunto">
+          <label for="txtAsunto">Asunto</label>
+        </div>  
+        
+        <div class="field">
+          <textarea id="txtCuerpo" rows="5" placeholder="Escriba su mensaje aquí "></textarea>
+          <label for="txtCuerpo">Escriba su mensaje aquí </label>
+        </div>
+        
+
+        <button type="button" id="btnEnviar" class="btn-registrar">Enviar</button>  
+    </form>
+
+
+        </div>
 			</div>
-		</div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.5/sweetalert2.all.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
@@ -98,6 +115,9 @@
 		<script src="../../js/inicioSesion/login.service.js"></script>
 		<script src="../../js/inicioSesion/auth.service.js"></script>
 		<script src="../../js/inicioSesion/login.controller.js"></script>
+		
+		<script src="../../js/mensaje/servicio_mensaje_enviado_listar.js"></script>
+    <script src="../../js/mensaje/controlador_mensaje_enviado_listar.js"></script>
 		</div>
 	</div>
 
