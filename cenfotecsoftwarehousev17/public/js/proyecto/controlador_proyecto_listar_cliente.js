@@ -18,12 +18,15 @@ window.onload = function(){
 function ListarProyectos(){
     let listaProyecto = obtenerListaProyectos();
     let listaClientes = obtenerListaClientes();
+    let idUsuario = getUsuarioAutenticado()._id;
     let tbody = document.querySelector('#tblProyectos tbody');
     tbody.innerHTML = '';
 
     for(let i = 0; i < listaProyecto.length; i++){
+
+        let cliente = listaProyecto[i]['clienteProyecto'];
         
-        if(listaProyecto[i]['desactivado']){
+        if(listaProyecto[i]['desactivado'] && cliente[0].idCliente != idUsuario){
             continue;
         } else{
         
@@ -34,7 +37,6 @@ function ListarProyectos(){
             let celdaEstado = fila.insertCell();
             let celdaFechaEntrega = fila.insertCell();
             let btns = fila.insertCell();
-            let cliente = listaProyecto[i]['clienteProyecto'];
             let clienteValidado = null;
             let fechaEntrega = ftnFechaProyecto(listaProyecto[i]['fechaEntrega']);
             
@@ -44,12 +46,6 @@ function ListarProyectos(){
             btnVer.classList.add('fas');
             btnVer.classList.add('fa-eye');
             btnVer.addEventListener('click', ftnMostrarPoryecto);
-
-            let btnEliminar = document.createElement('a');
-            btnEliminar.name = listaProyecto[i]['_id'];
-            btnEliminar.classList.add('fas');
-            btnEliminar.classList.add('fa-trash');
-            btnEliminar.addEventListener('click', ftnEliminarProyecto);
 
             celdaCodigo.innerHTML = listaProyecto[i]['codigo'];
             celdaNombre.innerHTML = listaProyecto[i]['nombre'];
@@ -62,7 +58,6 @@ function ListarProyectos(){
             celdaEstado.innerHTML = listaProyecto[i]['estado'];
             celdaFechaEntrega.innerHTML = fechaEntrega;
             btns.appendChild(btnVer);
-            btns.appendChild(btnEliminar);
         }
     }
 
@@ -87,48 +82,6 @@ function ftnMostrarPoryecto(){
 function ftnGuardarIdSeleccionado (pId){
 
     sessionStorage.setItem("idFilaSeleccionado", JSON.stringify(pId));
-};
-
-function ftnEliminarProyecto(){
-	let proyecto = [this.name,true];
-    
-    
-    const swalWithBootstrapButtons = swal.mixin({
-        confirmButtonClass: 'btn btn-success',
-        cancelButtonClass: 'btn btn-danger',
-        buttonsStyling: false,
-      })
-      
-      swalWithBootstrapButtons({
-        title: 'Eliminar proyecto',
-        text: "¿Deseas eliminar el proyecto?",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, eliminar!',
-        cancelButtonText: 'No, cancelar!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.value) {
-          swalWithBootstrapButtons(
-            'Eliminado!',
-            'Poryecto ha sido eliminado',
-            'success'
-          )
-
-          desactivarProyecto(proyecto);
-          ListarProyectos();
-            
-        } else if (
-          // Read more about handling dismissals
-          result.dismiss === swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons(
-            'Cancelado!',
-            'El proyecto no ha sido eliminado',
-            'error'
-          )
-        }
-      })
 };
 
 function  ftnFiltrarListaProyectos (){
