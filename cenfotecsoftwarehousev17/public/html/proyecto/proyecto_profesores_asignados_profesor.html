@@ -17,7 +17,7 @@
 <header>
 	<div class="contactenosHeader">
 		<div>
-			<a href="../general/index_estudiante.html">
+			<a href="../general/index_administrador.html">
 				<img src="../../img/CSHLogo.png" alt="Cenfotec Software House Logo">
 			</a>
 		</div>
@@ -27,15 +27,15 @@
 
 <body>
 
-	<div class="wrapper">
+	<div class="wrapper blanco">
 		<div class="menuCont">
 			<input type="checkbox" id="check" onclick="">
 			<label for="check" id="icone"><i class="fas fa-bars"></i></label>
 			<div class="bars">
 				<nav>
-					<a href="../proyecto/proyecto_listar_estudiante.html" id="btnListarProyectosIndex"><div class="link">Proyectos</div></a>
-					<a href="../mensaje/mensaje_enviado_listar.html" id="btnReporteIndex"><div class="link">Reporte horas proyecto</div></a>
-					<a href="../tiquete/tiquete_listar_estudiante.html" id="btnListarTiquetesIndex"><div class="link">Tiquetes</div></a>
+					<a href="../proyecto/proyecto_listar_profesor.html" id="btnListarProyectosIndex"><div class="link">Proyectos</div></a>
+					<a href="../mensaje/mensaje_enviado_listar.html" id="btnReporteIndex"><div class="link">Reporte horas estudiante</div></a>
+					<a href="../tiquete/tiquete_listar_profesor.html" id="btnListarTiquetesIndex"><div class="link">Tiquetes</div></a>
 					<a href="../mensaje/mensaje_crear.html" id="btnCrearMensajeIndex"><div class="link">Crear mensaje</div></a>
 					<a href="../mensaje/mensaje_recibido_listar.html" id="btnMensajesRecibidosIndex"><div class="link">Mensajes recibidos</div></a>	
 					<a href="../mensaje/mensaje_enviado_listar.html" id="btnMensajesEnviadosIndex"><div class="link">Mensajes enviados</div></a>
@@ -44,42 +44,32 @@
 		</div>
 
 		<div class="main">
-			<div id="contenedorPrincipal" class="CPpositionOn">
+			<div id="contenedorPrincipal" class="CPpositionOff">
 
-				<div class="wrapper"> 
-					<div class="tituloPrincipal divisor">
-						<h1><span>CENFOTEC</span>SOFTWARE HOUSE</h1>
-						<p class="slogan">Su casa para recibir servicios profesionales en tecnologías de información, de gran calidad, diseñados y construidos por estudiantes y profesores de la <strong class="strong">Universidad Cenfotec</strong> para la comunidad.</p>
-					</div>
-					<div class="info divisor">
-						<div class="card">
-							<img class="cardFoto" src="../../img/maria.jpg" alt="perfil_maria">
-							<div class="container">
-								<div class="logoContainer">
-									<img src="../../img/codecLogo.png" alt="codec_logo">
-								</div>
-								<a href="../fichatecnica/ficha_tecnica.html" class="buttonDash btnInfo">Conózcanos</a>
-							</div>
-						</div>
-						<div class="card">
-							<img class="cardLogo" src="../../img/CSHLogo.png" alt="Cenfotec Software House Logo">
-							<div class="container">
-									<p><span>CENFOTEC </span>SOFTWARE HOUSE</p>
-								<a href="http://www.cenfotecsoftwarehouse.com/" class="buttonDash btnCSH">Ir</a>
-							</div>
-						</div>
-						<div class="card">
-								<img class="cardGuia" src="../../img/listaIcon.png" alt="">
-							<div class="container">
-									<p>GUÍA DE USO</p>
-								<a href="../general/guia.html" class="buttonDash btnGuia">Ver</a>
-							</div>
-						</div>
-					</div>
-				
+        <!-- Agregar wrapper aquí -->
+        <div class="wrapper">
+            <h3 class="titulo-lista">Profesores Asignados</h3>
+            <form action="">
+              <div class=" field filtro">
+                <input type="text" name="inputBusquedaDos" id="inputBusquedaDos" placeholder="Busqueda">
+                <label for="inputBusquedaDos"><i class="fas fa-search"></i>  Búsqueda</label>
+              </div>
+            </form>
+            <div>
+              <table id="tblProfesoresAsignados">
+                <thead>
+                    <th>Cédula</th>
+                    <th>Nombre completo</th>
+                    <th>Tipo</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+              </table>
+            </div>
+        </div>
 			</div>
-		</div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.5/sweetalert2.all.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
@@ -88,7 +78,9 @@
 		crossorigin="anonymous"></script>
 		<script src="../../js/inicioSesion/login.service.js"></script>
 		<script src="../../js/inicioSesion/auth.service.js"></script>
-		<script src="../../js/inicioSesion/login.controller.js"></script>
+    <script src="../../js/inicioSesion/login.controller.js"></script>
+    <script src="../../js/proyecto/servicio_proyecto_asignar_profesor.js"></script>
+    <script src="../../js/proyecto/controlador_proyecto_asignados_profesores_otros.js"></script>
 		</div>
 	</div>
 

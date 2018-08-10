@@ -157,12 +157,6 @@ function ftnDesasignarEstudiante(){
       })
 };
 
-
-function ftnElegirCoordinador(){//falta de terminar
-	let id = this.name;
-	window.location.replace('./proyecto_asignar.html?id' + id);
-};
-
 function  ftnFiltrarListaEstudiantes (){
 
     let criterioBusqueda = inputBusqueda.value.toUpperCase();
