@@ -39,13 +39,6 @@ function ListarProfesoresAsignados(){
             let celdaCedula = fila.insertCell();
             let celdaNombre = fila.insertCell();
             let rolProfesor = fila.insertCell();
-            let btns = fila.insertCell();
-
-            let btnDesasignar = document.createElement('a');
-            btnDesasignar.name = listaDatos[i]['_id'];
-            btnDesasignar.classList.add('fas');
-            btnDesasignar.classList.add('fa-user-minus');
-            btnDesasignar.addEventListener('click', ftnDesasignarProfesor);
 
             let profesorValidado = ftnValidarProfesor(listaProfesores,listaDatos[i]['idProfesor']);
             if(profesorValidado[0]){
@@ -56,7 +49,6 @@ function ListarProfesoresAsignados(){
                 celdaNombre.innerHTML = profesorValidado[2];
                 rolProfesor.innerHTML = ftnTipoProfesor(listaDatos[i]['rolProfesor']);
                 rolProfesor.name = listaDatos[i]['rolProfesor'];
-                btns.appendChild(btnDesasignar);
             }
         }
     }

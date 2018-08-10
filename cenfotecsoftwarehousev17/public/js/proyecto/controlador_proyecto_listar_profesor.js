@@ -17,6 +17,7 @@ window.onload = function(){
 //funciones--------------------------------------------------
 function ListarProyectos(){
     let listaProyecto = obtenerListaProyectos();
+    let listaClientes = obtenerListaClientes();
     let listaProfesores = obtenerListaProfesoresAsignados();
     let idUsuario = getUsuarioAutenticado()._id;
     let tbody = document.querySelector('#tblProyectos tbody');
@@ -26,7 +27,7 @@ function ListarProyectos(){
 
         let cliente = listaProyecto[i]['clienteProyecto'];
         
-        if(listaProyecto[i]['desactivado'] && ftnValidarProyecto(listaProfesores,listaProyecto[i]['_id'])){
+        if(listaProyecto[i]['desactivado'] || ftnValidarProyecto(listaProfesores,listaProyecto[i]['_id'],idUsuario)){
             continue;
         } else{
         
@@ -65,18 +66,10 @@ function ListarProyectos(){
 
 function ftnMostrarPoryecto(){
     let id = this.name;
-    let usuario = getUsuarioAutenticado();
 
     ftnGuardarIdSeleccionado(id);
     
-    switch (usuario.TipoUsuario) {
-        case 0:
-            window.location.replace('../../html/proyecto/proyecto_mostrar_admin.html');
-            break;
-    
-        default:
-            break;
-    }   
+    window.location.replace('../../html/proyecto/proyecto_mostrar_profesor.html');
 };
 
 function ftnGuardarIdSeleccionado (pId){
@@ -151,14 +144,14 @@ function ftnValidarCliente (pLista,pId){
     return control;
 };
 
-function ftnValidarProyecto(pLista,pId) {
+function ftnValidarProyecto(pLista,pId,pIdUsuario) {
 
     let control = true;
 
     pLista.forEach(element => {
-        if(element.idProyecto == pId){
+        if(element.idProyecto == pId && element.idProfesor == pIdUsuario){
             control = false;
-        }         
+        }        
     });
 
     return control;

@@ -70,18 +70,10 @@ function ListarProyectos(){
 
 function ftnMostrarPoryecto(){
     let id = this.name;
-    let usuario = getUsuarioAutenticado();
 
     ftnGuardarIdSeleccionado(id);
-    
-    switch (usuario.TipoUsuario) {
-        case 0:
-            window.location.replace('../../html/proyecto/proyecto_mostrar_admin.html');
-            break;
-    
-        default:
-            break;
-    }   
+
+    window.location.replace('../../html/proyecto/proyecto_mostrar_admin.html');
 };
 
 function ftnGuardarIdSeleccionado (pId){
