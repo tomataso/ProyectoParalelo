@@ -111,7 +111,7 @@ function ftnEliminarProyecto(){
         if (result.value) {
           swalWithBootstrapButtons(
             'Eliminado!',
-            'Poryecto ha sido eliminado',
+            'Proyecto ha sido eliminado',
             'success'
           )
 

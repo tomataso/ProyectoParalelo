@@ -94,7 +94,7 @@ btnVerGradoAcademico.addEventListener('click',function(){
 // Ready
 btnVerCursosImpartidos.addEventListener('click',function(){
 
-    window.location.replace('../../html/profesor/profesor_asignar_curosI.html');
+    window.location.replace('../../html/profesor/profesor_asignar_cursosI.html');
     
 });
 
