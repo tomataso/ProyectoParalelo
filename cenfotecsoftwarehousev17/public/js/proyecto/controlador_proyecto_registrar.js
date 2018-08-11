@@ -59,7 +59,7 @@ function obtenerDatosProyecto(){
             title : 'No se pudo registrar el proyecto',
             text: 'Por favor revise los campos en rojo',
             confirmButtonText : 'Entendido'
-        }).then(
+        }).then( 
             function(){
                 ftnQuitarValidacionesClick();   
             }   

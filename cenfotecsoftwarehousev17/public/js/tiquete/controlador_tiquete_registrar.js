@@ -1,7 +1,5 @@
 'use strict'
 
-// eliminar cuando hagamos la integracion
-// sessionStorage.setItem("UsuarioAutenticado", JSON.stringify({"_id":"5b4d44b967e4930c585faefd","Nombre":"maria","Cedula":"456123","Provincia":"San Jose","Distrito":"San Jose","Canton":"montes de oca","Ubicacion":"san pedro","PrimerNombre":"Juan Carlos","PrimerApellido":"González","Telefono":"88668921","Correo":"123456","Desactivado":false,"Contrasenna":"mZcE0","TipoUsuario":2,}));
 
 let botonRegistrar = document.querySelector('#btnRegistrarTiquete');
 let inputCedula = document.querySelector('#txtCedula');
@@ -9,12 +7,17 @@ let inputcodigo_tiquete = document.querySelector('#txtcodigo_tiquete');
 let inputcodigo_proyecto = document.querySelector('#txtcodigo_proyecto');
 let inputdescripcion = document.querySelector('#txtdescripcion');
 let inputfecha = document.querySelector('#txtfecha');
+let txtComentarioTiquete = document.querySelector('#txtTextoTiquete');
 
+let sltProyectos = document.querySelector('#sltProyectos');
+sltProyectos.addEventListener('change', obtenerCodigoProyecto);
+
+inputCedula.value = getUsuarioAutenticado().Cedula;
+inputCedula.setAttribute('disabled',true);
+inputcodigo_proyecto.setAttribute('disabled',true);
 
 botonRegistrar.addEventListener('click' , obtenerDatos);
 DatalistProyectosDelUsuario();
-
-
 
 function DatalistProyectosDelUsuario () {
     let listaProyectos = obtenerListaProyectos();
@@ -34,6 +37,22 @@ function DatalistProyectosDelUsuario () {
 
     console.log(listaProyectos);
     
+}
+
+function obtenerCodigoProyecto() {
+    let proyectoSeleccionado = buscarProyectoPorNombre(sltProyectos.value);
+    console.log(proyectoSeleccionado);
+    inputcodigo_proyecto.value = proyectoSeleccionado.codigo;
+}
+
+function buscarProyectoPorNombre(nombreProyecto) {
+    let listaProyectos = obtenerListaProyectos();
+    console.log(listaProyectos);
+    for (let i = 0; i < listaProyectos.length; i++) {
+        if(listaProyectos[i].nombre == nombreProyecto) {
+            return listaProyectos[i];
+        }
+    }
 }
 
 function filtrarProyectosPorUsuario(idUsuario, listaProyectos){
@@ -59,11 +78,12 @@ function obtenerDatos(){
     let sdescripcion = inputdescripcion.value;
     let sfecha = inputfecha.value;
     let simagen = imagenUrl;
-
     let sUsuarioId = getUsuarioAutenticado()._id;
+    let sComentario = txtComentarioTiquete.value;
+    let sEstado = "Pendiente";
     // let sUsuarioId = getUsuarioAutenticado();
 
-    infoTiquete.push(sCedula, scodigo_tiquete, scodigo_proyecto, ssltProyectos, sdescripcion, sfecha, simagen, sUsuarioId);
+    infoTiquete.push(sCedula, scodigo_tiquete, scodigo_proyecto, ssltProyectos, sdescripcion, sfecha, simagen, sUsuarioId, sComentario, sEstado);
     
     bError = validar();
     if(bError == true){
@@ -72,9 +92,11 @@ function obtenerDatos(){
             title : 'No se pudo registrar el tiquete',
             text: 'Por favor revise los campos en rojo',
             confirmButtonText : 'Entendido'
-        });
-        
-        console.log('No se pudo registrar el tiquete');
+        }).then( 
+            function(){
+                ftnQuitarValidacionesClick();   
+            }   
+        );
     }else{
         registrarTiquete(infoTiquete);
         swal({
@@ -82,11 +104,15 @@ function obtenerDatos(){
             title : 'Registro exitoso',
             text: 'El tiquete se registró adecuadamente',
             confirmButtonText : 'Entendido'
-        });
-        limpiarFormulario();
+        }).then(
+            function(){
+                window.location.href = "../../html/tiquete/tiquete_listar_cliente.html"
+            }
+        );
     }
-    
-}
+
+    return bError;
+};
 
 function validar(){
     let bError = false;
@@ -140,6 +166,40 @@ function validar(){
     
     return bError;
 }
+
+function ftnQuitarValidacionesClick (){
+
+    let tiposInputs = ['input','select','textarea'];
+    let inputsFormulario = [];
+    let inputsRequest = null;
+    let inputSeleccionado = null;
+
+    for (let i = 0; i < tiposInputs.length; i++) {    
+        
+        inputsRequest = document.getElementsByTagName(tiposInputs[i]);
+
+        if(inputsRequest == undefined || inputsRequest == ''){
+            continue;
+        } else {
+            
+            inputsFormulario.push(inputsRequest);
+            
+        }  
+    }
+
+    for (let i = 0; i < inputsFormulario.length; i++) {
+        inputSeleccionado = inputsFormulario[i]
+
+        for (let j = 0; j < inputSeleccionado.length; j++) {
+            
+
+            inputSeleccionado[j].addEventListener('click', function(){
+                this.classList.remove('error-input');
+            });   
+            
+        }        
+    }
+};
 
 function limpiarFormulario(){
     inputCedula.value = '';    

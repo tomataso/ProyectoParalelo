@@ -90,7 +90,7 @@ function registrarCliente(pCliente){
 
       return respuesta;
 }
-
+ 
 function actualizarCliente(pCliente){
     let respuesta = '';
     // let contrasennaAutogenerada = ftnGeneradorContrasenna();

@@ -119,26 +119,22 @@
                 
                     <!-- <div class="buttonContainer">
                       <button type="button" id="btnRegistrarCliente" class="btn-registrar">Registrar</button>
-                    </div> -->
+                    </div> -->  
               
-                    <div class="buttonContainer">
-                      <button type="button" id="btnGuardarCliente" class="btn-cliente">Guardar</button>
-                    </div>
-              
-                    <div class="buttonContainer">
-                      <button type="button" id="btnActualizarCliente" class="btn-cliente">Actualizar</button>
-                    </div>
+
+                    <button type="button" id="btnGuardar" class="btn-registrar modificar">Guardar</button> 
+                    <button type="button" id="btnEditar" class="btn-registrar">Editar</button> 
                   </form>
                 </div>
               
             </div>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.5/sweetalert2.all.js"></script>
-          <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script>
-          <script src="../../js/jquery-3.3.1.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-          crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+            <script src="../../js/jquery-3.3.1.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
           <script async defer src="https://maps.googleapis.com/maps/api/js?AIzaSyDLH5HFcOgm52uBx3KmNAcAIVGU6b0D-FE&callback=initMap"
       type="text/javascript"></script>
           <!-- Inicio Sesion -->
@@ -151,6 +147,7 @@
           <script src="../../js/cliente/servicio_cliente_listar.js"></script>
           <script src="../../js/cliente/servicio_mapa.js"></script>
           <script src="../../js/cliente/servicio_cliente_listar.js"></script>
+          <script src="../../js/cliente/servicio_cliente_registrar.js"></script>
           <!-- Controlador -->
           <script src="../../js/cliente/controlador_cliente_registrar.js"></script>
           <script src="../../js/cliente/controlador_cliente_mostrar.js"></script>

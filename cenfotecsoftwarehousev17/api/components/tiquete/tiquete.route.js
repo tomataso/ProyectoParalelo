@@ -24,4 +24,9 @@ router.route('/buscar_tiquete_id')
     tiquete.buscar_tiquete_id(req, res);
 });
 
+router.route('/cambiar_estado_tiquete')
+    .post(function (req, res) {
+        tiquete.cambiar_estado_tiquete(req, res);
+});
+
 module.exports = router;

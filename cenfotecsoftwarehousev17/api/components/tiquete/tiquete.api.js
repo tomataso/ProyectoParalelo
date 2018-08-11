@@ -7,13 +7,13 @@ module.exports.registrarTiquete = function(req, res){
         Cedula : req.body.Cedula,
         codigo_tiquete : req.body.codigo_tiquete,
         codigo_proyecto : req.body.codigo_proyecto,
-        Proyectos : req.body.sltProyectos,
+        Proyecto : req.body.Proyecto,
         descripcion : req.body.descripcion,
         fecha : req.body.fecha,
         imagen : req.body.imagen,
         usuarioId : req.body.usuarioId,
         TextoTiquete : req.body.TextoTiquete,
-       
+        Estado : req.body.Estado
     });
 
     nuevoTiquete.save(function(error){

@@ -17,7 +17,7 @@ router.route('/listarClientes')
 router.route('/buscarClientes')
     .get(function(req, res){
         cliente.buscarCliente(req, res);
-});
+}); 
 
 router.route('/desactivarCliente')
     .post(function(req, res){
@@ -43,6 +43,6 @@ router.route('/borrar_usuario')
 router.route('/cambiar_estado_cliente')
     .post(function (req, res) {
         cliente.cambiar_estado_cliente(req, res);
-    });
+});
 
 module.exports = router;
