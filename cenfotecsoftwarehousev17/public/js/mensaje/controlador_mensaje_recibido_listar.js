@@ -17,6 +17,9 @@ window.onload = function () {
 function ListarMensajesRecibidos() {
     let listaMensajesRecibidos = obtenerListaMensajesRecibidos();
 
+        // Aca va la funcion para obtener la id del usuario en sesion
+        let idUsuario = obtenerIdUsuarioSesion ();
+
     let tbody = document.querySelector('#tblMensajes tbody');
     tbody.innerHTML = '';
 
@@ -24,6 +27,8 @@ function ListarMensajesRecibidos() {
     for (let i = 0; i < listaMensajesRecibidos.length; i++) {
 
 // ACA AGREGAR IF ( id= receptor es igual al id del usuario actual que se muestre )
+    // Extraer de mensajes Usuario receptor
+    if (idUsuario == listaMensajesEnviados[i]['UsuarioReceptor']) {
 
         let fila = tbody.insertRow();
         let celdaFecha = fila.insertCell();
@@ -60,7 +65,7 @@ function ListarMensajesRecibidos() {
 
 
     }
-
+}
 };
 
 

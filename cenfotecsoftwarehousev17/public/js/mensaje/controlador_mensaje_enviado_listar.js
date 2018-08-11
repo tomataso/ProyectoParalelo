@@ -16,13 +16,21 @@ window.onload = function(){
 //funciones--------------------------------------------------
 function ListarMensajesEnviados(){
     let listaMensajesEnviados = obtenerListaMensajesEnviados();
+    // Aca va la funcion para obtener la id del usuario en sesion
+    let idUsuario = obtenerIdUsuarioSesion ();
+    
+
 
     let tbody = document.querySelector('#tblMensajes tbody');
     tbody.innerHTML = '';
 
+
+        
     for(let i = 0; i < listaMensajesEnviados.length; i++){
         
         // ACA AGREGAR IF ( id= enviado es igual al id del usuario actual que se muestre )
+    // Extraer de mensajes Usuario receptor
+    if (idUsuario == listaMensajesEnviados[i]['UsuarioEmisor']) {
 
             let fila = tbody.insertRow();
             let celdaFecha = fila.insertCell();
@@ -60,7 +68,7 @@ function ListarMensajesEnviados(){
            
         
     }
-
+}
 };
 
 

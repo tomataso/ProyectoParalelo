@@ -43,5 +43,12 @@ router.route('/actualizarProfesor')
         profesor.actualizarProfesor(req, res);
     });
 
+    router.route('/eliminarTitulo')
+    .post(function (req, res) {
+        profesor.borrarTitulo(req, res);
+    });
+
+
+
 
 module.exports = router;

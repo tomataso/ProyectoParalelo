@@ -50,6 +50,7 @@ function obtenerDatosMensaje() {
 
 
     let gFechaMensaje = inputFechaMensaje.value;
+    // Aca tiene que obtenerse el id del sesion storage
     let sEmisorId = 2 ; 
     let optionCliente = selectReceptor.options.selectedIndex;
     let sReceptorId = selectReceptor.value
@@ -58,10 +59,10 @@ function obtenerDatosMensaje() {
     let sCuerpo = inputCuerpo.value;
 
     let bDesactivado = false;
+
     
-// Revisar Concatenacion
-    let YKeyconversacion1 = sEmisorId + sReceptorId;
-    let YKeyconversacion2 = sReceptorId + sEmisorId ;
+    let YKeyconversacion1 = sEmisorId.concact(sReceptorId);
+    let YKeyconversacion2 = sReceptorId.concact(sEmisorId);
 
     infoMensaje.push(gFechaMensaje, sEmisorId, sReceptorId, sAsunto, sCuerpo, bDesactivado, YKeyconversacion1, YKeyconversacion2 );
 

@@ -43,14 +43,16 @@ function ListarMensajes() {
     let tbody = document.querySelector('#tblMensajes tbody');
     tbody.innerHTML = '';
 
-// ACA AGREGAR IF ( si Keyconversacion1 Keyconversacion2 )
-//----------------
+
+    let Keymensaje1 = obtenerKeymensaje1() ;
+    let Keymensaje2 = obtenerKeymensaje2();
 // como pasar Keyconversacion1 Keyconversacion2 y ID del usuario actual
 //-----
 
 
     for (let i = 0; i < listaMensaje.length; i++) {
-
+        // Esta funcion compara las keys en los mensajes con la key de lac onversacion
+        if (Keymensaje1 == listaMensajesEnviados[i]['Keyconversacion1'] || Keymensaje1 == listaMensajesEnviados[i]['Keyconversacion2'] || Keymensaje2 == listaMensajesEnviados[i]['Keyconversacion1'] || Keymensaje2 == listaMensajesEnviados[i]['Keyconversacion2'] ) {
 
 
         let fila = tbody.insertRow();
@@ -65,7 +67,7 @@ function ListarMensajes() {
         celdaCuerpo.innerHTML = listaMensaje[i]['Cuerpo'];
 
     }
-
+}
 };
 
 
@@ -120,9 +122,8 @@ function obtenerDatosMensaje() {
 
     let bDesactivado = false;
     
-// Revisar Concatenacion
-    let YKeyconversacion1 = sEmisorId + sReceptorId;
-    let YKeyconversacion2 = sReceptorId + sEmisorId ;
+    let YKeyconversacion1 = sEmisorId.concact(sReceptorId);
+    let YKeyconversacion2 = sReceptorId.concact(sEmisorId);
 
     infoMensaje.push(gFechaMensaje, sEmisorId, sReceptorId, sAsunto, sCuerpo, bDesactivado, YKeyconversacion1, YKeyconversacion2 );
 

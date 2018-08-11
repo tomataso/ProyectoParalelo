@@ -54,7 +54,7 @@ function actualizarProfesorG(pProfesor){
             DireccionExacta : pProfesor[9],
 
             Aexperiencia : pProfesor[10],
-            TipoUsuario : pProfesor[11],
+            TipoProfesor : pProfesor[11],
             Contrasenna : pProfesor[12]
         }
       });

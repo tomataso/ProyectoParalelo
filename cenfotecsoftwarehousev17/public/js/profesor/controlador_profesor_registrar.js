@@ -235,7 +235,7 @@ function validarProfesor() {
 
 
         //Validación de Tipo Profesores
-        if (inputTipoProfesor.value == '') {
+        if (inputTipoProfesor.value == 'default') {
             inputTipoProfesor.classList.add('error-input');
             bError = true;
         } else {

@@ -1,6 +1,6 @@
 
 'use strict';
-
+// ACTUALMENTE NO ESTA EN USO
 function obtenerListaTitulos(){
     let lista = [];
 

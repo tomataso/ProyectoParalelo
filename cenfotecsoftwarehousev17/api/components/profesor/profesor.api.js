@@ -83,8 +83,8 @@ module.exports.agregarGradoAcademicoProfesor = function (req, res) {
             {
                 'GAcademico':
                 {
-                    codigoTituloAcademico :  req.body.codigoTituloAcademico,
-                    nombreTituloAcademico: req.body.nombreTituloAcademico
+                     codigoTituloAcademico :  req.body.codigoTituloAcademico,
+                     nombreTituloAcademico: req.body.nombreTituloAcademico,
 
                 }
             }
@@ -124,14 +124,49 @@ module.exports.agregarCursosImpartidosProfesor = function (req, res) {
     )
 };
 
+
+
+
 module.exports.actualizarProfesor = function (req, res) {
-    ProfesorModel.findByIdAndUpdate(req.body._id, { $set: req.body },
+    ProfesorModel.findByIdAndUpdate(req.body._id,{
+        Nombre : req.body.Nombre,
+
+        Nombre : req.body.Nombre,
+        Apellido : req.body.Apellido,
+        Cedula : req.body.Cedula,
+        Telefono : req.body.Telefono,
+        Correo : req.body.Correo,
+    
+        Provincia : req.body.Provincia,
+        Canton : req.body.Canton,
+        Distrito : req.body.Distrito,
+        DireccionExacta : req.body.DireccionExacta,
+ 
+        TipoProfesor : req.body.TipoProfesor,
+ 
+        Contrasenna : req.body.Contrasenna
+
+
+        },
         function (err, user) {
             if (err) {
                 res.json({ success: false, msg: 'No se ha actualizado.' + handleError(err) });
 
             } else {
                 res.json({ success: true, msg: 'Se ha actualizado correctamente.' + res });
+            }
+        });
+};
+
+module.exports.borrarTitulo = function (req, res) {
+    //                                                                    como lo escribo en la peticion en el body de la peticion
+    ProfesorModel.findByIdAndDelete({"_id": req.body._id, "GAcademico._id": req.body.idGradoAcademico},
+        function (err, user) {
+            if (err) {
+                res.json({ success: false, msg: 'No se ha desasignado el titulo.' + handleError(err) });
+
+            } else {
+                res.json({ success: true, msg: 'El estudiante se ha eliminado correctamente.' + res });
             }
         });
 };
