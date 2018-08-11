@@ -1,23 +1,19 @@
 
-'use srticit';
-let inputBusqueda;
-let tablaCursosI;
-
-function ProfesorAsignarTituloInit(){
     
-    tablaCursosI = document.querySelector('#tblCursosI');
- inputBusqueda = document.querySelector('#inputBusqueda');
+  const  tablaCursosI = document.querySelector('#tblCursosI');
+ const inputBusqueda = document.querySelector('#inputBusqueda');
 
 inputBusqueda.addEventListener('keyup' , function(){ftnFiltrarListaCursosI()});
 
 ListarCursosI();
-}
+
 
 
 
 function ListarCursosI(){
   
     let listaDatosCursosI = obtenerListaCursosI();
+    let UsuarioActual = obtenerIdProfesor();
 
     let tbody = document.querySelector('#tblCursosI tbody');
     tbody.innerHTML = '';
@@ -29,17 +25,15 @@ function ListarCursosI(){
         let celdaNombre = fila.insertCell();
         let btns = fila.insertCell();
 
-        let btnAsignar = document.createElement('input');
-        btnAsignar.type = 'button';
-        btnAsignar.value = 'Asignar';
+        let btnAsignar = document.createElement('a');
         btnAsignar.name = listaDatosCursosI[i]['_id'];
-        btnAsignar.classList.add('btn-list');
-        btnAsignar.addEventListener('click', function(){
-
+        btnAsignar.classList.add('fas');
+        btnAsignar.classList.add('fa-plus-square');
+        btnAsignar.addEventListener('click', function () {
         
 
             let pDatosCursosI = [listaDatosCursosI[i]['codigoCursoI'],listaDatosCursosI[i]['nombreCursoI'],listaDatosCursosI[i]['_id'] ];
-            obtenerDatosEntrenador(pDatosCursosI);
+            obtenerDatosProfesor(pDatosCursosI);
 
         });
 
@@ -51,71 +45,64 @@ function ListarCursosI(){
 };
 
 function obtenerIdProfesor() {
-    let paginaUrl = window.location.href;
-    let locacion = paginaUrl.lastIndexOf("?") + 3;
-    let id = paginaUrl.slice(locacion,paginaUrl.lenght); 
- 
-    return id;
- }; 
+
+    return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
+};
 
 
 
 
 
 
-function obtenerDatosEntrenador(pDatosCursosI){
+function obtenerDatosProfesor(pDatosCurso) {
 
-    let infoAsignarCursoI =[];
+    let infoAsignarCursoP = [];
 
     let idmlabProfesor = obtenerIdProfesor();
-    let ncodigoCursoI = pDatosCursosI[0];    
-    let nCurso = pDatosCursosI[1] ;
+    let ncodigoCursoI = pDatosCurso[0];
+    let nCursoI = pDatosCurso[1];
 
-   // let idEntrenador = pDatos[2];
-   
-    
+    infoAsignarCursoP.push(idmlabProfesor, ncodigoCursoI, nCursoI);
+    agregarCursoI(infoAsignarCursoP);
 
-   infoAsignarCursoI.push(idmlabProfesor,ncodigoCursoI,nCurso);
-   agregarCursosImpartidosProfesor(infoAsignarCursoI);
-    
 
     swal({
-        type : 'success',
-        title : 'Asignación exitosa',
-        text: 'El Curso Impartido a sido agregado adecuadamente',
-        confirmButtonText : 'Entendido'
+        type: 'success',
+        title: 'Asignación exitosa',
+        text: 'El titulo se a agregado adecuadamente',
+        confirmButtonText: 'Entendido'
     });
-    
+
 
 };
 
-function  ftnFiltrarListaCursosI (){
+function ftnFiltrarListaCursosI() {
 
     let criterioBusqueda = inputBusqueda.value.toUpperCase();
-    let filasPokemon = tablaPokemon.getElementsByTagName('tr');
+    let filasCursos = tablaCursosI.getElementsByTagName('tr');
     let datosFila = null;
     let datos = null;
     let valor = null;
     let coincide = false;
 
-    for (let i = 1; i < filasPokemon.length; i++) {    
-        datosFila = filasPokemon[i];
+    for (let i = 1; i < filasCursos.length; i++) {
+        datosFila = filasCursos[i];
         datos = datosFila.getElementsByTagName('td');
         coincide = false;
 
         for (let j = 0; j < datos.length; j++) {
             valor = datos[j].innerHTML.toUpperCase();
 
-            if(valor.includes(criterioBusqueda)){
+            if (valor.includes(criterioBusqueda)) {
                 coincide = true;
-            } 
+            }
         }
-        if(coincide){
+        if (coincide) {
             datosFila.classList.remove('esconder');
         } else {
             datosFila.classList.add('esconder');
         }
     }
 
-   
+
 };

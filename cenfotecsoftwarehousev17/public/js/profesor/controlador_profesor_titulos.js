@@ -1,20 +1,15 @@
 
 'use srticit';
 
-let inputBusqueda;
-let tablaTitulos;
 
 
 ListarTitulos();
+ListarTitulosAsignados();
 
-function ProfesorAsignarTituloInit() {
-    tablaTitulos = document.querySelector('#tblTitulos');
-    inputBusqueda = document.querySelector('#inputBusqueda');
+const tablaTitulos = document.querySelector('#tblTitulos');
+const inputBusqueda = document.querySelector('#inputBusqueda');
 
-    inputBusqueda.addEventListener('keyup', function () { ftnFiltrarListaTitulos() });
-
-
-}
+inputBusqueda.addEventListener('keyup', function () { ftnFiltrarListaTitulos() });
 
 
 
@@ -39,7 +34,7 @@ function ListarTitulos() {
         btnAsignar.classList.add('fa-plus-square');
         btnAsignar.addEventListener('click', function () {
 
-            let pDatosTitulo = [listaDatosTitulo[i]['codigoTituloAcademico'], listaDatosTitulo[i]['nombreTituloAcademico'], listaDatosTitulo[i]['_id'] ];
+            let pDatosTitulo = [listaDatosTitulo[i]['codigoTituloAcademico'], listaDatosTitulo[i]['nombreTituloAcademico'], listaDatosTitulo[i]['_id']];
 
             obtenerDatosProfesor(pDatosTitulo);
 
@@ -113,6 +108,63 @@ function ftnFiltrarListaTitulos() {
             datosFila.classList.add('esconder');
         }
     }
+
+
+};
+
+function ListarTitulosAsignados() {
+
+    let listaDatosTitulo = obtenerListaTitulos();
+    let UsuarioActual = obtenerIdProfesor();
+
+    let tbody = document.querySelector('#tblTitulosAsignados tbody');
+    tbody.innerHTML = '';
+
+    for (let i = 0; i < listaDatosTitulo.length; i++) {
+
+        let fila = tbody.insertRow();
+        let celdaCedula = fila.insertCell();
+        let celdaNombre = fila.insertCell();
+        let btns = fila.insertCell();
+
+        let btnEliminar = document.createElement('a');
+        btnEliminar.name = listaDatosTitulo[i]['_id'];
+        btnEliminar.classList.add('fas');
+        btnEliminar.classList.add('fa-minus-square');
+        btnEliminar.addEventListener('click', function () {
+
+            let pDatosTitulo = [listaDatosTitulo[i]['codigoTituloAcademico'], listaDatosTitulo[i]['nombreTituloAcademico'], listaDatosTitulo[i]['_id']];
+
+            obtenerDatosProfesorEliminar(pDatosTitulo);
+
+        });
+
+        celdaCedula.innerHTML = listaDatosTitulo[i]['codigoTituloAcademico'];
+        celdaNombre.innerHTML = listaDatosTitulo[i]['nombreTituloAcademico'];
+
+        btns.appendChild(btnEliminar);
+    }
+
+};
+
+function obtenerDatosProfesorEliminar(pDatosTitulo) {
+
+    let infoEliminarTituloP = [];
+
+    let idmlabProfesor = obtenerIdProfesor();
+    let ncodigoTitulo = pDatosTitulo[0];
+    let nTitulo = pDatosTitulo[1];
+
+    infoEliminarTituloP.push(idmlabProfesor, ncodigoTitulo, nTitulo);
+    borrarTitulo(infoEliminarTituloP);
+
+
+    swal({
+        type: 'success',
+        title: 'Titulo desasignado',
+        text: 'El titulo se a desasignado adecuadamente',
+        confirmButtonText: 'Entendido'
+    });
 
 
 };

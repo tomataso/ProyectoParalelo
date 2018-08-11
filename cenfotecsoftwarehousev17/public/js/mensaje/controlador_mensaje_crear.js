@@ -43,6 +43,13 @@ function listaGeneralUsuarios() {
     return listaGeneralUsuarios;
 };
 
+function obtenerIdUsuario() {
+
+    return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
+};
+
+
+
 function obtenerDatosMensaje() {
 
     let infoMensaje = [];
@@ -50,8 +57,7 @@ function obtenerDatosMensaje() {
 
 
     let gFechaMensaje = inputFechaMensaje.value;
-    // Aca tiene que obtenerse el id del sesion storage
-    let sEmisorId = 2 ; 
+    let sEmisorId = obtenerIdUsuario(); 
     let optionCliente = selectReceptor.options.selectedIndex;
     let sReceptorId = selectReceptor.value
 

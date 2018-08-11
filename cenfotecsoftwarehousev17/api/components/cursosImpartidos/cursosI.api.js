@@ -24,18 +24,12 @@ module.exports.registrarCursoI = function(req, res){
 
 };
 
+
 module.exports.listarCursoI = function(req, res){
-    CursoI.find().then(
+    CursoIModel.find().then(
         function(CursoI){
             res.send(CursoI);
         });
 };
 
-//Revisar
-module.exports.buscarCursoI = function(req, res){
-    CursoI.find(req.body.idCursoI).then(
-        function(CursoI){
-            res.send(CursoI);
-        });
-};
 

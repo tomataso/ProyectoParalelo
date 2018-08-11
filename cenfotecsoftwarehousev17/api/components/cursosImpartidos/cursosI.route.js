@@ -11,7 +11,7 @@ router.route('/registrarcursoI')
 
 router.route('/listarcursoI')
     .get(function(req, res){
-        cursoImpartido.listarCursoImpartido(req, res);
+        cursoImpartido.listarCursoI(req, res);
 });
 
 
