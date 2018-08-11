@@ -43,10 +43,10 @@ function agregarTitulo(infoAsignarTituloP){
         async : false,
         data:{
 
-            
-            codigoTituloAcademico : infoAsignarTituloP[0],
-            nombreTituloAcademico : infoAsignarTituloP[1],
-            _id : infoAsignarTituloP[2]
+            _id : infoAsignarTituloP[0],
+            codigoTituloAcademico : infoAsignarTituloP[1],
+            nombreTituloAcademico : infoAsignarTituloP[2]
+           
             
         }
       });

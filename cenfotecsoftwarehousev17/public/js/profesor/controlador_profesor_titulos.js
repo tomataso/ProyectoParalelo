@@ -13,7 +13,7 @@ function ProfesorAsignarTituloInit() {
 
     inputBusqueda.addEventListener('keyup', function () { ftnFiltrarListaTitulos() });
 
-   
+
 }
 
 
@@ -39,9 +39,9 @@ function ListarTitulos() {
         btnAsignar.classList.add('fa-plus-square');
         btnAsignar.addEventListener('click', function () {
 
-            let pDatosTitulo = [listaDatosTitulo[i]['codigoTituloAcademico'], listaDatosTitulo[i]['nombreTituloAcademico'], UsuarioActual];
+            let pDatosTitulo = [listaDatosTitulo[i]['codigoTituloAcademico'], listaDatosTitulo[i]['nombreTituloAcademico'], listaDatosTitulo[i]['_id'] ];
 
-            agregarTitulo(pDatosTitulo);
+            obtenerDatosProfesor(pDatosTitulo);
 
         });
 
@@ -64,31 +64,27 @@ function obtenerIdProfesor() {
 
 
 // para agregar 
-// function obtenerDatosEntrenador(pDatosTitulo){
+function obtenerDatosProfesor(pDatosTitulo) {
 
-//     let infoAsignarTituloP =[];
+    let infoAsignarTituloP = [];
 
-//     let idmlabProfesor = obtenerIdProfesor();
-//     let ncodigoTitulo = pDatosTitulo[0];    
-//     let nTitulo = pDatosTitulo[1] ;
+    let idmlabProfesor = obtenerIdProfesor();
+    let ncodigoTitulo = pDatosTitulo[0];
+    let nTitulo = pDatosTitulo[1];
 
-//    // let idEntrenador = pDatos[2];
-
-
-
-//    infoAsignarTituloP.push(idmlabProfesor,ncodigoTitulo,nTitulo);
-//    agregarGradoAcademicoProfesor(infoAsignarTituloP);
+    infoAsignarTituloP.push(idmlabProfesor, ncodigoTitulo, nTitulo);
+    agregarTitulo(infoAsignarTituloP);
 
 
-//     swal({
-//         type : 'success',
-//         title : 'Asignación exitosa',
-//         text: 'El titulo adecuadamente',
-//         confirmButtonText : 'Entendido'
-//     });
+    swal({
+        type: 'success',
+        title: 'Asignación exitosa',
+        text: 'El titulo se a agregado adecuadamente',
+        confirmButtonText: 'Entendido'
+    });
 
 
-// };
+};
 
 function ftnFiltrarListaTitulos() {
 
