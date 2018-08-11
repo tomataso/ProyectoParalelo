@@ -65,6 +65,18 @@ input, textarea, select {
   top: 130px;
 }
 
+.btn-Actualizar {
+  position: relative;
+  right: 24%;
+  top : 3px;
+}
+
+.btn-Editar{
+  position: relative;
+  right: 24%;
+  top : 3px;
+}
+
 .modificar{
   display: none;
 }
