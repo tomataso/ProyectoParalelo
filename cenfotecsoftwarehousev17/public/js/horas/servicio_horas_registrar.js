@@ -24,7 +24,8 @@ function registrarHoras(pHoras){
             idEstudiante : pHoras[1],
             fechaRegistro : pHoras[2],
             horas : pHoras[3],
-            descripcion : pHoras[4]
+            tituloHoras : pHoras[4],
+            descripcion : pHoras[5]
         }
       });
     

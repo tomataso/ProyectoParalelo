@@ -57,7 +57,7 @@
 
         <!-- Agregar wrapper aquí -->
         <div class="wrapper">
-            <h3 class="titulo-lista">Profesores</h3>
+            <h3 class="titulo-lista">Horas</h3>
             <form action="">
               <div class=" field filtro">
                 <input type="text" name="inputBusqueda" id="inputBusqueda" placeholder="Busqueda">
@@ -65,18 +65,19 @@
               </div>
             </form>
             <div class="field filtro select-header">
-              <select id="rolProfesor">
-                <option value="defecto" selected>Seleccione tipo de profesor</option>
-                <option value="lider">Profesor Líder</option>
-                <option value="tecnico">Profesor Técnico</option>>
+              <select id="proyectoSeleccionado">
+                <option value="defecto" selected>Seleccione proyecto</option>
               </select>
             </div>
             <div>
-              <table id="tblProfesores">
+              <table id="tblHoras">
                 <thead>
-                    <th>Cédula</th>
-                    <th>Nombre completo</th>
-                    <th>Acciones</th>
+                    <th>Proyecto</th>
+                    <th>Título</th>
+										<th>Descripción</th>
+										<th>Horas</th>
+										<th>Fecha de creación</th>
+										<th>Acciones</th>
                 </thead>
                 <tbody>
                     
