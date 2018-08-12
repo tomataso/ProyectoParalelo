@@ -191,8 +191,11 @@ module.exports.actualizarEstudiante = function (req, res) {
         NombreEmergencia : req.body.NombreEmergencia,
         ApellidoEmergencia : req.body.ApellidoEmergencia,
         TelefonoEmergencia : req.body.TelefonoEmergencia,
-        Contrasenna : req.body.Contrasenna,
-        },
+        Desactivado : req.body.Desactivado,
+        // Contrasenna : req.body.Contrasenna,
+        // FotoPerfilEstud: req.body.FotoPerfilEstud,
+        // TipoUsuario: 3    
+    },
 
 
         function (err, user) {

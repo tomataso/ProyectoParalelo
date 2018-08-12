@@ -580,11 +580,12 @@ function obtenerDatosEstudiante() {
     let sNombreContacto = inputNombreContacto.value;
     let sApellidoContacto = inputApellidoContacto.value;
     let sTelefonoContacto = inputTelefonoContacto.value;
+    let sDesactivado = false;
 
     // let sContrasenna = inputContrasenna.value;
 
 
-    infoEstudiante.push(sCedula, sNombre, sApellido, sApellido2, sProvincia, sCanton, sDistrito, sDireccionExacta, sTelefono, sCorreo, sCarrera, sMaterias, sNombreContacto, sApellidoContacto, sTelefonoContacto ); //sContrasenna idEstudiante
+    infoEstudiante.push(sCedula, sNombre, sApellido, sApellido2, sProvincia, sCanton, sDistrito, sDireccionExacta, sTelefono, sCorreo, sCarrera, sMaterias, sNombreContacto, sApellidoContacto, sTelefonoContacto, sDesactivado ); //sContrasenna idEstudiante
 
 
     bError = validarEstudiante();
@@ -614,44 +615,44 @@ function obtenerDatosEstudiante() {
 
 }
 
-function imprimirListaEstudiantes() {
-    let listaEstudiante = obtenerListaEstudiantes();
-    let tbody = document.querySelector('#tblEstud tbody');
-    tbody.innerHTML = '';
+// function imprimirListaEstudiantes() {
+//     let listaEstudiante = obtenerListaEstudiantes();
+//     let tbody = document.querySelector('#tblEstud tbody');
+//     tbody.innerHTML = '';
 
-    for (let i = 0; i < lista.length; i++) {
+//     for (let i = 0; i < lista.length; i++) {
 
-       let celdaCedula = fila.insertCell();
-            let celdaNombre = fila.insertCell(); 
-            let celdaApellido = fila.insertCell();
-            let celdaTelefono = fila.insertCell();
-            let celdaCorreo = fila.insertCell();
-            let celdaEstado = fila.insertCell();
-            let btns = fila.insertCell();
+//        let celdaCedula = fila.insertCell();
+//             let celdaNombre = fila.insertCell(); 
+//             let celdaApellido = fila.insertCell();
+//             let celdaTelefono = fila.insertCell();
+//             let celdaCorreo = fila.insertCell();
+//             let celdaEstado = fila.insertCell();
+//             let btns = fila.insertCell();
 
-            // * * * no estoy seguro * * *
-            let btnVer = document.createElement('a');
-            btnVer.name = listaEstudiante[i]['_id'];
-            btnVer.classList.add('fas');
-            btnVer.classList.add('fa-eye');
-            btnVer.addEventListener('click', ftnMostrarEstudiante);
-            // * * * no estoy seguro * * *
+//             // * * * no estoy seguro * * *
+//             let btnVer = document.createElement('a');
+//             btnVer.name = listaEstudiante[i]['_id'];
+//             btnVer.classList.add('fas');
+//             btnVer.classList.add('fa-eye');
+//             btnVer.addEventListener('click', ftnMostrarEstudiante);
+//             // * * * no estoy seguro * * *
 
             
 
-            celdaCedula.innerHTML = listaEstudiante[i]['Cedula'];
-            celdaNombre.innerHTML = listaEstudiante[i]['Nombre'];
-            celdaApellido.innerHTML = listaEstudiante[i]['Apellido'];
-            celdaTelefono.innerHTML = listaEstudiante[i]['Telefono'];
-            celdaCorreo.innerHTML = listaEstudiante[i]['Correo'];
-            celdaEstado.innerHTML = listaEstudiante[i]['Estado'];
+//             celdaCedula.innerHTML = listaEstudiante[i]['Cedula'];
+//             celdaNombre.innerHTML = listaEstudiante[i]['Nombre'];
+//             celdaApellido.innerHTML = listaEstudiante[i]['Apellido'];
+//             celdaTelefono.innerHTML = listaEstudiante[i]['Telefono'];
+//             celdaCorreo.innerHTML = listaEstudiante[i]['Correo'];
+//             celdaEstado.innerHTML = listaEstudiante[i]['Estado'];
 
-            btns.appendChild(btnVer);// * * * no estoy seguro * * *
+//             btns.appendChild(btnVer);// * * * no estoy seguro * * *
 
 
-    }
+//     }
 
-};
+// };
 
 
 function validarEstudiante() {
@@ -748,7 +749,7 @@ function limpiarFormulario() {
     inputProvincia.value=''; 
     inputCanton.value=''; 
     inputDistrito.value=''; 
-    inputDireccionExacta =''; 
+    inputDireccionExacta.value =''; 
     inputTelefono.value=''; 
     inputCorreo.value=''; 
     inputCarrera.value=''; 
