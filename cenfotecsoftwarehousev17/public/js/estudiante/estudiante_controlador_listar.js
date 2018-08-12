@@ -394,17 +394,17 @@
 
 'use strict';
 let inputBuscarEstudiante;
-let tblEstud;
+let tbody;
 
 //loads------------------------------------------------------
 window.onload = function(){
     initEstudiante();
-    // listarEstudiantes();
+    listarEstudiantes();
 };
 
 function initEstudiante() {
     inputBuscarEstudiante = document.querySelector('#inputBuscarEstudiante');
-    tblEstud = document.querySelector('#tblEstud');
+    tbody = document.querySelector('#tblEstud');
 
     inputBuscarEstudiante.addEventListener('keyup', function () { filtrarListaEstudiantes(); });
 }
