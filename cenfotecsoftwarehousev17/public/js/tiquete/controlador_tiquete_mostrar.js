@@ -8,6 +8,17 @@ window.onload = function(){
     let idTiquetePorRegistrar;
 }; 
 
+const btnAsignarProfesorTiquete = document.querySelector('#btnAsignarProfesor');
+btnAsignarProfesorTiquete.addEventListener('click',function(){
+    window.location.replace('../../html/tiquete/tiquete_asignar_profesor.html');
+});
+
+const btnAsignarEstudianteTiquete = document.querySelector('#btnAsignarEstudiante');
+btnAsignarEstudianteTiquete.addEventListener('click',function(){
+    window.location.replace('../../html/tiquete/tiquete_asignar_estudiante.html');
+});
+
+
 function obtenerTiqueteSeleccionado() {
     return JSON.parse(sessionStorage.getItem("tiqueteSeleccionado"));
  };
@@ -131,12 +142,18 @@ function showUserMenu() {
             break;
         case 1:
             document.querySelector("#menuProfesor").classList.remove("hideMenu");
+            btnAsignarProfesorTiquete.classList.add("hideMenu");
             break;
         case 2:
             document.querySelector("#menuCliente").classList.remove("hideMenu");
+            btnComentar.classList.add("hideMenu");
+            btnAsignarProfesorTiquete.classList.add("hideMenu");
+            btnAsignarEstudianteTiquete.classList.add("hideMenu");
             break;
         case 3:
             document.querySelector("#menuEstudiante").classList.remove("hideMenu");
+            btnAsignarProfesorTiquete.classList.add("hideMenu");
+            btnAsignarEstudianteTiquete.classList.add("hideMenu");
             break;
         default:
             break;
@@ -151,10 +168,6 @@ function ftnDeshabilitarCampos (){
     inputcodigo_proyecto.setAttribute('disabled',true);
     sltProyectos.setAttribute('disabled',true);
     inputdescripcion.setAttribute('disabled',true);
-
-    if(getUsuarioAutenticado().TipoUsuario == 2){
-        btnComentar.classList.add("hideMenu");
-    }
 
 };
 

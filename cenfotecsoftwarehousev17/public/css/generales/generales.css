@@ -499,5 +499,15 @@ margin-top: 15%;
   display: none;
 }
 
+.fa-user-plus {
+  cursor: pointer;
+}
+
+.fa-user-minus {
+  cursor: pointer;
+}
+
+
+
 
 

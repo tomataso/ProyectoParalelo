@@ -76,7 +76,7 @@ btnGuardarProyecto.addEventListener('click',function(){
         }
       })    
 });
-
+ 
 btnProfesoresProyecto.addEventListener('click',function(){
 
     window.location.replace('../../html/proyecto/proyecto_asignar_profesor.html');

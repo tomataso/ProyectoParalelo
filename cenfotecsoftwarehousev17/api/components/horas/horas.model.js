@@ -6,7 +6,8 @@ let profHorasSchema = new mongoose.Schema({
     idEstudiante : {type : String, required : true},
     fechaRegistro : {type : Date, required : true},
     horas : {type: Number, required : true},
-    descripcion : {type : String, required : true}
+    tituloHoras : {type : String, required : true},
+    descripcion : {type : String, required : false}
 });
 
 module.exports = mongoose.model('horasEstudiante', profHorasSchema); 

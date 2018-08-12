@@ -25,31 +25,32 @@ function ListarEstudiantes(){
     let tbody = document.querySelector('#tblEstudiantes tbody');
     tbody.innerHTML = '';
 
-    if(listaDatos[i]['Desactivado']){
-        continue;
-    } else {
-        for(let i = 0; i < listaDatos.length; i++){
-        
+    for(let i = 0; i < listaDatos.length; i++){
+
+        if(listaDatos[i]['Desactivado']){
+            continue;
+        } else {
             let fila = tbody.insertRow();
             let celdaCedula = fila.insertCell();
             let celdaNombre = fila.insertCell();
             let btns = fila.insertCell();
-
+    
             let btnAsignar = document.createElement('a');
             btnAsignar.name = listaDatos[i]['_id'];
             btnAsignar.classList.add('fas');
             btnAsignar.classList.add('fa-user-plus');
             btnAsignar.addEventListener('click', function(){
-                let pDatos = [obtenerIdProyecto(),listaDatos[i]['_id']];
-                obtenerDatosEstudiante(pDatos)
+            let pDatos = [obtenerIdProyecto(),listaDatos[i]['_id']];
+            obtenerDatosEstudiante(pDatos)
             });
-            
+                
             celdaCedula.name = listaDatos[i]['_id'];
             celdaCedula.innerHTML = listaDatos[i]['Cedula'];
             celdaNombre.innerHTML = listaDatos[i]['Nombre'] + " " + listaDatos[i]['Apellido'];
             btns.appendChild(btnAsignar);
         }
     }
+    
 };
 
 function obtenerIdProyecto() {

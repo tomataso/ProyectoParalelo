@@ -50,6 +50,10 @@ function ListarClientes(){
                 aModificar.classList.add('fas');
                 aModificar.classList.add('fa-eye');
                 aModificar.dataset._id =  ListaCliente[i]['_id']; 
+                aModificar.addEventListener('click', function(){
+                    ftnMostrarCliente(ListaCliente[i]['_id']);
+                }); //funcion buscar_por_idß
+                cConfiguracion.appendChild(aModificar);
             }
         
 
@@ -81,13 +85,11 @@ function ListarClientes(){
             aBorrar.classList.add('fa-trash'); 
             aBorrar.dataset._id =  ListaCliente[i]['_id'];
 
-            aModificar.addEventListener('click', function(){
-                ftnMostrarCliente(ListaCliente[i]['_id']);
-            }); //funcion buscar_por_idß
+
             aBorrar.addEventListener('click', ftnEliminarCliente);
 
             cConfiguracion.appendChild(btnModificarEstado);
-            cConfiguracion.appendChild(aModificar);
+
             cConfiguracion.appendChild(aBorrar);
 
         }

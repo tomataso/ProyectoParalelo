@@ -8,6 +8,7 @@ module.exports.registrar = function(req, res){
         idEstudiante : req.body.idEstudiante,
         fechaRegistro : req.body.fechaRegistro,
         horas : req.body.horas,
+        tituloHoras : req.body.tituloHoras,
         descripcion : req.body.descripcion
     });
 

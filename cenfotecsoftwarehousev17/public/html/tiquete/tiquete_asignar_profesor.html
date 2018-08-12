@@ -32,20 +32,50 @@
 			<input type="checkbox" id="check" onclick="">
 			<label for="check" id="icone"><i class="fas fa-bars"></i></label>
 			<div class="bars">
-				<nav>
+				<nav id="menuAdministrador" class="hideMenu">
 					<a href="../sistema/sistema_registrar.html" id="btnEstudiantesIndex"><div class="link">Configuraciones generales</div></a>
 					<a href="../usuario/usuario_listar.html" id="btnUsuariosIndex"><div class="link">Usuarios</div></a>
+					<!-- Proyectos -->
 					<a href="../proyecto/proyecto_registrar.html" id="btnRegistrarProyectosIndex"><div class="link">Registrar proyecto</div></a>
 					<a href="../proyecto/proyecto_listar_admin.html" id="btnListarProyectosIndex"><div class="link">Proyectos</div></a>
+					<!-- Profesor -->
 					<a href="../profesor/profesor_registrar.html" id="btnRegistrarProfesorIndex"><div class="link">Registrar profesor</div></a>
 					<a href="../profesor/profesor_listar.html" id="btnListarProfesorIndex"><div class="link">Profesores</div></a>
+					<!-- Estudiante -->
 					<a href="../estudiante/indexRegEstud.html" id="btnRegistrarEstudianteIndex"><div class="link">Registrar estudiante</div></a>
 					<a href="../estudiante/indexTablaEstud.html" id="btnListarEstudianteIndex"><div class="link">Estudiantes</div></a>	
+					<!-- Cliente -->
 					<a href="../cliente/cliente_registrar.html" id="btnRegistrarClienteIndex"><div class="link">Registrar cliente</div></a>
 					<a href="../cliente/cliente_listar.html" id="btnListarClienteIndex"><div class="link">Clientes</div></a>
 					<a href="../mensaje/mensaje_enviado_listar.html" id="btnReporteIndex"><div class="link">Reporte horas estudiante</div></a>
+					<!-- Tiquetes -->
 					<a href="../tiquete/tiquete_listar_administrador.html" id="btnListarTiquetesIndex"><div class="link">Tiquetes</div></a>
-					<a href="../mensaje/mensaje_crear.html" id="btnCrearMensajeIndex"><div class="link">Crear mensaje</div></a>
+					<!-- Mensajes -->
+					<a href="../mensaje/mensaje_registrar.html" id="btnCrearMensajeIndex"><div class="link">Crear mensaje</div></a>
+					<a href="../mensaje/mensaje_recibido_listar.html" id="btnMensajesRecibidosIndex"><div class="link">Mensajes recibidos</div></a>	
+					<a href="../mensaje/mensaje_enviado_listar.html" id="btnMensajesEnviadosIndex"><div class="link">Mensajes enviados</div></a>
+				</nav>
+				<nav id="menuProfesor" class="hideMenu">
+					<a href="../proyecto/proyecto_listar_admin.html" id="btnListarProyectosIndex"><div class="link">Proyectos</div></a>
+					<a href="../mensaje/mensaje_enviado_listar.html" id="btnReporteIndex"><div class="link">Reporte horas estudiante</div></a>
+					<a href="../tiquete/tiquete_listar.html" id="btnListarTiquetesIndex"><div class="link">Tiquetes</div></a>
+					<a href="../mensaje/mensaje_registrar.html" id="btnCrearMensajeIndex"><div class="link">Crear mensaje</div></a>
+					<a href="../mensaje/mensaje_recibido_listar.html" id="btnMensajesRecibidosIndex"><div class="link">Mensajes recibidos</div></a>	
+					<a href="../mensaje/mensaje_enviado_listar.html" id="btnMensajesEnviadosIndex"><div class="link">Mensajes enviados</div></a>
+				</nav>
+				<nav id="menuCliente" class="hideMenu">
+					<a href="../proyecto/proyecto_listar_admin.html" id="btnListarProyectosIndex"><div class="link">Proyectos</div></a>
+					<a href="../tiquete/tiquete_registrar_cliente.html" id="btnRegistrarTiquetesIndex"><div class="link">Registrar tiquete</div></a>
+					<a href="../tiquete/tiquete_listar_cliente.html" id="btnListarTiquetesIndex"><div class="link">Tiquetes</div></a>
+					<a href="../mensaje/mensaje_registrar.html" id="btnCrearMensajeIndex"><div class="link">Crear mensaje</div></a>
+					<a href="../mensaje/mensaje_recibido_listar.html" id="btnMensajesRecibidosIndex"><div class="link">Mensajes recibidos</div></a>	
+					<a href="../mensaje/mensaje_enviado_listar.html" id="btnMensajesEnviadosIndex"><div class="link">Mensajes enviados</div></a>
+				</nav>
+				<nav id="menuEstudiante" class="hideMenu">
+					<a href="../proyecto/proyecto_listar_admin.html" id="btnListarProyectosIndex"><div class="link">Proyectos</div></a>
+					<a href="../mensaje/mensaje_enviado_listar.html" id="btnReporteIndex"><div class="link">Reporte horas proyecto</div></a>
+					<a href="../tiquete/tiquete_listar.html" id="btnListarTiquetesIndex"><div class="link">Tiquetes</div></a>
+					<a href="../mensaje/mensaje_registrar.html" id="btnCrearMensajeIndex"><div class="link">Crear mensaje</div></a>
 					<a href="../mensaje/mensaje_recibido_listar.html" id="btnMensajesRecibidosIndex"><div class="link">Mensajes recibidos</div></a>	
 					<a href="../mensaje/mensaje_enviado_listar.html" id="btnMensajesEnviadosIndex"><div class="link">Mensajes enviados</div></a>
 				</nav>
@@ -57,7 +87,7 @@
 
         <!-- Agregar wrapper aquí -->
         <div class="wrapper">
-            <h3 class="titulo-lista">Horas</h3>
+            <h3 class="titulo-lista">Profesor</h3>
             <form action="">
               <div class=" field filtro">
                 <input type="text" name="inputBusqueda" id="inputBusqueda" placeholder="Busqueda">
@@ -65,19 +95,37 @@
               </div>
             </form>
             <div class="field filtro select-header">
-              <select id="proyectoSeleccionado">
-                <option value="defecto" selected>Seleccione proyecto</option>
+              <select id="rolProfesor">
+                <option value="defecto" selected>Seleccione tipo de profesor</option>
+                <option value="lider">Profesor Líder</option>
+                <option value="tecnico">Profesor Técnico</option>>
               </select>
             </div>
             <div>
-              <table id="tblHoras">
+              <table id="tblProfesores">
                 <thead>
-                    <th>Proyecto</th>
-                    <th>Título</th>
-										<th>Descripción</th>
-										<th>Horas</th>
-										<th>Fecha de creación</th>
-										<th>Acciones</th>
+                    <th>Cédula</th>
+                    <th>Nombre completo</th>
+                    <th>Acciones</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+              </table>
+            </div>
+            <h3 class="titulo-lista">Profesor asignado</h3>
+            <form action="">
+              <div class=" field filtro">
+                <input type="text" name="inputBusquedaDos" id="inputBusquedaDos" placeholder="Busqueda">
+                <label for="inputBusquedaDos"><i class="fas fa-search"></i>  Búsqueda</label>
+              </div>
+            </form>
+            <div>
+              <table id="tblProfesoresAsignados">
+                <thead>
+                    <th>Cédula</th>
+                    <th>Nombre completo</th>
+                    <th>Acciones</th>
                 </thead>
                 <tbody>
                     
@@ -94,10 +142,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 		crossorigin="anonymous"></script>
 		<script src="../../js/inicioSesion/login.service.js"></script>
-		<script src="../../js/inicioSesion/auth.service.js"></script>
     <script src="../../js/inicioSesion/login.controller.js"></script>
-    <script src="../../js/horas/servicio_horas_registrar.js"></script>
-    <script src="../../js/horas/controlador_horas_registrar.js"></script>
+		<script src="../../js/tiquete/servicio_tiquete_asignar.js"></script>
+		<script src="../../js/estudiante/estudiante_servicio_listar.js"></script>
+		<script src="../../js/profesor/servicio_profesor_listar.js"></script>
+		<script src="../../js/tiquete/controlador_tiquete_asignar.js"></script>
+		<script src="../../js/inicioSesion/auth.service.js"></script>
+		<script src="../../js/inicioSesion/auth.service.js"></script>
 		</div>
 	</div>
 

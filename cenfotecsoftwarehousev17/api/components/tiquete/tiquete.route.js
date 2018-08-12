@@ -9,6 +9,11 @@ router.route('/registrarTiquete')
     tiquete.registrarTiquete(req, res);
 });
 
+router.route('/asignarProfesorTiquete')
+    .post(function(req, res){
+    tiquete.asignarProfesorTiquete(req, res);
+});
+
 router.route('/listarTiquetes')
     .get(function(req, res){
     tiquete.listarTiquete(req, res);
@@ -33,6 +38,12 @@ router.route('/cambiar_comentario_tiquete')
     .post(function (req, res) {
         tiquete.cambiar_comentario_tiquete(req, res);
 });
+
+router.route('/buscar_tiquete_id_asignar')
+    .post(function (req, res) {
+        tiquete.buscar_tiquete_id_asignar(req, res);
+});
+
 
 
 module.exports = router;

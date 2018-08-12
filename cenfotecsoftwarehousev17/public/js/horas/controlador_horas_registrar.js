@@ -14,6 +14,7 @@ const btnGuardarHoras = document.querySelector('#btnGuardar');
 const labelProyecto = document.querySelector('#proyectoSeleccionado');
 const inputFechaCreacion = document.querySelector('#fechaHora');
 const inputCantidadHoras = document.querySelector('#horasTrabajadas');
+const inputTituloHoras = document.querySelector('#tituloHoras');
 const inputDescripcion = document.querySelector('#descripcionHoras');
 let idEstudiante = getUsuarioAutenticado()._id;
 let idProyecto = obtenerIdProyecto();
@@ -45,9 +46,10 @@ function obtenerDatos(){
 
     let gFechaCreacion = inputFechaCreacion.value;
     let nHoras = inputCantidadHoras.value;    
+    let sTituloHoras = inputTituloHoras.value;
     let sDescripcion = inputDescripcion.value;
 
-    infoHoras.push(idProyecto.id,idEstudiante,gFechaCreacion,nHoras,sDescripcion);
+    infoHoras.push(idProyecto.id,idEstudiante,gFechaCreacion,nHoras,sTituloHoras,sDescripcion);
     
     bError = validar();
     if(bError == true){
@@ -89,19 +91,27 @@ function validar(){
     let regexLetrasNumeros = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ 0-9]+$/;
 
     //Validación horas
-    if(inputCodigo.value == '' && (regexLetrasNumeros.test(inputCodigo.value)==false) ){
-        inputCodigo.classList.add('error-input');
+    if(inputCantidadHoras.value == '' && (regexLetrasNumeros.test(inputCantidadHoras.value)==false) ){
+        inputCantidadHoras.classList.add('error-input');
         bError = true;
     }else{
-        inputCodigo.classList.remove('error-input');
+        inputCantidadHoras.classList.remove('error-input');
+    }
+
+      //Validación titulo horas
+    if(inputTituloHoras.value == '' && (regexSoloLetras.test(inputTituloHoras.value)==false) ){
+        inputTituloHoras.classList.add('error-input');
+        bError = true;
+    }else{
+        inputTituloHoras.classList.remove('error-input');
     }
 
     //Validación descripcion de horas
-    if(inputNombre.value == '' && (regexSoloLetras.test(inputNombre.value)==false) ){
-        inputNombre.classList.add('error-input');
+    if(inputDescripcion.value == '' && (regexSoloLetras.test(inputDescripcion.value)==false) ){
+        inputDescripcion.classList.add('error-input');
         bError = true;
     }else{
-        inputNombre.classList.remove('error-input');
+        inputDescripcion.classList.remove('error-input');
     }
   
     return bError;
