@@ -393,8 +393,8 @@ const inputApellido2 = document.querySelector('#txtApellido2');
 const inputDireccionExacta = document.querySelector('#txtDireccion');
 const inputTelefono = document.querySelector('#txtTelefono');
 const inputCorreo = document.querySelector('#txtEmail');
-const inputCarrera = document.querySelector('#txtCarrera');
-const inputMaterias = document.querySelector('#txtMateriasAprob');
+// const inputCarrera = document.querySelector('#txtCarrera');
+// const inputMaterias = document.querySelector('#txtMateriasAprob');
 const inputNombreContacto = document.querySelector('#txtContactEmergNombre');
 const inputApellidoContacto = document.querySelector('#txtContactEmergApellido');
 const inputTelefonoContacto = document.querySelector('#txtContactEmergTelefono');
@@ -575,8 +575,8 @@ function obtenerDatosEstudiante() {
     let sDireccionExacta = inputDireccionExacta.value;
     let sTelefono = inputTelefono.value;
     let sCorreo = inputCorreo.value;
-    let sCarrera = inputCarrera.value;
-    let sMaterias = inputMaterias.value;
+    // let sCarrera = inputCarrera.value;
+    // let sMaterias = inputMaterias.value;
     let sNombreContacto = inputNombreContacto.value;
     let sApellidoContacto = inputApellidoContacto.value;
     let sTelefonoContacto = inputTelefonoContacto.value;
@@ -585,7 +585,7 @@ function obtenerDatosEstudiante() {
     // let sContrasenna = inputContrasenna.value;
 
 
-    infoEstudiante.push(sCedula, sNombre, sApellido, sApellido2, sProvincia, sCanton, sDistrito, sDireccionExacta, sTelefono, sCorreo, sCarrera, sMaterias, sNombreContacto, sApellidoContacto, sTelefonoContacto, sDesactivado ); //sContrasenna idEstudiante
+    infoEstudiante.push(sCedula, sNombre, sApellido, sApellido2, sProvincia, sCanton, sDistrito, sDireccionExacta, sTelefono, sCorreo, sNombreContacto, sApellidoContacto, sTelefonoContacto, sDesactivado ); //sContrasenna idEstudiante
 
 
     bError = validarEstudiante();
@@ -734,6 +734,22 @@ function validarEstudiante() {
         inputDireccionExacta.classList.remove('error-input');
     }
 
+    //Validación del Nombre Contacto
+    if (inputNombreContacto.value == '' || (regexSoloLetras.test(inputNombreContacto.value) == false)) {
+        inputNombreContacto.classList.add('error-input');
+        bError = true;
+    } else {
+        inputNombreContacto.classList.remove('error-input');
+    }
+
+    //Validación de la Telefono Contacto
+    if (inputTelefonoContacto.value == '') {
+        inputTelefonoContacto.classList.add('error-input');
+        bError = true;
+    } else {
+        inputTelefonoContacto.classList.remove('error-input');
+    }
+
 
     return bError;
 }
@@ -752,8 +768,8 @@ function limpiarFormulario() {
     inputDireccionExacta.value =''; 
     inputTelefono.value=''; 
     inputCorreo.value=''; 
-    inputCarrera.value=''; 
-    inputMaterias.value=''; 
+    // inputCarrera.value=''; 
+    // inputMaterias.value=''; 
     inputNombreContacto.value='';
     inputApellidoContacto.value=''; 
     inputTelefonoContacto.value=''; 

@@ -408,8 +408,8 @@ const inputDistrito = document.querySelector('#txtDistritoEstudiante');
 const inputDireccionExacta = document.querySelector('#txtDireccion');
 const inputTelefono = document.querySelector('#txtTelefono');
 const inputCorreo = document.querySelector('#txtEmail');
-const inputCarrera = document.querySelector('#txtCarrera');
-const inputMaterias = document.querySelector('#txtMateriasAprob');
+// const inputCarrera = document.querySelector('#txtCarrera');
+// const inputMaterias = document.querySelector('#txtMateriasAprob');
 const inputNombreContacto = document.querySelector('#txtContactEmergNombre');
 const inputApellidoContacto = document.querySelector('#txtContactEmergApellido');
 const inputTelefonoContacto = document.querySelector('#txtContactEmergTelefono');
@@ -529,8 +529,8 @@ function ftnMostrarEstudiante (idEstudiante,estudiantes){
     inputTelefono.value = estudianteftnSeleccionado.Telefono;
     inputCorreo.value = estudianteftnSeleccionado.Correo;
 
-    inputCarrera.value = estudianteftnSeleccionado.Carrera;
-    inputMaterias.value = estudianteftnSeleccionado.Materias;
+    // inputCarrera.value = estudianteftnSeleccionado.Carrera;
+    // inputMaterias.value = estudianteftnSeleccionado.Materias;
     inputNombreContacto.value = estudianteftnSeleccionado.Contacto;
     inputApellidoContacto.value = estudianteftnSeleccionado.ApellidoContacto;
     inputTelefonoContacto.value = estudianteftnSeleccionado.TelefonoContacto;
@@ -556,8 +556,8 @@ function ftnDeshabilitarCampos (){
     inputTelefono.setAttribute('disabled',true);
     inputCorreo.setAttribute('disabled',true);
 
-    inputCarrera.setAttribute('disabled',true);
-    inputMaterias.setAttribute('disabled',true);
+    // inputCarrera.setAttribute('disabled',true);
+    // inputMaterias.setAttribute('disabled',true);
     inputNombreContacto.setAttribute('disabled',true);
     inputApellidoContacto.setAttribute('disabled',true);
     inputTelefonoContacto.setAttribute('disabled',true);
@@ -589,8 +589,8 @@ function obtenerDatosEstudiante() {
     let sDireccionExacta = inputDireccionExacta.value;
     let sTelefono = inputTelefono.value;
     let sCorreo = inputCorreo.value;
-    let sCarrera = inputCarrera.value;
-    let sMaterias = inputMaterias.value;
+    // let sCarrera = inputCarrera.value;
+    // let sMaterias = inputMaterias.value;
     let sNombreContacto = inputNombreContacto.value;
     let sApellidoContacto = inputApellidoContacto.value;
     let sTelefonoContacto = inputTelefonoContacto.value;
@@ -598,7 +598,7 @@ function obtenerDatosEstudiante() {
     let sContrasenna = inputContrasennaEstudiante.value;
 
 
-    infoEstudiante.push(idEstudiante, sCedula, sNombre, sApellido, sApellido2, sProvincia, sCanton, sDistrito, sDireccionExacta, sTelefono, sCorreo, sCarrera, sMaterias, sNombreContacto, sApellidoContacto, sTelefonoContacto, sContrasenna );
+    infoEstudiante.push(idEstudiante, sCedula, sNombre, sApellido, sApellido2, sProvincia, sCanton, sDistrito, sDireccionExacta, sTelefono, sCorreo, sNombreContacto, sApellidoContacto, sTelefonoContacto, sContrasenna );
 
     bError = validarEstudiante();
     if(bError == true){
@@ -647,8 +647,8 @@ function ftnHabilitarCampos (){
     inputTelefono.removeAttribute('disabled');
     inputCorreo.removeAttribute('disabled');
 
-    inputCarrera.removeAttribute('disabled');
-    inputMaterias.removeAttribute('disabled');
+    // inputCarrera.removeAttribute('disabled');
+    // inputMaterias.removeAttribute('disabled');
     inputNombreContacto.removeAttribute('disabled');
     inputApellidoContacto.removeAttribute('disabled');
     inputTelefonoContacto.removeAttribute('disabled');
@@ -736,6 +736,22 @@ function validarEstudiante() {
         bError = true;
     } else {
         inputDireccionExacta.classList.remove('error-input');
+    }
+
+    //Validación del Nombre Contacto
+    if (inputNombreContacto.value == '' || (regexSoloLetras.test(inputNombreContacto.value) == false)) {
+        inputNombreContacto.classList.add('error-input');
+        bError = true;
+    } else {
+        inputNombreContacto.classList.remove('error-input');
+    }
+
+    //Validación de la Telefono Contacto
+    if (inputTelefonoContacto.value == '') {
+        inputTelefonoContacto.classList.add('error-input');
+        bError = true;
+    } else {
+        inputTelefonoContacto.classList.remove('error-input');
     }
 
 

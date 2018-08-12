@@ -431,7 +431,7 @@ function listarEstudiantes(){
             let celdaApellido = fila.insertCell();
             let celdaTelefono = fila.insertCell();
             let celdaCorreo = fila.insertCell();
-            let celdaEstado = fila.insertCell();
+            // let celdaEstado = fila.insertCell();
             let btns = fila.insertCell();
 
 
@@ -448,7 +448,7 @@ function listarEstudiantes(){
             celdaApellido.innerHTML = listaEstudiante[i]['Apellido'];
             celdaTelefono.innerHTML = listaEstudiante[i]['Telefono'];
             celdaCorreo.innerHTML = listaEstudiante[i]['Correo'];
-            celdaEstado.innerHTML = listaEstudiante[i]['Estado'];
+            // celdaEstado.innerHTML = listaEstudiante[i]['Estado'];
 
             btns.appendChild(btnVer);
 

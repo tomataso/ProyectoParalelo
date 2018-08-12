@@ -210,12 +210,12 @@ function registrarEstudiante(paInfoEstudiante){
             DireccionExacta : paInfoEstudiante[7],
             Telefono : paInfoEstudiante[8],
             Correo : paInfoEstudiante[9],
-            Carrera : paInfoEstudiante[10],
-            Materias :  paInfoEstudiante[11],
-            NombreEmergencia : paInfoEstudiante[12],
-            ApellidoEmergencia : paInfoEstudiante[13],
-            TelefonoEmergencia : paInfoEstudiante[14],
-            Desactivado : paInfoEstudiante[15],
+            // Carrera : paInfoEstudiante[10],
+            // Materias :  paInfoEstudiante[11],
+            NombreEmergencia : paInfoEstudiante[10],
+            ApellidoEmergencia : paInfoEstudiante[11],
+            TelefonoEmergencia : paInfoEstudiante[12],
+            Desactivado : paInfoEstudiante[13],
             Contrasenna: contrasennaAutogenerada,
         }
       });

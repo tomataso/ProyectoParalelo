@@ -242,13 +242,13 @@ function actualizarEstudiantes(pEstudiante){
             DireccionExacta : pEstudiante[8],
             Telefono : pEstudiante[9],
             Correo : pEstudiante[10],
-            Carrera : pEstudiante[11],
-            Materias :  pEstudiante[12],
-            NombreEmergencia : pEstudiante[13],
-            ApellidoEmergencia : pEstudiante[14],
-            TelefonoEmergencia : pEstudiante[15],
+            // Carrera : pEstudiante[11],
+            // Materias :  pEstudiante[12],
+            NombreEmergencia : pEstudiante[11],
+            ApellidoEmergencia : pEstudiante[12],
+            TelefonoEmergencia : pEstudiante[13],
 
-            Contrasenna : pEstudiante[17]
+            Contrasenna : pEstudiante[15]
         }
       });
     
