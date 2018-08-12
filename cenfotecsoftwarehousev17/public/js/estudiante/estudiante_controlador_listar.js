@@ -411,7 +411,7 @@ function initEstudiante() {
 
 //funciones--------------------------------------------------
 function listarEstudiantes(){
-    let listaEstudiante = obtenerlistaEstudiantes();
+    let listaEstudiante = obtenerListaEstudiantes();
 
     let tbody = document.querySelector('#tblEstud tbody');
     tbody.innerHTML = '';
@@ -458,7 +458,7 @@ function listarEstudiantes(){
 };
 
 // -----------------------------------------
-function ftnlistarEstudiantesiante(){
+function ftnlistarEstudiantes(){
     let id = this.name;
     
     // en cual servicio esta esta funcion

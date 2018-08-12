@@ -37,8 +37,8 @@ let EstudianteSchema = new mongoose.Schema({
     DireccionExacta : {type : String, required: true},
     Telefono : {type : String, required: true},
     Correo : {type : String, required : true},
-    Carrera : {type : String, required : true},
-    Materias : {type : String, required : true},
+    Carrera : {type : String, required : false},
+    Materias : {type : String, required : false},
     NombreEmergencia : {type : String, required : true},
     ApellidoEmergencia : {type : String, required : true},
     TelefonoEmergencia : {type : String, required: true},
@@ -48,4 +48,4 @@ let EstudianteSchema = new mongoose.Schema({
     TipoUsuario: {type: Number, required: true}    
 });
 
-module.exports = mongoose.model('Estudiante', EstudianteSchema);
+module.exports = mongoose.model('Estud', EstudianteSchema);
