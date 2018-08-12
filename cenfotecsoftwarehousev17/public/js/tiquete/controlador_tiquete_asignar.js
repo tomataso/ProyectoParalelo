@@ -26,6 +26,7 @@ function obtenerTiqueteSeleccionado() {
 
  function ListarProfesores(){
     let listaDatos = obtenerListaProfesores();
+    listaDatos = filtrarListaConAsignados(listaDatos);
     let rolSeleccionado = dropTipoProfesor.value
     let tbody = document.querySelector('#tblProfesores tbody');
     tbody.innerHTML = '';
@@ -80,6 +81,23 @@ function obtenerTiqueteSeleccionado() {
     ftnlistarEncargados();
 };
 
+function filtrarListaConAsignados(listaDatos) {
+
+    let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
+    let tiqueteSeleccionadoBD = JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado);
+    let nuevaLista = []; 
+
+    for (let i = 0; i < listaDatos.length; i++) {
+        if (listaDatos[i]._id != tiqueteSeleccionadoBD._id) {
+            nuevaLista.push(listaDatos[i]);
+        }
+        
+    }
+
+    return nuevaLista;
+    
+}
+
 
 function registrarEncargado(tiqueteSeleccionado, profesor){
 
@@ -93,6 +111,7 @@ function registrarEncargado(tiqueteSeleccionado, profesor){
     })
     
     ftnlistarEncargados();
+    ListarProfesores();
 };
 
 
@@ -124,7 +143,7 @@ function  ftnlistarEncargados (){
             celdaCedula.innerHTML = listaDatos[i]['Cedula'];
             celdaNombre.innerHTML = listaDatos[i]['Nombre'] + " " + listaDatos[i]['Apellido'];
             btns.appendChild(btnAsignar);
-    }
+        }
     }
 
 };
@@ -142,6 +161,7 @@ function desasignarEncargado(tiqueteSeleccionado){
     })
     
     ftnlistarEncargados();
+    ListarProfesores();
 };
 
 function showUserMenu() {
