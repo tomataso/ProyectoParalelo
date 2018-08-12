@@ -11,7 +11,7 @@ Responsabilidades del controlador
 
 //variables globales------------------------------------------
 const btnGuardarHoras = document.querySelector('#btnGuardar');
-const labelProyecto = document.querySelector('#proyectoSeleccionado');
+const htresProyecto = document.querySelector('#proyectoSeleccionado');
 const inputFechaCreacion = document.querySelector('#fechaHora');
 const inputCantidadHoras = document.querySelector('#horasTrabajadas');
 const inputTituloHoras = document.querySelector('#tituloHoras');
@@ -22,7 +22,7 @@ let nombreProyecto = obtenerNombreProyecto();
 
 
 //listeners---------------------------------------------------
-btnGuardarProyecto.addEventListener('click',function(){
+btnGuardarHoras.addEventListener('click',function(){
 
     let fecha = ftnFechaHoy();
     
@@ -60,7 +60,7 @@ function obtenerDatos(){
     let sTituloHoras = inputTituloHoras.value;
     let sDescripcion = inputDescripcion.value;
 
-    infoHoras.push(idProyecto.id,idEstudiante,gFechaCreacion,nHoras,sTituloHoras,sDescripcion);
+    infoHoras.push(idProyecto,idEstudiante,gFechaCreacion,nHoras,sTituloHoras,sDescripcion);
     
     bError = validar();
     if(bError == true){
@@ -82,11 +82,7 @@ function obtenerDatos(){
             title : 'Registro exitoso',
             text: 'Las horas fueron registradas adecuadamente.',
             confirmButtonText : 'Entendido'
-        }).then(
-            function(){
-                window.location.href = "../../html/proyecto/proyecto_listar_admin.html"
-            }
-        );
+        });
     }
 
     return bError;
@@ -94,8 +90,6 @@ function obtenerDatos(){
 
 function validar(){
     let bError = false;
-    let fechaCreacion = new Date(inputFechaCreacion.value);
-    let fechaEntrega = new Date(inputFechaEntrega.value);
 
     let regexSoloLetras = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ]+$/;
     let regexSoloNumeros = /^[0-9]+$/;
@@ -110,7 +104,7 @@ function validar(){
     }
 
       //Validación titulo horas
-    if(inputTituloHoras.value == '' && (regexSoloLetras.test(inputTituloHoras.value)==false) ){
+    if(inputTituloHoras.value == '' && (regexLetrasNumeros.test(inputTituloHoras.value)==false) ){
         inputTituloHoras.classList.add('error-input');
         bError = true;
     }else{
@@ -130,7 +124,7 @@ function validar(){
 
 function ftnCamposAnnadidos (pFecha){
 
-    labelProyecto.innerHTML = nombreProyecto;
+    htresProyecto.innerHTML = nombreProyecto;
     inputFechaCreacion.value = pFecha;
 };
 

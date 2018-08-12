@@ -34,18 +34,9 @@
 			<label for="check" id="icone"><i class="fas fa-bars"></i></label>
 			<div class="bars">
 				<nav>
-					<a href="../sistema/sistema_registrar.html" id="btnEstudiantesIndex"><div class="link">Configuraciones generales</div></a>
-					<a href="../usuario/usuario_listar.html" id="btnUsuariosIndex"><div class="link">Usuarios</div></a>
-					<a href="../proyecto/proyecto_registrar.html" id="btnRegistrarProyectosIndex"><div class="link">Registrar proyecto</div></a>
-					<a href="../proyecto/proyecto_listar_admin.html" id="btnListarProyectosIndex"><div class="link">Proyectos</div></a>
-					<a href="../profesor/profesor_registrar.html" id="btnRegistrarProfesorIndex"><div class="link">Registrar profesor</div></a>
-					<a href="../profesor/profesor_listar.html" id="btnListarProfesorIndex"><div class="link">Profesores</div></a>
-					<a href="../estudiante/indexRegEstud.html" id="btnRegistrarEstudianteIndex"><div class="link">Registrar estudiante</div></a>
-					<a href="../estudiante/indexTablaEstud.html" id="btnListarEstudianteIndex"><div class="link">Estudiantes</div></a>	
-					<a href="../cliente/cliente_registrar.html" id="btnRegistrarClienteIndex"><div class="link">Registrar cliente</div></a>
-					<a href="../cliente/cliente_listar.html" id="btnListarClienteIndex"><div class="link">Clientes</div></a>
-					<a href="../mensaje/mensaje_enviado_listar.html" id="btnReporteIndex"><div class="link">Reporte horas estudiante</div></a>
-					<a href="../tiquete/tiquete_listar_administrador.html" id="btnListarTiquetesIndex"><div class="link">Tiquetes</div></a>
+					<a href="../proyecto/proyecto_listar_estudiante.html" id="btnListarProyectosIndex"><div class="link">Proyectos</div></a>
+					<a href="../mensaje/mensaje_enviado_listar.html" id="btnReporteIndex"><div class="link">Reporte horas proyecto</div></a>
+					<a href="../tiquete/tiquete_listar_estudiante.html" id="btnListarTiquetesIndex"><div class="link">Tiquetes</div></a>
 					<a href="../mensaje/mensaje_crear.html" id="btnCrearMensajeIndex"><div class="link">Crear mensaje</div></a>
 					<a href="../mensaje/mensaje_recibido_listar.html" id="btnMensajesRecibidosIndex"><div class="link">Mensajes recibidos</div></a>	
 					<a href="../mensaje/mensaje_enviado_listar.html" id="btnMensajesEnviadosIndex"><div class="link">Mensajes enviados</div></a>
@@ -59,32 +50,27 @@
         <!-- Agregar wrapper aquí -->
         <div class="wrapper">
             <form>
-                <h3 class="titulo-lista">Registrar Horas</h3>
-    
-                <div class="field">
-                  <!-- <input type="text" id="codigoProyecto" placeholder="Código"></input> -->
-                  <label id="proyectoSeleccionado"></label>
-                </div>
+                <h3 class="titulo-lista" id="proyectoSeleccionado"></h3>
              
                 <div class="field">
                   <input type="date" id="fechaHora" placeholder="Fecha de creación"></input>
                   <label for="fechaHora">Fecha de creación</label>
                 </div>  
-                
-                <div class="field">
-                  <input type="number" id="horasTrabajadas" placeholder="Nombre de proyecto">
-                  <label for="horasTrabajadas">Cantidad de horas</label>
-				</div>  
 				
 				<div class="field">
-                  <input type="number" id="tituloHoras" placeholder="Nombre de proyecto">
+                  <input type="text" id="tituloHoras" placeholder="Nombre de proyecto">
                   <label for="tituloHoras">Título</label>
                 </div> 
                 
                 <div class="field">
                   <textarea id="descripcionHoras" rows="5" placeholder="Descripción"></textarea>
                   <label for="descripcionHoras">Descripción</label>
-                </div>
+				</div>
+				
+				<div class="field">
+					<input type="number" id="horasTrabajadas" placeholder="Nombre de proyecto">
+					<label for="horasTrabajadas">Cantidad de horas</label>
+				  </div>  
     
                 <button type="button" id="btnGuardar" class="btn-registrar">Guardar</button>  
             </form>
@@ -100,8 +86,8 @@
 		<script src="../../js/inicioSesion/login.service.js"></script>
 		<script src="../../js/inicioSesion/auth.service.js"></script>
     <script src="../../js/inicioSesion/login.controller.js"></script>
-    <script src="../../js/proyecto/servicio_proyecto_registrar.js"></script>
-    <script src="../../js/proyecto/controlador_proyecto_registrar.js"></script>
+    <script src="../../js/horas/servicio_horas_registrar.js"></script>
+    <script src="../../js/horas/controlador_horas_registrar.js"></script>
 		</div>
 	</div>
 
