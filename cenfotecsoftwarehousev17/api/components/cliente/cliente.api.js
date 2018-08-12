@@ -49,7 +49,6 @@ module.exports.buscar_usuario_id = function (req,res){
         function(usuario){
             res.send(usuario);
         }
-
     );
 
 };

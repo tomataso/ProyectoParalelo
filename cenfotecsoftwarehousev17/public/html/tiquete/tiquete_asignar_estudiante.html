@@ -88,86 +88,42 @@
 
         <!-- Agregar wrapper aquí -->
         <div class="wrapper">
-          <h3 class="titulo-lista">Información del tiquete</h3>
-        
-          <form id="FormularioCliente">
-    
-          <div class="field">
-            <input type="text" placeholder="Cedula Juridica" id="txtCedula">
-            <label for="txtCedula">Cedula Juridica</label>
-          </div>
-    
-          <div class="field">
-            <input type="text" placeholder="Codigo del tiquete" id="txtcodigo_tiquete">
-            <label for="txtcodigo_tiquete">Codigo del tiquete</label>
-          </div>
-    
-          <div class="field" >
-            <select name="" id="sltProyectos">
-                <label for="sltProyectos">Proyecto asociado</label>   
-                <option value="#">Seleccione un proyecto</option>
-            </select>
-					</div>
-					
-					<div class="field">
-            <input type="text" placeholder="Codigo del proyecto" id="txtcodigo_proyecto">
-            <label for="txtcodigo_proyecto">Código Proyecto</label>
-          </div>
-    
-          <div class="field">
-            <input type="text" placeholder="Descripcion" id="txtdescripcion">
-            <label for="txtdescripcion">Descripcion</label>
-          </div>
-    
-    
-          <div class="field">
-            <input type="text" placeholder="Fecha" id="txtfecha">
-            <label for="txtfecha">Fecha</label>
-          </div>
-    
-    
-          <div class="field">
-            <img src="" alt="Foto" id="txtImagen" width="128px" height"128px">
-    
-    
-            <div class="field">
-              <input type="textarea" placeholder="TextoTiquete" id="txtTextoTiquete">
-              <label for="txtTextoTiquete">Comentar Tiquete</label>
+            <h3 class="titulo-lista">Estudiantes Asignados</h3>
+            <form action="">
+              <div class=" field filtro">
+                <input type="text" name="inputBusquedaDos" id="inputBusquedaDos" placeholder="Busqueda">
+                <label for="inputBusquedaDos"><i class="fas fa-search"></i>  Búsqueda</label>
+              </div>
+            </form>
+            <div>
+              <table id="tblEstud">
+                <thead>
+                    <th>Cédula</th>
+                    <th>Nombre completo</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+              </table>
             </div>
-      
-    
-            <!--<button type="button" id="btnadjuntar_imagenes">Adjuntar imagenes</button></div>
-            <img src="" alt="Foto" id="txtImagen" width="128px" height"128px">-->
-    
-      </div> 
-				<button type="button" id="btnComentar" class="btnComentar">Comentar</button>
-				<button type="button" id="btnAsignarProfesor" class="btnComentar">Asignar Profesor</button>
-				<button type="button" id="btnAsignarEstudiante" class="btnComentar">Asignar Estudiante</button>
-			</form>
-			
-      </div>
-        
+        </div>
 			</div>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
 		<script src="../../js/jquery-3.3.1.js"></script>
-		<script src='https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js' type='text/javascript'></script>
-	  <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 		crossorigin="anonymous"></script>
-		<!-- Inicio Sesion -->
 		<script src="../../js/inicioSesion/login.service.js"></script>
 		<script src="../../js/inicioSesion/login.controller.js"></script>
-		<!-- Servicio -->
-		<script src="../../js/cliente/servicio_cliente_listar.js"></script>
-		<script src="../../js/tiquete/servicio_imagen.js"></script>
-		<script src="../../js/tiquete/servicio_tiquete_listar.js"></script>
-		<script src="../../js/proyecto/servicio_proyecto_listar.js"></script>
-		<script src="../../js/tiquete/servicio_tiquete_registrar.js"></script>
-		<!-- Controlador -->
-		<script src="../../js/tiquete/controlador_tiquete_registrar.js"></script>
-		<script src="../../js/tiquete/controlador_tiquete_mostrar.js"></script>
+		<script src="../../js/tiquete/servicio_tiquete_asignar.js"></script>
+		<script src="../../js/estudiante/estudiante_servicio_listar.js"></script>
+		<script src="../../js/tiquete/controlador_tiquete_asignar.js"></script>
 		<script src="../../js/inicioSesion/auth.service.js"></script>
 		</div>
+	</div>
+
+</body>
+
+</html>

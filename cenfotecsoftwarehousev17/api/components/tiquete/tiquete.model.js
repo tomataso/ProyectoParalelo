@@ -11,7 +11,8 @@ let TiqueteSchema = new mongoose.Schema({
     imagen : {type : String, require: true},
     usuarioId : {type: String, require: true},
     TextoTiquete : {type: String, required:true},
-    Estado : {type: String, require: true}
+    Estado : {type: String, require: true},
+    encargado : {type: String}
 });
 
 module.exports = mongoose.model('Tiquete', TiqueteSchema);
