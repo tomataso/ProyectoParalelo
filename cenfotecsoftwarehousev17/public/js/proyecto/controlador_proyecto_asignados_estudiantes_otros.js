@@ -10,7 +10,7 @@ inputBusquedaDos.addEventListener('keyup' , function(){ftnFiltrarListaEstudiante
 
 //loads------------------------------------------------------
 window.onload = function(){
-    ListarEstudiantesAsignados();
+    mostrarEstudAsignados();
 };
 
 
@@ -21,7 +21,7 @@ function obtenerIdProyecto() {
     return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
  }; 
 
-function ListarEstudiantesAsignados(){ //falta mostrar solo los estudiantes relacionados al proyecto escogido previamente.
+function mostrarEstudAsignados(){ //falta mostrar solo los estudiantes relacionados al proyecto escogido previamente.
     let listaDatos = obtenerListaEstudiantesAsignados();
     let listaEstudiante = obtenerListaEstudiantes();
     let tbody = document.querySelector('#tblEstudiantesAsignados tbody');

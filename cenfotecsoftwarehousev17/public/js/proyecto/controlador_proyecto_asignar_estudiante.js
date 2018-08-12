@@ -13,14 +13,14 @@ inputBusquedaDos.addEventListener('keyup' , function(){ftnFiltrarListaEstudiante
 
 //loads------------------------------------------------------
 window.onload = function(){
-    ListarEstudiantes();
-    ListarEstudiantesAsignados();
+    mostrarEstud();
+    mostrarEstudAsignados();
     ftnEstudiantesAsignados();
 };
 
 
 //funciones--------------------------------------------------
-function ListarEstudiantes(){
+function mostrarEstud(){
     let listaDatos = obtenerListaEstudiantes();
     let tbody = document.querySelector('#tblEstudiantes tbody');
     tbody.innerHTML = '';
@@ -73,11 +73,11 @@ function obtenerDatosEstudiante(pDatos){
         confirmButtonText : 'Entendido'
     });
     
-    ListarEstudiantesAsignados();
+    mostrarEstudAsignados();
     ftnEstudiantesAsignados();
 };
 
-function ListarEstudiantesAsignados(){ //falta mostrar solo los estudiantes relacionados al proyecto escogido previamente.
+function mostrarEstudAsignados(){ //falta mostrar solo los estudiantes relacionados al proyecto escogido previamente.
     let listaDatos = obtenerListaEstudiantesAsignados();
     let listaEstudiante = obtenerListaEstudiantes();
     let tbody = document.querySelector('#tblEstudiantesAsignados tbody');
@@ -140,8 +140,8 @@ function ftnDesasignarEstudiante(){
           )
 
             desasignarEstudiante(estudiante);
-            ListarEstudiantesAsignados();
-            ListarEstudiantes();
+            mostrarEstudAsignados();
+            mostrarEstud();
             ftnEstudiantesAsignados();
             
         } else if (

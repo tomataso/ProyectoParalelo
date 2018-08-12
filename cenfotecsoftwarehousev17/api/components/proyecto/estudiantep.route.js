@@ -9,7 +9,7 @@ router.route('/asignarEstudiante')
         estudProy.registrar(req, res);
 });
 
-router.route('/listarEstudiantesAsignados')
+router.route('/mostrarEstudAsignados')
     .get(function(req, res){
         estudProy.listar(req, res);
 });
