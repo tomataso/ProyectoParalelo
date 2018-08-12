@@ -47,3 +47,27 @@ module.exports.buscar_tiquete_id = function (req, res) {
             res.send(tiquete);
     });
 };
+
+module.exports.cambiar_estado_tiquete = function(req, res){
+    tiqueteModel.findByIdAndUpdate(req.body._id, { $set: req.body }, 
+        function(err, tiquete) {
+            if (err) {
+                res.json({ success: false, msg: 'No se ha actualizado.'+ handleError(err)});
+        
+            } else {
+            res.json({ success: true, msg: 'Se ha actualizado correctamente.' + res });
+            }
+      });
+};
+
+module.exports.cambiar_comentario_tiquete = function(req, res){
+    tiqueteModel.findByIdAndUpdate(req.body._id, { $set: req.body }, 
+        function(err, tiquete) {
+            if (err) {
+                res.json({ success: false, msg: 'No se ha actualizado.'+ handleError(err)});
+        
+            } else {
+            res.json({ success: true, msg: 'Se ha actualizado correctamente.' + res });
+            }
+      });
+};

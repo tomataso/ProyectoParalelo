@@ -10,8 +10,14 @@ window.onload = function(){
 
 
 function ListarTiquetes(){
+    let ListaTiquete = [];
 
-    let ListaTiquete = obtenerTiquetePorId(getUsuarioAutenticado()._id);
+    if (getUsuarioAutenticado().TipoUsuario == 0) {
+        ListaTiquete = obtenerListaTiquetes();
+    } else {
+        ListaTiquete = obtenerTiquetePorId(getUsuarioAutenticado()._id);
+    }
+
     console.log("lista tiquetes");
     console.log(ListaTiquete);
     let tbody = document.querySelector('#tblTiquetes tbody');
@@ -52,35 +58,37 @@ function ListarTiquetes(){
         aModificar.classList.add('fa-eye');
         aModificar.dataset._id =  ListaTiquete[i]['_id'];         
 
-        // modificar estado del cliente. Copiar esto
-        let btnModificarEstado = document.createElement('button'); 
-        btnModificarEstado.dataset._id =  ListaTiquete[i]['_id']; 
+        if (getUsuarioAutenticado().TipoUsuario == 3) {
+            // modificar estado del cliente. Copiar esto
+            let btnModificarEstado = document.createElement('button'); 
+            btnModificarEstado.dataset._id =  ListaTiquete[i]['_id']; 
 
-        // validación para mostrar el nombre del botón según el estado de usuario. Copiar esto
-        if (ListaTiquete[i]['Estado'] == "Pendiente") {
-            btnModificarEstado.innerHTML = 'Finalizado';
-        } else if(ListaTiquete[i]['Estado'] == "Finalizado") {
-            btnModificarEstado.innerHTML = 'Pendiente';
-        }
-        
-        // llamado para la función modificar estado del cliente. Copiar esto
-        btnModificarEstado.addEventListener('click', function(){
-            let estado = ListaTiquete[i]['Estado'];
-            if(estado == "Pendiente" ){
-                estado = "Finalizado";
-            }else if(estado == "Finalizado"){
-                estado = "Pendiente";
+            // validación para mostrar el nombre del botón según el estado de usuario. Copiar esto
+            if (ListaTiquete[i]['Estado'] == "Pendiente") {
+                btnModificarEstado.innerHTML = 'Finalizado';
+            } else if(ListaTiquete[i]['Estado'] == "Finalizado") {
+                btnModificarEstado.innerHTML = 'Pendiente';
             }
-            actualizarEstadoTiquete(ListaTiquete[i], estado);
-            ListarTiquetes();
-        });
+            
+            // llamado para la función modificar estado del cliente. Copiar esto
+            btnModificarEstado.addEventListener('click', function(){
+                let estado = ListaTiquete[i]['Estado'];
+                if(estado == "Pendiente" ){
+                    estado = "Finalizado";
+                }else if(estado == "Finalizado"){
+                    estado = "Pendiente";
+                }
+                actualizarEstadoTiquete(ListaTiquete[i], estado);
+                ListarTiquetes();
+            });
+            cConfiguracion.appendChild(btnModificarEstado);
+        }
 
 
         aModificar.addEventListener('click', function(){
-            ftnMostrarTiquete(ListaTiquete[i]['_id']);
-        }); 
+            ftnMostrarTiquete(ListaTiquete[i]);
+        });
 
-        cConfiguracion.appendChild(btnModificarEstado);
         cConfiguracion.appendChild(aModificar);
 
         }
@@ -88,20 +96,13 @@ function ListarTiquetes(){
 
 };
 
-function ftnMostrarTiquete(idTiquete){
-    let id = idTiquete;
-    let usuario = getUsuarioAutenticado();
+function ftnMostrarTiquete(Tiquete){
+    guardarTiquete(Tiquete);
+    window.location.replace('../../html/tiquete/tiquete_mostrar.html');
+};
 
-    ftnGuardarIdSeleccionado(id);
-    
-    switch (usuario.TipoUsuario) {
-        case 0:
-            window.location.replace('../../html/cliente/cliente_mostrar.html');
-            break;
-    
-        default:
-            break;
-    }   
+function guardarTiquete(Tiquete) {
+    sessionStorage.setItem("tiqueteSeleccionado", JSON.stringify(Tiquete));
 };
 
 

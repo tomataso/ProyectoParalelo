@@ -1,11 +1,11 @@
 'use strict';
-/*
+
 function obtenerListaTiquetes(){
     let lista = [];
 
     let respuesta = '';
     let peticion = $.ajax({
-        url : 'http://localhost:4000/api/listarClientes',
+        url : 'http://localhost:4000/api/listarTiquetes',
         type : 'get',
         contentType : 'application/x-www-form-urlencoded; charset=utf-8',
         dataType : 'json',
@@ -26,7 +26,7 @@ function obtenerListaTiquetes(){
       return respuesta;
     
     return lista;
-}*/
+}
 
 
 function obtenerTiquetePorId(pid){

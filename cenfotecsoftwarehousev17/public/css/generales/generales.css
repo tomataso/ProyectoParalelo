@@ -492,5 +492,9 @@ margin-top: 15%;
   overflow: hidden;
 }
 
+.hideMenu {
+  display: none;
+}
+
 
 

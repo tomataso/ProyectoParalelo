@@ -29,4 +29,10 @@ router.route('/cambiar_estado_tiquete')
         tiquete.cambiar_estado_tiquete(req, res);
 });
 
+router.route('/cambiar_comentario_tiquete')
+    .post(function (req, res) {
+        tiquete.cambiar_comentario_tiquete(req, res);
+});
+
+
 module.exports = router;

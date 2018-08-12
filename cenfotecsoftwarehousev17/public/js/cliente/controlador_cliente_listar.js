@@ -45,10 +45,13 @@ function ListarClientes(){
            
 
             //Íconos para editar
-            let aModificar = document.createElement('a'); // * * * agregar todos estos * * *
-            aModificar.classList.add('fas');
-            aModificar.classList.add('fa-eye');
-            aModificar.dataset._id =  ListaCliente[i]['_id'];         
+            if (getUsuarioAutenticado()._id != 2) {
+                let aModificar = document.createElement('a'); // * * * agregar todos estos * * *
+                aModificar.classList.add('fas');
+                aModificar.classList.add('fa-eye');
+                aModificar.dataset._id =  ListaCliente[i]['_id']; 
+            }
+        
 
             // modificar estado del cliente. Copiar esto
             let btnModificarEstado = document.createElement('button'); 
