@@ -35,15 +35,17 @@ function ListarProfesoresAsignados(){
         if(listaDatos[i]['desactivado'] || listaDatos[i]['idProyecto'] != idProyecto){
             continue;
         } else{
-            let fila = tbody.insertRow();
-            let celdaCedula = fila.insertCell();
-            let celdaNombre = fila.insertCell();
-            let rolProfesor = fila.insertCell();
 
             let profesorValidado = ftnValidarProfesor(listaProfesores,listaDatos[i]['idProfesor']);
             if(profesorValidado[0]){
                continue;
             } else {
+
+                let fila = tbody.insertRow();
+                let celdaCedula = fila.insertCell();
+                let celdaNombre = fila.insertCell();
+                let rolProfesor = fila.insertCell();
+                
                 celdaCedula.name = listaDatos[i]['idProfesor'];
                 celdaCedula.innerHTML = profesorValidado[1];
                 celdaNombre.innerHTML = profesorValidado[2];

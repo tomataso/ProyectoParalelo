@@ -49,6 +49,20 @@ function ListarProyectos(){
             btnVer.classList.add('fa-eye');
             btnVer.addEventListener('click', ftnMostrarPoryecto);
 
+            let btnRegistrarHoras = document.createElement('a');
+            btnRegistrarHoras.dataset.id = listaProyecto[i]['_id'];
+            btnRegistrarHoras.dataset.name = listaProyecto[i]['nombre'];
+            btnRegistrarHoras.classList.add('fas');
+            btnRegistrarHoras.classList.add('fa-clock');
+            btnRegistrarHoras.addEventListener('click', ftnRegistroHoras);
+
+            let btnHoras = document.createElement('a');
+            btnHoras.dataset.id = listaProyecto[i]['_id'];
+            btnHoras.dataset.name = listaProyecto[i]['nombre'];
+            btnHoras.classList.add('fas');
+            btnHoras.classList.add('fa-list-ul');
+            btnHoras.addEventListener('click', ftnListaHoras);
+
             celdaCodigo.innerHTML = listaProyecto[i]['codigo'];
             celdaNombre.innerHTML = listaProyecto[i]['nombre'];
             clienteValidado = ftnValidarCliente(listaClientes,cliente[0].idCliente);
@@ -60,22 +74,49 @@ function ListarProyectos(){
             celdaEstado.innerHTML = listaProyecto[i]['estado'];
             celdaFechaEntrega.innerHTML = fechaEntrega;
             btns.appendChild(btnVer);
+            btns.appendChild(btnRegistrarHoras);
+            btns.appendChild(btnHoras);
         }
     }
 
 };
 
 function ftnMostrarPoryecto(){
-    let proyecto = [this.dataset.id,this.dataset.name];
+    let id = this.dataset.id;
 
-    ftnGuardarIdSeleccionado(proyecto);
+    ftnGuardarIdSeleccionado(id);
     
     window.location.replace('../../html/proyecto/proyecto_mostrar_estudiante.html');
+};
+
+function ftnRegistroHoras(){
+    let id = this.dataset.id;
+    let nombre = this.dataset.name;
+
+    ftnGuardarIdSeleccionado(id);
+    ftnGuardarNombreSeleccionado(nombre);
+    
+    window.location.replace('../../html/horas/horas_registrar.html');
+};
+
+function ftnListaHoras(){
+    let id = this.dataset.id;
+    let nombre = this.dataset.name;
+
+    ftnGuardarIdSeleccionado(id);
+    ftnGuardarNombreSeleccionado(nombre);
+    
+    window.location.replace('../../html/horas/horas_listar.html');
 };
 
 function ftnGuardarIdSeleccionado (pId){
 
     sessionStorage.setItem("idFilaSeleccionado", JSON.stringify(pId));
+};
+
+function ftnGuardarNombreSeleccionado (pNombre){
+
+    sessionStorage.setItem("nombreFilaSeleccionado", JSON.stringify(pNombre));
 };
 
 function  ftnFiltrarListaProyectos (){

@@ -5,7 +5,8 @@
 const inputBusqueda = document.querySelector('#inputBusqueda');
 const dropProyectos = document.querySelector('#proyectoSeleccionado');
 const tablaHoras = document.querySelector('#tblHoras');
-let idProyecto = obtenerIdProyecto()._id;
+let idProyecto = obtenerIdProyecto();
+let nombreProyecto = obtenerNombreProyecto();
 
 //listeners--------------------------------------------------
 inputBusqueda.addEventListener('keyup' , function(){ftnFiltrarListaHoras()});
@@ -199,6 +200,11 @@ function ftnCreadorDropProyecto(pElemento,pListaDatos){
 function obtenerIdProyecto() {
 
     return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
+ }; 
+
+ function obtenerNombreProyecto() {
+
+    return JSON.parse(sessionStorage.getItem("nombreFilaSeleccionado"));
  }; 
 
 function ftnAsignarOpcion (pSelect,pId){

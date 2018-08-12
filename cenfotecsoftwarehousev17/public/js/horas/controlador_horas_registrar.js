@@ -18,12 +18,17 @@ const inputTituloHoras = document.querySelector('#tituloHoras');
 const inputDescripcion = document.querySelector('#descripcionHoras');
 let idEstudiante = getUsuarioAutenticado()._id;
 let idProyecto = obtenerIdProyecto();
+let nombreProyecto = obtenerNombreProyecto();
 
 
 //listeners---------------------------------------------------
 btnGuardarProyecto.addEventListener('click',function(){
 
+    let fecha = ftnFechaHoy();
+    
     obtenerDatos();
+    limpiarFormulario();
+    ftnCamposAnnadidos(fecha);
 });
 
 //loads------------------------------------------------------
@@ -39,6 +44,12 @@ function obtenerIdProyecto() {
 
     return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
  }; 
+
+ function obtenerNombreProyecto() {
+
+    return JSON.parse(sessionStorage.getItem("nombreFilaSeleccionado"));
+ }; 
+
 
 function obtenerDatos(){
     let infoHoras =[];
@@ -119,7 +130,7 @@ function validar(){
 
 function ftnCamposAnnadidos (pFecha){
 
-    labelProyecto.innerHTML = idProyecto.name;
+    labelProyecto.innerHTML = nombreProyecto;
     inputFechaCreacion.value = pFecha;
 };
 
@@ -157,4 +168,9 @@ function ftnQuitarValidacionesClick (){
     }
 };
 
+function limpiarFormulario (){
 
+    inputCantidadHoras.value = '';
+    inputTituloHoras.value = '';
+    inputDescripcion.value = '';
+};

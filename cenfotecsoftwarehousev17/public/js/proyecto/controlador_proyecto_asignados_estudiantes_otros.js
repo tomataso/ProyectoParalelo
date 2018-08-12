@@ -33,14 +33,15 @@ function ListarEstudiantesAsignados(){ //falta mostrar solo los estudiantes rela
         if(listaDatos[i]['desactivado'] || listaDatos[i]['idProyecto'] != idProyecto){
             continue;
         } else{
-            let fila = tbody.insertRow();
-            let celdaCedula = fila.insertCell();
-            let celdaNombre = fila.insertCell();
             
             let = estudianteValidado = ftnValidarEstudiante(listaEstudiante,listaDatos[i]['idEstudiante']);
             if(estudianteValidado[0]){
                 continue;
             } else{
+                let fila = tbody.insertRow();
+                let celdaCedula = fila.insertCell();
+                let celdaNombre = fila.insertCell();
+
                 celdaCedula.name = listaDatos[i]['idEstudiante'];
                 celdaCedula.innerHTML = estudianteValidado[1];
                 celdaNombre.innerHTML = estudianteValidado[2];
