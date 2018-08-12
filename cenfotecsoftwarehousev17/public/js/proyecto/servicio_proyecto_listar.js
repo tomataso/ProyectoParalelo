@@ -115,7 +115,7 @@ function obtenerListaEstudiantesAsignados(){
 
     let respuesta = '';
     let peticion = $.ajax({
-        url : 'http://localhost:4000/api/mostrarEstudAsignados',
+        url : 'http://localhost:4000/api/listarEstudiantesAsignados',
         type : 'get',
         contentType : 'application/x-www-form-urlencoded; charset=utf-8',
         dataType : 'json',
