@@ -11,11 +11,13 @@ window.onload = function(){
 const btnAsignarProfesorTiquete = document.querySelector('#btnAsignarProfesor');
 btnAsignarProfesorTiquete.addEventListener('click',function(){
     window.location.replace('../../html/tiquete/tiquete_asignar_profesor.html');
+    sessionStorage.setItem("asignar", "Profesor");
 });
 
 const btnAsignarEstudianteTiquete = document.querySelector('#btnAsignarEstudiante');
 btnAsignarEstudianteTiquete.addEventListener('click',function(){
     window.location.replace('../../html/tiquete/tiquete_asignar_estudiante.html');
+    sessionStorage.setItem("asignar", "Estudiante");
 });
 
 

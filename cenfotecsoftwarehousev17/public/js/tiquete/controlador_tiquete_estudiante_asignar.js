@@ -1,13 +1,11 @@
 const inputBusqueda = document.querySelector('#inputBusqueda');
-const dropTipoProfesor = document.querySelector('#rolProfesor');
 const inputBusquedaDos = document.querySelector('#inputBusquedaDos');
 const tablaProfesores = document.querySelector('#tblProfesores');
 const tablaProfesoresAsignados = document.querySelector('#tblProfesoresAsignados');
 
 //listeners--------------------------------------------------
-inputBusqueda.addEventListener('keyup' , function(){ftnFiltrarListaProfesores()});
+inputBusqueda.addEventListener('keyup' , function(){filtrarListaEstudiante()});
 inputBusquedaDos.addEventListener('keyup' , function(){ftnFiltrarListaProfesoresAsignados()});
-dropTipoProfesor.onchange = ListarProfesores;
 
 window.onload = function(){
 
@@ -17,9 +15,9 @@ window.onload = function(){
     if (JSON.parse(sessionStorage.getItem("asignar")) == "Estudiante") {
         listarEstudiantes();
     } else if(JSON.parse(sessionStorage.getItem("asignar")) == "Profesor") {
-       
+        ListarProfesores();
     }*/
-    ListarProfesores();
+    listarEstudiantes();
     ftnlistarEncargados();
     let idTiquetePorRegistrar;
 }; 
@@ -29,41 +27,33 @@ function obtenerTiqueteSeleccionado() {
  };
 
 
- function ListarProfesores(){
-    let listaDatos = obtenerListaProfesores();
+ function listarEstudiantes(){
+    let listaDatos = obtenerListaEstudiantes();
     listaDatos = filtrarListaConAsignados(listaDatos);
-    let rolSeleccionado = dropTipoProfesor.value
-    let tbody = document.querySelector('#tblProfesores tbody');
+    let tbody = document.querySelector('#tblEstudiantes tbody');
     tbody.innerHTML = '';
 
     if(listaDatos == ''){
      
         swal({
             type : 'warning',
-            title : 'No hay profesores',
-            text: 'No existen profesores registrados en el sistema',
-            confirmButtonText : 'Entendido'
-        });
-        return;
-    } else if(rolSeleccionado == "defecto"){
- 
-        swal({
-            type : 'info',
-            title : 'Seleccionar tipo de profesor',
-            text: 'Por favor, seleccionar el tipo de profesor a asignar.',
+            title : 'No hay estudiantes',
+            text: 'No existen estudiantes registrados en el sistema',
             confirmButtonText : 'Entendido'
         });
         return;
     }
 
     for(let i = 0; i < listaDatos.length; i++){
-
-        if(rolSeleccionado != listaDatos[i]['TipoProfesor'] && listaDatos[i]['TipoProfesor'] != "ambos" || listaDatos[i]['Desactivado']){
+        
+        if(listaDatos[i]['Desactivado']){
             continue;
-        }else{
+        } else{
+
             let fila = tbody.insertRow();
+
             let celdaCedula = fila.insertCell();
-            let celdaNombre = fila.insertCell();
+            let celdaNombre = fila.insertCell(); 
             let btns = fila.insertCell();
 
             let btnAsignar = document.createElement('a');
@@ -74,13 +64,11 @@ function obtenerTiqueteSeleccionado() {
                 // let pDatos = [obtenerIdProyecto(),listaDatos[i]['_id']];
                 registrarEncargado(obtenerTiqueteSeleccionado(), listaDatos[i]);
             });
-            
-            celdaCedula.name = listaDatos[i]['_id'];
+
             celdaCedula.innerHTML = listaDatos[i]['Cedula'];
             celdaNombre.innerHTML = listaDatos[i]['Nombre'] + " " + listaDatos[i]['Apellido'];
             btns.appendChild(btnAsignar);
-            }
-    
+        }
     }
 
     ftnlistarEncargados();
@@ -104,19 +92,19 @@ function filtrarListaConAsignados(listaDatos) {
 }
 
 
-function registrarEncargado(tiqueteSeleccionado, profesor){
+function registrarEncargado(tiqueteSeleccionado, encargado){
 
 
-    asignarEncargado(tiqueteSeleccionado, profesor);
+    asignarEncargado(tiqueteSeleccionado, encargado);
     swal({
         type : 'success',
         title : 'Asignación exitosa',
-        text: 'El profesor fue correctamente asignado',
+        text: 'El estudiante fue correctamente asignado',
         confirmButtonText : 'Entendido'
     })
     
     ftnlistarEncargados();
-    ListarProfesores();
+    listarEstudiantes();
 };
 
 
@@ -124,10 +112,10 @@ function  ftnlistarEncargados (){
     let listaDatos = [];
     let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
     listaDatos.push(JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado));
-    let tbody = document.querySelector('#tblProfesoresAsignados tbody');
+    let tbody = document.querySelector('#tblEstudiantesAsignados tbody');
     tbody.innerHTML = '';
 
-    if (listaDatos[0] != "" && listaDatos[0].TipoUsuario != 3) {
+    if (listaDatos[0] != "" && listaDatos[0].TipoUsuario != 1) {
         for(let i = 0; i < listaDatos.length; i++){
 
             let fila = tbody.insertRow();
@@ -166,7 +154,7 @@ function desasignarEncargado(tiqueteSeleccionado){
     })
     
     ftnlistarEncargados();
-    ListarProfesores();
+    listarEstudiantes();
 };
 
 function showUserMenu() {
@@ -189,9 +177,7 @@ function showUserMenu() {
     
 }
 
-
-
-function  ftnFiltrarListaProfesores (){
+function  filtrarListaEstudiante (){
 
     let criterioBusqueda = inputBusqueda.value.toUpperCase();
     let filas = tablaProfesores.getElementsByTagName('tr');

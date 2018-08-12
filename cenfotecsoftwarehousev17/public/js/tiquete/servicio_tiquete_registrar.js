@@ -46,7 +46,8 @@ function registrarTiquete(pTiquete){
             imagen : pTiquete[6],
             usuarioId : pTiquete[7],
             TextoTiquete : pTiquete[8],
-            Estado : pTiquete[9]
+            Estado : pTiquete[9],
+            encargado: ""
         }
       });
     

@@ -88,6 +88,25 @@
 
         <!-- Agregar wrapper aquí -->
         <div class="wrapper">
+			<h3 class="titulo-lista">Estudiantes</h3>
+            <form action="">
+              <div class=" field filtro">
+                <input type="text" name="inputBusqueda" id="inputBusqueda" placeholder="Busqueda">
+                <label for="inputBusqueda"><i class="fas fa-search"></i>  Búsqueda</label>
+              </div>
+            </form>
+            <div>
+              <table id="tblEstudiantes">
+                <thead>
+                    <th>Cédula</th>
+                    <th>Nombre completo</th>
+                    <th>Acciones</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+              </table>
+            </div>
             <h3 class="titulo-lista">Estudiantes Asignados</h3>
             <form action="">
               <div class=" field filtro">
@@ -96,10 +115,11 @@
               </div>
             </form>
             <div>
-              <table id="tblEstud">
+              <table id="tblEstudiantesAsignados">
                 <thead>
-                    <th>Cédula</th>
-                    <th>Nombre completo</th>
+                    <th>Cédula</th> 
+					<th>Nombre completo</th>
+					<th>Acciones</th>
                 </thead>
                 <tbody>
                     
@@ -119,7 +139,7 @@
 		<script src="../../js/inicioSesion/login.controller.js"></script>
 		<script src="../../js/tiquete/servicio_tiquete_asignar.js"></script>
 		<script src="../../js/estudiante/estudiante_servicio_listar.js"></script>
-		<script src="../../js/tiquete/controlador_tiquete_asignar.js"></script>
+		<script src="../../js/tiquete/controlador_tiquete_estudiante_asignar.js"></script>
 		<script src="../../js/inicioSesion/auth.service.js"></script>
 		</div>
 	</div>

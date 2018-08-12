@@ -129,6 +129,9 @@ function obtenerDatosParaModificarCliente(){
             text: 'El cliente se modificó adecuadamente',
             confirmButtonText : 'Entendido'
         });
+
+        window.location.replace('../../html/cliente/cliente_listar.html');
+
     }
     
 };

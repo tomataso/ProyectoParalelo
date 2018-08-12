@@ -7,16 +7,50 @@ inputBusqueda.addEventListener('keyup' , function(){FiltrarListaTiquetes()});
 window.onload = function(){
     ListarTiquetes();
 };
+/*
+if (getUsuarioAutenticado().TipoUsuario == 0) {
+    ListaTiquete = obtenerListaTiquetes();
+} else {
+    ListaTiquete = obtenerTiquetePorId(getUsuarioAutenticado()._id);
+}*/
 
+function fitrarListaTiquetes() {
+    switch (getUsuarioAutenticado().TipoUsuario) {
+        case 0:
+            ListaTiquete = obtenerListaTiquetes();
+            break;
+        case 1:
+            ListaTiquete = filtrarTiquetesPorEncargado();
+            break;
+        case 2:
+            ListaTiquete = obtenerTiquetePorId(getUsuarioAutenticado()._id);
+            break;
+        case 3:
+            ListaTiquete = filtrarTiquetesPorEncargado();
+            break;
+        default:
+            break;
+    }  
+    
+    return ListaTiquete;
+    
+}
+
+function  filtrarTiquetesPorEncargado (){
+    let listaDatos = [];
+    let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
+    listaDatos.push(JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado));
+    let tbody = document.querySelector('#tblEstudiantesAsignados tbody');
+    tbody.innerHTML = '';
+
+
+
+};
 
 function ListarTiquetes(){
     let ListaTiquete = [];
 
-    if (getUsuarioAutenticado().TipoUsuario == 0) {
-        ListaTiquete = obtenerListaTiquetes();
-    } else {
-        ListaTiquete = obtenerTiquetePorId(getUsuarioAutenticado()._id);
-    }
+    listaTiquete = fitrarListaTiquetes();
 
     console.log("lista tiquetes");
     console.log(ListaTiquete);
