@@ -6,6 +6,7 @@ module.exports.registrar = function(req, res){
     let nuevaHora = new horasModel({
         idProyecto : req.body.idProyecto,
         idEstudiante : req.body.idEstudiante,
+        fechaRegistro : req.body.fechaRegistro,
         horas : req.body.horas,
         descripcion : req.body.descripcion
     });

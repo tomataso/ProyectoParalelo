@@ -43,7 +43,8 @@ function ListarProyectos(){
             
 
             let btnVer = document.createElement('a');
-            btnVer.name = listaProyecto[i]['_id'];
+            btnVer.dataset.id = listaProyecto[i]['_id'];
+            btnVer.dataset.name = listaProyecto[i]['nombre'];
             btnVer.classList.add('fas');
             btnVer.classList.add('fa-eye');
             btnVer.addEventListener('click', ftnMostrarPoryecto);
@@ -65,9 +66,9 @@ function ListarProyectos(){
 };
 
 function ftnMostrarPoryecto(){
-    let id = this.name;
+    let proyecto = [this.dataset.id,this.dataset.name];
 
-    ftnGuardarIdSeleccionado(id);
+    ftnGuardarIdSeleccionado(proyecto);
     
     window.location.replace('../../html/proyecto/proyecto_mostrar_estudiante.html');
 };
