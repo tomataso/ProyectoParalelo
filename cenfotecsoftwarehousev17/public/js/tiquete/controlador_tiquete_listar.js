@@ -38,19 +38,22 @@ function fitrarListaTiquetes() {
 
 function  filtrarTiquetesPorEncargado (){
     let listaDatos = [];
-    let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
-    listaDatos.push(JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado));
-    let tbody = document.querySelector('#tblEstudiantesAsignados tbody');
-    tbody.innerHTML = '';
+    let listaTiquetes = obtenerListaTiquetes();
 
+    for (let i = 0; i < listaTiquetes.length; i++) {
+        if (JSON.parse(listaTiquetes[i].encargado)._id == getUsuarioAutenticado()._id) {
+            listaDatos.push(listaTiquetes[i]);
+        }
+        
+    }
 
-
+    return listaDatos;
 };
 
 function ListarTiquetes(){
     let ListaTiquete = [];
 
-    listaTiquete = fitrarListaTiquetes();
+    ListaTiquete = fitrarListaTiquetes();
 
     console.log("lista tiquetes");
     console.log(ListaTiquete);
@@ -92,7 +95,7 @@ function ListarTiquetes(){
         aModificar.classList.add('fa-eye');
         aModificar.dataset._id =  ListaTiquete[i]['_id'];         
 
-        if (getUsuarioAutenticado().TipoUsuario == 3) {
+        if (getUsuarioAutenticado().TipoUsuario == 3 || getUsuarioAutenticado().TipoUsuario == 1) {
             // modificar estado del cliente. Copiar esto
             let btnModificarEstado = document.createElement('button'); 
             btnModificarEstado.dataset._id =  ListaTiquete[i]['_id']; 
