@@ -37,7 +37,7 @@ btnGuardarParametros.addEventListener('click',function(){
       })
       
       swalWithBootstrapButtons({
-        title: 'Modificar Profesor',
+        title: 'Modificar Parametros',
         text: "¿Deseas guardar los cambios realizados?",
         type: 'warning',
         showCancelButton: true,
@@ -190,7 +190,7 @@ function validarParametros() {
 
 
     //Validación del Maximo de Horas por Cuatrimestre.
-    if (inputMaxHorasxCuatri.value == '' || (regexSoloNumeros.test(inputMaxHorasxCuatri.value) == false)) {
+    if (inputMaxHorasxCuatri.value == '' ) {
         inputMaxHorasxCuatri.classList.add('error-input');
         bError = true;
     } else {
@@ -198,7 +198,7 @@ function validarParametros() {
     }
 
     //Validación del Porcentaje de Beca por Hora.
-    if (inputPorcentajeBecaxHoraT.value == ''|| (regexSoloNumeros.test(inputPorcentajeBecaxHoraT.value) == false) ) {
+    if (inputPorcentajeBecaxHoraT.value == '' ) {
         inputPorcentajeBecaxHoraT.classList.add('error-input');
         bError = true;
     } else {
