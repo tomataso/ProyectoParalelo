@@ -96,6 +96,11 @@ p{
   margin-bottom: 2%;
   text-decoration: none;
 }
+
+#btnSeleccionarImagen{
+  margin-top: 15%;
+  margin-right: 43%;
+}
 .buttonDash:hover , button:hover{
   border-style: solid;
   border-color:#fbb803;

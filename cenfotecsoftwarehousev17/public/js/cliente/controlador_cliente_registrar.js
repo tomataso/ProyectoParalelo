@@ -286,7 +286,11 @@ function validar(){
     let bError = false;
 
     let regexSoloLetras = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ]+$/;
-    let regexSoloNumeros = /^[0-9]+$/;
+    let regexSoloNumeros = /^[0-9]{1,8}$/;
+    let regexFormatoCorreo = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    let regexCedulaJuridica = /^[0-9]{1,10}$/;
+
+    
 
     //Validación del NombreEmpresa
     if(inputNombreCliente.value == '' || (regexSoloLetras.test(inputNombreCliente.value)==false) ){
@@ -296,7 +300,7 @@ function validar(){
         inputNombreCliente.classList.remove('error-input');
     }
     //Validación de la CedulaJuridica
-    if(inputCedulaCliente.value == ''){
+    if(inputCedulaCliente.value == '' || (regexCedulaJuridica.test(inputCedulaCliente.value)==false) ){
         inputCedulaCliente.classList.add('error-input');
         bError = true;
     }else{
@@ -330,7 +334,7 @@ function validar(){
     }else{
         inputPrimerNombre.classList.remove('error-input');
     }
-    //Validación del ApellidoCOntacto
+    //Validación del ApellidoContacto
     if(inputPrimerApellido.value == '' ){
         inputPrimerApellido.classList.add('error-input');
         bError = true;
@@ -347,7 +351,7 @@ function validar(){
     }
 
     //Validación de la CorreoContacto
-    if(inputCorreo.value == '' ){
+    if(inputCorreo.value == '' || (regexFormatoCorreo.test(inputCorreo.value)==false) ){
         inputCorreo.classList.add('error-input');
         bError = true;
     }else{

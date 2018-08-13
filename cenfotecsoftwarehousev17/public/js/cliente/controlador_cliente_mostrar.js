@@ -78,7 +78,8 @@ btnGuardarCliente.addEventListener('click',function(){
             'Los cambios no fueron guardados',
             'error'
           )
-            ftnMostrarProyecto(proySeleccionado._id,obtenerProyectos());
+            // ftnMostrarProyecto(proySeleccionado._id,obtenerProyectos());
+            llenarDatosFormulario(obtenerIdCliente());
             ftnDeshabilitarCampos();
             ftnQuitarValidaciones();
             btnEditarCliente.classList.remove('modificar');

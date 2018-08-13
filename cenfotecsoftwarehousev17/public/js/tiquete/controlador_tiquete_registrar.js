@@ -117,8 +117,8 @@ function obtenerDatos(){
 function validar(){
     let bError = false;
 
-    let regexSoloLetras = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ]+$/;
     let regexSoloNumeros = /^[0-9]+$/;
+    let regexFechaCreacionTiquete = new Date(inputfecha.value);
 
 
     //Validación de la CedulaJuridica
@@ -130,7 +130,7 @@ function validar(){
     }
 
     //Validación del Codigo tiquete
-    if(inputcodigo_tiquete.value == '' || (regexSoloNumeros.test(inputcodigo_tiquete.value)==false) ){
+    if(inputcodigo_tiquete.value == '' ){
         inputcodigo_tiquete.classList.add('error-input');
         bError = true;
     }else{
@@ -154,17 +154,36 @@ function validar(){
     }
 
      //Validación de la fecha
-     if(inputfecha.value == ''){
+     if(inputfecha.value == '' ){
         inputfecha.classList.add('error-input');
         bError = true;
     }else{
         inputfecha.classList.remove('error-input');
     }
 
-
-
-    
     return bError;
+}
+
+
+function FechaTiquete (){
+
+    let fecha = new Date();
+    let dd = fecha.getDate();
+    let mm = fecha.getMonth()+1;
+    let yyyy = fecha.getFullYear();
+    let textoFecha = null;
+
+    if(dd<10) {
+        dd = '0'+dd
+    } 
+
+    if(mm<10) {
+    mm = '0'+mm
+    } 
+
+    textoFecha = yyyy + "-" + mm + "-" + dd;
+  
+    return textoFecha;
 }
 
 function ftnQuitarValidacionesClick (){
