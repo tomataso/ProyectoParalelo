@@ -58,7 +58,8 @@ function ListarMensajesRecibidos() {
         btnEliminar.classList.add('fa-trash');
         btnEliminar.addEventListener('click', ftnEliminarMensaje);
 
-        if (listaMensajesRecibidos[i]['UsuarioEmisor'] == listaUsuarios[i]['_id'] ) { NombreCitado = listaUsuarios[i]['Nombre']  };
+        let id_a_nombre = listaMensajesRecibidos[i]['UsuarioEmisor'];
+        if (id_a_nombre == listaUsuarios[i]['_id'] ) { NombreCitado = listaUsuarios[i]['Nombre']  };
 
 
         celdaFecha.innerHTML = listaMensajesRecibidos[i]['Fecha'];
