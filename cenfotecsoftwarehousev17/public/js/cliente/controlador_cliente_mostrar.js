@@ -46,6 +46,7 @@ btnEditarCliente.addEventListener('click',function(){
         text: 'Modificar datos y dar click en botón \"Guardar\"',
         confirmButtonText : 'Entendido'
     });
+    btnEditarCliente.classList.add("hideMenu");
     
 });
 
@@ -68,6 +69,7 @@ btnGuardarCliente.addEventListener('click',function(){
       }).then((result) => {
         if (result.value) {     
             obtenerDatosParaModificarCliente();
+            btnEditarCliente.classList.remove("hideMenu");
             
         } else if (
           // Read more about handling dismissals

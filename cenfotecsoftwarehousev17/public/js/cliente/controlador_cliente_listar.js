@@ -1,16 +1,10 @@
 'use strict';
 let tablaClientes;
 let inputBuscarCliente;
+let tbody;
 
-// initClientes();   ------NO SE NECESITA
+
 ListarClientes();
-
-// function initClientes(){
-//     inputBuscarCliente = document.querySelector('#inputBuscarCliente');
-//     tablaClientes = document.querySelector('#tblClientes');
-
-//     inputBuscarCliente.addEventListener('keyup' , function(){ftnFiltrarListaClientes()});
-// } 
 
 function ListarClientes(){
     let ListaCliente = obtenerListaClientes();
@@ -151,7 +145,7 @@ function ftnEliminarCliente(){
 function  ftnFiltrarListaClientes (){
 
     let criterioBusqueda = inputBuscarCliente.value.toUpperCase();
-    let filasClientes = tablaClientes.getElementsByTagName('tr');
+    let filasClientes = tblClientes.getElementsByTagName('tr');
     let datosFila = null;
     let datos = null;
     let valor = null;
