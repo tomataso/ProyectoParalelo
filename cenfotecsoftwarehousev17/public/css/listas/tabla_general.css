@@ -93,19 +93,19 @@ a.fa-trash {
 a.fa-eye {
   /* color: #000; */
   cursor: pointer;
-  padding-right: 11%;
+  margin: 4%;
 }
 
 a.fa-clock {
 
   cursor: pointer;
-  padding-right: 11%;
+  margin: 4%;
 }
 
 a.fa-list-ul {
 
   cursor: pointer;
-  padding-right: 11%;
+  margin: 4%;
 }
 
 .buscador-select{

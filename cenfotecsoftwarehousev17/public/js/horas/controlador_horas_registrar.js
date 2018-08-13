@@ -14,6 +14,7 @@ const btnGuardarHoras = document.querySelector('#btnGuardar');
 const btnHorasRegistradas = document.querySelector('#btnHorasRegistradas');
 const htresProyecto = document.querySelector('#proyectoSeleccionado');
 const inputFechaCreacion = document.querySelector('#fechaHora');
+const inputCuatrimestreAsignado = document.querySelector('#cuatrimestreAsignado');
 const inputCantidadHoras = document.querySelector('#horasTrabajadas');
 const inputTituloHoras = document.querySelector('#tituloHoras');
 const inputDescripcion = document.querySelector('#descripcionHoras');
@@ -37,11 +38,13 @@ btnHorasRegistradas.addEventListener('click',function(){
     window.location.replace('../../html/horas/horas_listar.html');
 });
 
+inputFechaCreacion.addEventListener('change',ftnEvaluarFechaCreacion);
 //loads------------------------------------------------------
 window.onload = function(){
     let fecha = ftnFechaHoy();
 
     ftnCamposAnnadidos(fecha);
+    ftnEvaluarFechaCreacion();
 };
 
 //funciones-------------------------------------------------
@@ -62,11 +65,12 @@ function obtenerDatos(){
     let bError = false;
 
     let gFechaCreacion = inputFechaCreacion.value;
+    let gCuatrimestre = inputCuatrimestreAsignado.value;
     let nHoras = inputCantidadHoras.value;    
     let sTituloHoras = inputTituloHoras.value;
     let sDescripcion = inputDescripcion.value;
 
-    infoHoras.push(idProyecto,idEstudiante,gFechaCreacion,nHoras,sTituloHoras,sDescripcion);
+    infoHoras.push(idProyecto,idEstudiante,gFechaCreacion,gCuatrimestre,nHoras,sTituloHoras,sDescripcion);
     
     bError = validar();
     if(bError == true){
@@ -132,6 +136,7 @@ function ftnCamposAnnadidos (pFecha){
 
     htresProyecto.innerHTML = nombreProyecto;
     inputFechaCreacion.value = pFecha;
+    inputCuatrimestreAsignado.setAttribute('disabled',true);
 };
 
 function ftnQuitarValidacionesClick (){
@@ -173,4 +178,9 @@ function limpiarFormulario (){
     inputCantidadHoras.value = '';
     inputTituloHoras.value = '';
     inputDescripcion.value = '';
+};
+
+function ftnEvaluarFechaCreacion (){
+
+    inputCuatrimestreAsignado.value = ftnAsignarCuatrimestre(inputFechaCreacion.value);
 };

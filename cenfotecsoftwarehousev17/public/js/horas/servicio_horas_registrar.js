@@ -23,9 +23,10 @@ function registrarHoras(pHoras){
             idProyecto : pHoras[0],
             idEstudiante : pHoras[1],
             fechaRegistro : pHoras[2],
-            horas : pHoras[3],
-            tituloHoras : pHoras[4],
-            descripcion : pHoras[5]
+            cuatrimestreAsignado : pHoras[3],
+            horas : pHoras[4],
+            tituloHoras : pHoras[5],
+            descripcion : pHoras[6]
         }
       });
     
@@ -74,26 +75,27 @@ function ftnAsignarCuatrimestre (pFecha){
     let inicio = SepararFecha(element.inicio);
     let final = SepararFecha(element.final);
 
-    if(fechaRegistrada[3] == inicio[3]){
-        if(fechaRegistrada[2] >= inicio[2] && fechaRegistrada[2] <= final[2]){
-            if(fechaRegistrada[1] >= inicio[1] && fechaRegistrada[1] <= final[1]){
+    if(fechaRegistrada[2] == inicio[2]){
+        if(fechaRegistrada[1] >= inicio[1] && fechaRegistrada[1] <= final[1]){
+            if(fechaRegistrada[1] == final[1]){
+                if(fechaRegistrada[0] <= final[0]){
+                    cuatrimestreAsignado = element.nombre;
+                }
+            } else{
                 cuatrimestreAsignado = element.nombre;
             }
         }
     } 
    });
 
-   
-  
-    return ;
+    return cuatrimestreAsignado;
 }
 
 function SepararFecha (pFecha){
-
-    let fecha = new Date(pFecha);
-        let dd = fecha.getDate();
-        let mm = fecha.getMonth()+1;
-        let yyyy = fecha.getFullYear();
+   
+        let dd = Number(pFecha.slice(8,10));
+        let mm = Number(pFecha.slice(5,7));
+        let yyyy = Number(pFecha.slice(0,4));
         let textoFecha = [];
     
         textoFecha = [dd,mm,yyyy];

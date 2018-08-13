@@ -65,6 +65,7 @@ function ListarHoras(){
                 let descripcion = fila.insertCell();
                 let horas = fila.insertCell();
                 let fechaCreacion = fila.insertCell();
+                let cuatrimestre = fila.insertCell();
                 let btns = fila.insertCell();
 
                 let btnEliminar = document.createElement('a');
@@ -80,6 +81,7 @@ function ListarHoras(){
                 descripcion.innerHTML = listaDatos[i]['descripcion'];
                 horas.innerHTML = listaDatos[i]['horas'];
                 fechaCreacion.innerHTML = ftnFechaProyecto(listaDatos[i]['fechaRegistro']);
+                cuatrimestre.innerHTML = listaDatos[i]['cuatrimestreAsignado'];
                 btns.appendChild(btnEliminar);
             }
     
