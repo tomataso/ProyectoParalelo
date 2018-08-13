@@ -113,34 +113,40 @@ function ftnFiltrarListaTitulos() {
 };
 
 function ListarTitulosAsignados() {
-
-    let listaDatosTitulo = obtenerListaTitulos();
+   
+    let listaGradosProfesor = listaProfesor[i]['GAcademico'];
     let UsuarioActual = obtenerIdProfesor();
+    let listaGradosMostrar = "";
 
     let tbody = document.querySelector('#tblTitulosAsignados tbody');
     tbody.innerHTML = '';
 
-    for (let i = 0; i < listaDatosTitulo.length; i++) {
+    for (let i = 0; i < listaGradosProfesor.length; i++) {
 
         let fila = tbody.insertRow();
         let celdaCedula = fila.insertCell();
         let celdaNombre = fila.insertCell();
         let btns = fila.insertCell();
 
+
+        listaGradosMostrar = listaGradosMostrar + "," + listaGradosProfesor[j].nombreTituloAcademico;
+        
+
         let btnEliminar = document.createElement('a');
-        btnEliminar.name = listaDatosTitulo[i]['_id'];
+        btnEliminar.name = listaGradosProfesor[i]['_id'];
         btnEliminar.classList.add('fas');
         btnEliminar.classList.add('fa-minus-square');
         btnEliminar.addEventListener('click', function () {
 
-            let pDatosTitulo = [listaDatosTitulo[i]['codigoTituloAcademico'], listaDatosTitulo[i]['nombreTituloAcademico'], listaDatosTitulo[i]['_id']];
+            let pDatosTitulo = [listaGradosProfesor[i]['codigoTituloAcademico'], listaGradosProfesor[i]['nombreTituloAcademico'], listaGradosProfesor[i]['_id']];
 
             obtenerDatosProfesorEliminar(pDatosTitulo);
 
         });
 
-        celdaCedula.innerHTML = listaDatosTitulo[i]['codigoTituloAcademico'];
-        celdaNombre.innerHTML = listaDatosTitulo[i]['nombreTituloAcademico'];
+        celdaGradoAcademico.innerHTML = listaGradosMostrar;
+        celdaCedula.innerHTML = listaGradosProfesor[i]['codigoTituloAcademico'];
+        celdaNombre.innerHTML = listaGradosProfesor[i]['nombreTituloAcademico'];
 
         btns.appendChild(btnEliminar);
     }
