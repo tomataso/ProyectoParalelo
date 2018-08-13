@@ -3,7 +3,7 @@ const usuarioModel = require('./usuario.model');
 
 module.exports.registrar = function(req, res){
     let nuevoUsuario = new usuarioModel({
-        idUsuario : req.body.idUsuario,
+        Nombre : req.body.Nombre,
         Correo : req.body.Correo,
         Contrasenna : req.body.Contrasenna,
         TipoUsuario : req.body.TipoUsuario,

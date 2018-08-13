@@ -119,6 +119,11 @@ a.fa-list-ul {
   text-transform: uppercase;
 }
 
+.usuarios-listar{
+  float: left;
+  padding: 2%;
+}
+
 
 /* Estilos pseudo clases ------------------------------------------------------------------------------------ */
 

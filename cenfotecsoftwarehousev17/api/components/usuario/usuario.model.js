@@ -2,7 +2,7 @@
 let mongoose = require('mongoose');
 
 let usuarioSchema = new mongoose.Schema({
-    idUsuario : {type : String, required : true},
+    Nombre : {type : String, required : true},
     Correo : {type : String, required : true, unique : true},
     Contrasenna : {type : String, required : true},
     TipoUsuario : {type : Number, required : true},

@@ -76,3 +76,20 @@ module.exports.cambiar_estado_cliente = function(req, res){
             }
       });
 };
+
+module.exports.desactivar = function(req, res){
+    
+    clienteModel.update(
+        {_id: req.body._id}, 
+        {
+            Desactivado : req.body.Desactivado
+        },
+        function(error){
+            if(error){
+                res.json({success : false, msg : 'No se pudo eliminar el usuario, ocurrió el siguiente error' + error});
+            }else{
+                res.json({success : true, msg : 'Se eliminó el usuario con éxito'});
+            }
+        }
+    )
+};
