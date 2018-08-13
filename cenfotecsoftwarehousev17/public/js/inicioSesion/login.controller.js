@@ -52,7 +52,7 @@ function ftnRevisionCredenciales (){
             );
         } else {
             if(autenticarCredenciales(credenciales.Correo,credenciales.Contrasenna)){
-                validarMenu();
+                // validarMenu();
                 return;
             } else {
                 swal({
