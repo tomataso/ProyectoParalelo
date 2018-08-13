@@ -23,6 +23,7 @@ btnEnviarProyecto.addEventListener('click', function () {
 
 //loads------------------------------------------------------
 window.onload = function () {
+    showUserMenu();
     ListarMensajes();
 };
 
@@ -226,3 +227,23 @@ function validar() {
 
     return bError;
 };
+
+function showUserMenu() {
+    switch (getUsuarioAutenticado().TipoUsuario) {
+        case 0:
+            document.querySelector("#menuAdministrador").classList.remove("hideMenu");
+            break;
+        case 1:
+            document.querySelector("#menuProfesor").classList.remove("hideMenu");
+            break;
+        case 2:
+            document.querySelector("#menuCliente").classList.remove("hideMenu");
+            break;
+        case 3:
+            document.querySelector("#menuEstudiante").classList.remove("hideMenu");
+            break;
+        default:
+            break;
+    }   
+    
+}
