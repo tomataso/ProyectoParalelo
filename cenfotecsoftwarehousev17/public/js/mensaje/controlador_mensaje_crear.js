@@ -101,7 +101,7 @@ function obtenerDatosMensaje() {
         swal({
             type: 'success',
             title: 'Mensaje Enviado',
-            text: 'El proyecto se registró adecuadamente',
+            text: 'El mensaje se envío adecuadamente',
             confirmButtonText: 'Entendido'
         }).then(
             function () {
