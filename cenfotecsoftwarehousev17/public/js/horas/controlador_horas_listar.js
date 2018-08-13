@@ -7,6 +7,7 @@ const dropProyectos = document.querySelector('#proyectoSeleccionado');
 const tablaHoras = document.querySelector('#tblHoras');
 let idProyecto = obtenerIdProyecto();
 let nombreProyecto = obtenerNombreProyecto();
+let idUsuario = getUsuarioAutenticado()._id;
 
 //listeners--------------------------------------------------
 inputBusqueda.addEventListener('keyup' , function(){ftnFiltrarListaHoras()});
@@ -25,11 +26,11 @@ function ListarHoras(){
     let listaDatos = obtenerListaHoras();
     let listaProyectos = obtenerListaProyectos();
     let idEstudiante = getUsuarioAutenticado()._id;
-    let proyectoSeleccionado = dropProyectos.value
     let tbody = document.querySelector('#tblHoras tbody');
     tbody.innerHTML = '';
-    ftnCreadorDropProyecto(dropProyectos,listaProyectos);
-    ftnAsignarOpcion(listaProyectos,idProyecto);
+    ftnCreadorDropProyecto(dropProyectos,listaProyectos,listaDatos);
+    ftnAsignarOpcion(dropProyectos,idProyecto);
+    let proyectoSeleccionado = dropProyectos.value;
    
 
     if(listaDatos == ''){
@@ -54,7 +55,7 @@ function ListarHoras(){
 
     for(let i = 0; i < listaDatos.length; i++){
 
-        if(proyectoSeleccionado != listaDatos[i]['idProyecto']){
+        if(proyectoSeleccionado != listaDatos[i]['idProyecto'] && idUsuario != listaDatos[i]['idEstudiante']){
             continue;
         }else{
                 let fila = tbody.insertRow();
@@ -73,17 +74,12 @@ function ListarHoras(){
                     ftnEliminarHoras(pDatos)
                 });
                 
-                let proyectoValidado = ftnValidarProyecto(listaProyectos,listaDatos[i]['idProyecto']);
-                if(proyectoValidado[0]){
-                continue;
-                } else {
-                    proyecto.innerHTML = proyectoValidado[1];
-                    titulo.innerHTML = listaDatos[i]['tituloHoras'];
-                    descripcion.innerHTML = listaDatos[i]['descripcion'];
-                    horas.innerHTML = listaDatos[i]['horas'];
-                    fechaCreacion.innerHTML = listaDatos[i]['fechaRegistro'];
-                    btns.appendChild(btnEliminar);
-            }
+                proyecto.innerHTML = dropProyectos[dropProyectos.selectedIndex].innerHTML;
+                titulo.innerHTML = listaDatos[i]['tituloHoras'];
+                descripcion.innerHTML = listaDatos[i]['descripcion'];
+                horas.innerHTML = listaDatos[i]['horas'];
+                fechaCreacion.innerHTML = ftnFechaProyecto(listaDatos[i]['fechaRegistro']);
+                btns.appendChild(btnEliminar);
             }
     
     }
@@ -162,31 +158,16 @@ function  ftnFiltrarListaHoras (){
    
 };
 
-function ftnValidarProyecto (pLista,pId){
 
-    let control = [true,null];
+function ftnCreadorDropProyecto(pElemento,pListaDatosUno,pListaDatosDos){
 
-    pLista.forEach(element => {
-        if(element._id == pId){
-            if(!element.desactivado){
-                control[0] = false;
-                control[1] =  element.nombre
-            }
-        }         
-    });
-
-    return control;
-};
-
-function ftnCreadorDropProyecto(pElemento,pListaDatos){
-
-    for (let i = 0; i < pListaDatos.length; i++) {
+    for (let i = 0; i < pListaDatosUno.length; i++) {
         
-        if(pListaDatos[i]['desactivado']){
+        if(pListaDatosUno[i]['desactivado'] || ftnValidarProyecto(pListaDatosDos,pListaDatosUno[i]['_id'],idUsuario)){
             continue;
         } else {
-            let id = pListaDatos[i]['_id'];
-            let nombre = pListaDatos[i]['nombre'];
+            let id = pListaDatosUno[i]['_id'];
+            let nombre = pListaDatosUno[i]['nombre'];
             let optionElement = document.createElement("option")
             let nodeTexto = document.createTextNode(nombre);
 
@@ -218,4 +199,38 @@ function ftnAsignarOpcion (pSelect,pId){
         } 
     }
 };
+
+function ftnValidarProyecto(pLista,pId,pIdUsuario) {
+
+    let control = true;
+
+    pLista.forEach(element => {
+        if(element.idProyecto == pId && element.idEstudiante == pIdUsuario){
+            control = false;
+        }         
+    });
+
+    return control;
+};
+
+function ftnFechaProyecto (pFecha){
+
+    let fecha = new Date(pFecha);
+    let dd = fecha.getDate()+1;
+    let mm = fecha.getMonth()+1;
+    let yyyy = fecha.getFullYear();
+
+    if(dd<10) {
+        dd = '0'+dd
+    } 
+
+    if(mm<10) {
+    mm = '0'+mm
+    } 
+
+    let textoFecha = dd + '/' + mm + '/' + yyyy;
+  
+    return textoFecha;
+}
+
 
