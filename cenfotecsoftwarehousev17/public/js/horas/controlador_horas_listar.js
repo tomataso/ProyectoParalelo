@@ -56,7 +56,7 @@ function ListarHoras(){
 
     for(let i = 0; i < listaDatos.length; i++){
 
-        if(proyectoSeleccionado != listaDatos[i]['idProyecto'] && idUsuario != listaDatos[i]['idEstudiante']){
+        if(proyectoSeleccionado != listaDatos[i]['idProyecto'] || idUsuario != listaDatos[i]['idEstudiante']){
             continue;
         }else{
                 let fila = tbody.insertRow();

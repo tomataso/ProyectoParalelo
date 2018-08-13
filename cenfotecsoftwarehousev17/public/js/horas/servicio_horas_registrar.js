@@ -61,5 +61,46 @@ function ftnFechaHoy (){
         return textoFecha;
 }
 
+function ftnAsignarCuatrimestre (pFecha){
+
+    let cuatrimestres = [{nombre: "Cuatrimestre-I-2018", inicio: "2018-01-05", final: "2018-04-30"},
+    {nombre: "Cuatrimestre-II-2018", inicio: "2018-05-01", final: "2018-08-31"},
+    {nombre: "Cuatrimestre-III-2018", inicio: "2018-09-01", final: "2018-12-15"}];
+    let cuatrimestreAsignado = null;
+    let fechaRegistrada = SepararFecha(pFecha);
+
+
+   cuatrimestres.forEach(element => {
+    let inicio = SepararFecha(element.inicio);
+    let final = SepararFecha(element.final);
+
+    if(fechaRegistrada[3] == inicio[3]){
+        if(fechaRegistrada[2] >= inicio[2] && fechaRegistrada[2] <= final[2]){
+            if(fechaRegistrada[1] >= inicio[1] && fechaRegistrada[1] <= final[1]){
+                cuatrimestreAsignado = element.nombre;
+            }
+        }
+    } 
+   });
+
+   
+  
+    return ;
+}
+
+function SepararFecha (pFecha){
+
+    let fecha = new Date(pFecha);
+        let dd = fecha.getDate();
+        let mm = fecha.getMonth()+1;
+        let yyyy = fecha.getFullYear();
+        let textoFecha = [];
+    
+        textoFecha = [dd,mm,yyyy];
+      
+        return textoFecha;
+
+}
+
 
 
