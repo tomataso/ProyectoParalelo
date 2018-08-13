@@ -1,5 +1,4 @@
 
-// MODIFICADO 14/7/2018 AGREGAR VERSION
 
 'use strict';
 
@@ -17,7 +16,7 @@ function registrarParametro(painfoParametro){
         data:{
 
 
-            Periodo: painfoParametro[0],
+            _id: painfoParametro[0],
             MaxHorasxCuatri : painfoParametro[1],
             PorcentajeBecaxHoraT : painfoParametro[2]
          
@@ -78,9 +77,9 @@ function actualizarParametroG(infoParametro){
         data:{
 
             _id : infoParametro[0],
-            Periodo : infoParametro[1],
-            MaxHorasxCuatri : infoParametro[2],
-            PorcentajeBecaxHoraT : infoParametro[3]
+           // Periodo : infoParametro[1],
+            MaxHorasxCuatri : infoParametro[1],
+            PorcentajeBecaxHoraT : infoParametro[2]
         }
       });
     

@@ -1,7 +1,18 @@
 'use strict';
 
 //variables globales------------------------------------------
-const btnEnviarProyecto = document.querySelector('#btnEnviar');
+//const btnEnviarProyecto = document.querySelector('#btnEnviar');
+
+
+
+let btnEnviarProyecto = document.querySelector('#btnEnviar');
+
+if (btnEnviarProyecto != undefined) {
+    btnEnviarProyecto.addEventListener('click', obtenerDatosMensaje);
+}
+
+
+
 
 const inputFechaMensaje = document.querySelector('#fechaMensaje');
 const selectReceptor = document.querySelector('#UsuarioReceptor');
@@ -23,7 +34,7 @@ window.onload = function () {
     // Servicio Lista total de usuarios
 
     //let listaUsuarios = listaGeneralUsuarios() ;
-    let listaUsuarios = obtenerListaClientes();
+    let listaUsuarios = getListaUsuarios();
 
     ftnCamposAnnadidos(fecha);
     ftnCreadorDropReceptor(selectReceptor, listaUsuarios);
@@ -31,17 +42,17 @@ window.onload = function () {
 
 //funciones-------------------------------------------------
 
-function listaGeneralUsuarios() {
+// function listaGeneralUsuarios() {
 
-    let listaClientes = obtenerListaClientes();
-    let listaProfesores = obtenerListaProfesores();
-    let listaEstudiantes = obtenerListaEstud ();
+//     let listaClientes = obtenerListaClientes();
+//     let listaProfesores = obtenerListaProfesores();
+//     let listaEstudiantes = obtenerListaEstud ();
 
-    // Revisar Concatenacion.
-    listaGeneralUsuarios = listaClientes.Value + listaProfesores.value + listaEstudiantes.value ;
+//     // Revisar Concatenacion.
+//     listaGeneralUsuarios = listaClientes.Value + listaProfesores.value + listaEstudiantes.value ;
 
-    return listaGeneralUsuarios;
-};
+//     return listaGeneralUsuarios;
+// };
 
 function obtenerIdUsuario() {
 
@@ -67,8 +78,8 @@ function obtenerDatosMensaje() {
     let bDesactivado = false;
 
     
-    let YKeyconversacion1 = sEmisorId.concact(sReceptorId);
-    let YKeyconversacion2 = sReceptorId.concact(sEmisorId);
+    let YKeyconversacion1 = sEmisorId + sReceptorId;
+    let YKeyconversacion2 = sReceptorId + sEmisorId;
 
     infoMensaje.push(gFechaMensaje, sEmisorId, sReceptorId, sAsunto, sCuerpo, bDesactivado, YKeyconversacion1, YKeyconversacion2 );
 
@@ -95,7 +106,7 @@ function obtenerDatosMensaje() {
         }).then(
             function () {
                 // Mensaje Listar Recibidos
-                window.location.href = "../../html/mensaje_recibido_listar.html"
+                window.location.href = "../../html/mensaje/mensaje_recibido_listar.html"
             }
         );
     }

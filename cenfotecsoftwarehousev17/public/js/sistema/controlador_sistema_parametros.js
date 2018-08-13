@@ -1,12 +1,12 @@
 'use strict';
 
-const botonRegistrar = document.querySelector('#btnGuardar');
-botonRegistrar.addEventListener('click', obtenerDatos);
+// const botonRegistrar = document.querySelector('#btnGuardar');
+// botonRegistrar.addEventListener('click', obtenerDatos);
 
 const btnEditarParametros = document.querySelector('#btnEditar');
 const btnGuardarParametros = document.querySelector('#btnGuardar');
 
-const inputPeriodo = document.querySelector('#Periodo');
+//const inputPeriodo = document.querySelector('#Periodo');
 const inputMaxHorasxCuatri = document.querySelector('#MaxHorasxCuatri');
 const inputPorcentajeBecaxHoraT = document.querySelector('#PorcentajeBecaxHoraTrabajada');
 
@@ -62,9 +62,10 @@ btnGuardarParametros.addEventListener('click',function(){
           )
         }
         // OJO ---------------------------------------------------------------------------- obtenerListaParametros
-        ftnMostrarParametro(parametroSeleccionado._id,obtenerListaParametros());
+        ftnMostrarParametro('5b70fd3b36fe9f2ddcaf1648' ,obtenerListaParametros());
 
             ftnDeshabilitarCampos();
+            ftnQuitarValidaciones();
             btnEditarParametros.classList.remove('modificar');
             btnGuardarParametros.classList.add('modificar');
       })    
@@ -75,7 +76,7 @@ btnGuardarParametros.addEventListener('click',function(){
 
 window.onload = function(){
 // preguntar si puedo quemar la ID por que es un solo parametro.
-    let idParametro = obteneridParametro();
+    let idParametro = '5b70fd3b36fe9f2ddcaf1648';
     let parametros = obtenerListaParametros();
 
     ftnMostrarParametro(idParametro,parametros);
@@ -96,7 +97,7 @@ function ftnMostrarParametro (idParametro,parametros){
 
     parametroSeleccionado = parametroFtnSeleccionado;
 
-    inputPeriodo.value = parametroFtnSeleccionado.Periodo;
+
     inputMaxHorasxCuatri.value = parametroFtnSeleccionado.MaxHorasxCuatri;
     inputPorcentajeBecaxHoraT.value = parametroFtnSeleccionado.PorcentajeBecaxHoraT;
 
@@ -109,16 +110,11 @@ function ftnMostrarParametro (idParametro,parametros){
 
 function ftnDeshabilitarCampos (){
 
-    inputPeriodo.setAttribute('disabled',true);
     inputMaxHorasxCuatri.setAttribute('disabled',true);
     inputPorcentajeBecaxHoraT.setAttribute('disabled',true);
 
 };
 
-function obteneridParametro() {
-
-    return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
- }; 
 
 
 
@@ -129,14 +125,14 @@ function obtenerDatosParametros() {
     let infoParametro = [];
     let bError = false;
 
-    let  idParametro = parametroSeleccionado._id;
+    let  idParametro = '5b70fd3b36fe9f2ddcaf1648';
 
-    let sPeriodo = inputPeriodo.value;
+    
     let sMaxHorasxCuatri = inputMaxHorasxCuatri.value;
     let sPorcentajeBecaxHoraT = inputPorcentajeBecaxHoraT.value;
 
 
-    infoParametro.push(idParametro, sPeriodo, sMaxHorasxCuatri, sPorcentajeBecaxHoraT);
+    infoParametro.push(idParametro, sMaxHorasxCuatri, sPorcentajeBecaxHoraT);
 
     bError = validarParametros();
     if(bError == true){
@@ -155,7 +151,7 @@ function obtenerDatosParametros() {
 
         actualizarParametroG(infoParametro);
 
-
+// Ver esto
         ftnDeshabilitarCampos();
 
         btnEditarParametros.classList.remove('modificar');
@@ -175,7 +171,7 @@ function obtenerDatosParametros() {
 
 function ftnHabilitarCampos (){
 
-    inputPeriodo.removeAttribute('disabled');
+   
     inputMaxHorasxCuatri.removeAttribute('disabled');
     inputPorcentajeBecaxHoraT.removeAttribute('disabled');
 
@@ -191,16 +187,10 @@ function validarParametros() {
     let regexSoloLetras = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ]+$/;
     let regexSoloNumeros = /^[0-9]{1,3}$/;
 
-    //Validación del Periodo
-    if (inputPeriodo.value == '' || (regexSoloLetras.test(inputPeriodo.value) == false)) {
-        inputPeriodo.classList.add('error-input');
-        bError = true;
-    } else {
-        inputPeriodo.classList.remove('error-input');
-    }
+
 
     //Validación del Maximo de Horas por Cuatrimestre.
-    if (inputMaxHorasxCuatri.value == '') {
+    if (inputMaxHorasxCuatri.value == '' || (regexSoloNumeros.test(inputMaxHorasxCuatri.value) == false)) {
         inputMaxHorasxCuatri.classList.add('error-input');
         bError = true;
     } else {
@@ -208,7 +198,7 @@ function validarParametros() {
     }
 
     //Validación del Porcentaje de Beca por Hora.
-    if (inputPorcentajeBecaxHoraT.value == '') {
+    if (inputPorcentajeBecaxHoraT.value == ''|| (regexSoloNumeros.test(inputPorcentajeBecaxHoraT.value) == false) ) {
         inputPorcentajeBecaxHoraT.classList.add('error-input');
         bError = true;
     } else {
@@ -255,6 +245,36 @@ function ftnQuitarValidacionesClick() {
 };
 
 
+function ftnQuitarValidaciones (){
+
+    let tiposInputs = ['input','select','textarea'];
+    let inputsFormulario = [];
+    let inputsRequest = null;
+    let inputSeleccionado = null;
+
+    for (let i = 0; i < tiposInputs.length; i++) {    
+        
+        inputsRequest = document.getElementsByTagName(tiposInputs[i]);
+
+        if(inputsRequest == undefined || inputsRequest == ''){
+            continue;
+        } else {
+            
+            inputsFormulario.push(inputsRequest);
+            
+        }  
+    }
+
+    for (let i = 0; i < inputsFormulario.length; i++) {
+        inputSeleccionado = inputsFormulario[i]
+
+        for (let j = 0; j < inputSeleccionado.length; j++) {
+            
+            inputSeleccionado[j].classList.remove('error-input');
+            
+        }        
+    }
+};
 
 
 

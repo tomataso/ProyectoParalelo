@@ -18,7 +18,7 @@ function registrarMensaje(pMensaje){
             Asunto : pMensaje[3],
             Cuerpo : pMensaje[4],
 
-            desactivado : pMensaje[5],
+            Desactivado : pMensaje[5],
 
             Keyconversacion1 : pMensaje[6],
             Keyconversacion2 : pMensaje[7]
