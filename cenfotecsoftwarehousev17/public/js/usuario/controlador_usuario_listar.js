@@ -35,7 +35,7 @@ function ListarUsuarios(){
 
             celdaNombre.innerHTML = listaUsuarios[i]['Nombre'];
             celdaCorreo.innerHTML = listaUsuarios[i]['Correo'];
-            celdaTipo.innerHTML = listaUsuarios[i]['TipoUsuario'];
+            celdaTipo.innerHTML = ftnTipoUsuario(listaUsuarios[i]['TipoUsuario']);
             if(listaUsuarios[i]['Desactivado']){
                 btnEliminar.innerHTML = "Activar";
                 btnEliminar.addEventListener('click', ftnActivarUsuario);
@@ -202,4 +202,32 @@ function  ftnFiltrarListaUsuarios (){
     }
 
    
+};
+
+function ftnTipoUsuario(pTipo) {
+
+  let nombre = null;
+
+  switch (pTipo) {
+    case 0:
+          nombre = "Administrador";
+          break;
+
+    case 1:
+          nombre = "Profesor";
+          break; 
+
+    case 2:
+          nombre = "Cliente";
+          break;
+
+    case 3:
+          nombre = "Estudiante";
+          break;
+  
+      default:
+          break;
+  }
+
+  return nombre;
 };

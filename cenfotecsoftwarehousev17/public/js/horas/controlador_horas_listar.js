@@ -133,7 +133,7 @@ function ftnEliminarHoras (){
 function  ftnFiltrarListaHoras (){
 
     let criterioBusqueda = inputBusqueda.value.toUpperCase();
-    let filas = tablaProfesores.getElementsByTagName('tr');
+    let filas = tablaHoras.getElementsByTagName('tr');
     let datosFila = null;
     let datos = null;
     let valor = null;
