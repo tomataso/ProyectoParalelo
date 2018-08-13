@@ -32,7 +32,7 @@ function obtenerListaEstudiantes(){
 
 
 
-function actualizarEstudiantes(pEstudiante){
+function actualizarEstudiante(pEstudiante){
     let respuesta = '';
     let peticion = $.ajax({
         url : 'http://localhost:4000/api/actualizarEstudiante',
