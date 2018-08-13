@@ -16,6 +16,11 @@ dropProyectos.onchange = ListarHoras;
 //loads------------------------------------------------------
 window.onload = function(){
 
+    let listaProyectos = obtenerListaProyectos();
+    let listaEstudiantesAsignados = obtenerListaEstudiantesAsignados();
+
+    ftnCreadorDropProyecto(dropProyectos,listaProyectos,listaEstudiantesAsignados);
+    ftnAsignarOpcion(dropProyectos,idProyecto);
     ListarHoras();
 };
 
@@ -24,14 +29,10 @@ window.onload = function(){
 function ListarHoras(){
     
     let listaDatos = obtenerListaHoras();
-    let listaProyectos = obtenerListaProyectos();
+    let proyectoSeleccionado = dropProyectos.value;
     let idEstudiante = getUsuarioAutenticado()._id;
     let tbody = document.querySelector('#tblHoras tbody');
     tbody.innerHTML = '';
-    ftnCreadorDropProyecto(dropProyectos,listaProyectos,listaDatos);
-    ftnAsignarOpcion(dropProyectos,idProyecto);
-    let proyectoSeleccionado = dropProyectos.value;
-   
 
     if(listaDatos == ''){
      

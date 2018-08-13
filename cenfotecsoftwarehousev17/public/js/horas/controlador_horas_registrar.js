@@ -11,6 +11,7 @@ Responsabilidades del controlador
 
 //variables globales------------------------------------------
 const btnGuardarHoras = document.querySelector('#btnGuardar');
+const btnHorasRegistradas = document.querySelector('#btnHorasRegistradas');
 const htresProyecto = document.querySelector('#proyectoSeleccionado');
 const inputFechaCreacion = document.querySelector('#fechaHora');
 const inputCantidadHoras = document.querySelector('#horasTrabajadas');
@@ -29,6 +30,11 @@ btnGuardarHoras.addEventListener('click',function(){
     obtenerDatos();
     limpiarFormulario();
     ftnCamposAnnadidos(fecha);
+});
+
+btnHorasRegistradas.addEventListener('click',function(){
+
+    window.location.replace('../../html/horas/horas_listar.html');
 });
 
 //loads------------------------------------------------------
