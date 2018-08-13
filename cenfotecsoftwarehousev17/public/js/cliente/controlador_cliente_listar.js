@@ -1,7 +1,14 @@
 'use strict';
-let tablaClientes;
+//let tablaClientes;
 let inputBuscarCliente;
 let tbody;
+
+// variables globales----------------------------------------
+const inputBusqueda = document.querySelector('#inputBuscarCliente');
+const tablaClientes = document.querySelector('#tblClientes');
+
+//listeners--------------------------------------------------
+inputBusqueda.addEventListener('keyup' , function(){filtrarListaClientes()});
 
 
 ListarClientes();
@@ -142,10 +149,9 @@ function ftnEliminarCliente(){
 };
 
 
-function  ftnFiltrarListaClientes (){
-
-    let criterioBusqueda = inputBuscarCliente.value.toUpperCase();
-    let filasClientes = tblClientes.getElementsByTagName('tr');
+function filtrarListaClientes(){
+    let criterioBusqueda = inputBusqueda.value.toUpperCase();
+    let filasClientes = tablaClientes.getElementsByTagName('tr');
     let datosFila = null;
     let datos = null;
     let valor = null;
@@ -169,8 +175,6 @@ function  ftnFiltrarListaClientes (){
             datosFila.classList.add('esconder');
         }
     }
-
-   
 };
 
 function buscar_por_id(){
