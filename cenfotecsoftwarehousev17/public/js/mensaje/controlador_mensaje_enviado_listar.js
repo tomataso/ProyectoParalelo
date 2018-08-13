@@ -14,10 +14,16 @@ window.onload = function(){
 
 
 //funciones--------------------------------------------------
+function obtenerIdProfesor() {
+
+    return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
+ }; 
+
+
 function ListarMensajesEnviados(){
     let listaMensajesEnviados = obtenerListaMensajesEnviados();
     // Aca va la funcion para obtener la id del usuario en sesion
-    let idUsuario = obtenerIdUsuarioSesion ();
+    let idUsuario = obtenerIdProfesor ();
     
 
 
@@ -30,7 +36,7 @@ function ListarMensajesEnviados(){
         
         // ACA AGREGAR IF ( id= enviado es igual al id del usuario actual que se muestre )
     // Extraer de mensajes Usuario receptor
-    if (idUsuario == listaMensajesEnviados[i]['UsuarioEmisor']) {
+    //if (idUsuario == listaMensajesEnviados[i]['UsuarioEmisor']) {
 
             let fila = tbody.insertRow();
             let celdaFecha = fila.insertCell();
@@ -42,13 +48,13 @@ function ListarMensajesEnviados(){
 
             //VER ESTOOOOO
             let btnVer = document.createElement('a');
-            btnVer.name = listaProyecto[i]['_id'];
+            btnVer.name = listaMensajesEnviados[i]['_id'];
             btnVer.classList.add('fas');
             btnVer.classList.add('fa-eye');
             btnVer.addEventListener('click', ftnMostrarMensaje);
     
             let btnEliminar = document.createElement('a');
-            btnEliminar.name = listaProyecto[i]['_id'];
+            btnEliminar.name = listaMensajesEnviados[i]['_id'];
             btnEliminar.classList.add('fas');
             btnEliminar.classList.add('fa-trash');
             btnEliminar.addEventListener('click', ftnEliminarMensaje);
@@ -67,7 +73,7 @@ function ListarMensajesEnviados(){
     
            
         
-    }
+   // }
 }
 };
 

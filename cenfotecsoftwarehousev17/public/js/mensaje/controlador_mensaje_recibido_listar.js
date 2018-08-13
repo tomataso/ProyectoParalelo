@@ -14,11 +14,18 @@ window.onload = function () {
 
 
 //funciones--------------------------------------------------
+function obtenerIdProfesor() {
+
+    return JSON.parse(sessionStorage.getItem("idFilaSeleccionado"));
+ }; 
+
+
+
 function ListarMensajesRecibidos() {
     let listaMensajesRecibidos = obtenerListaMensajesRecibidos();
-
+    let listaUsuarios = getListaUsuarios ();
         // Aca va la funcion para obtener la id del usuario en sesion
-        let idUsuario = obtenerIdUsuarioSesion ();
+        let idUsuario = obtenerIdProfesor ();
 
     let tbody = document.querySelector('#tblMensajes tbody');
     tbody.innerHTML = '';
@@ -28,35 +35,37 @@ function ListarMensajesRecibidos() {
 
 // ACA AGREGAR IF ( id= receptor es igual al id del usuario actual que se muestre )
     // Extraer de mensajes Usuario receptor
-    if (idUsuario == listaMensajesEnviados[i]['UsuarioReceptor']) {
+   // if (idUsuario == listaMensajesEnviados[i]['UsuarioReceptor']) {
 
         let fila = tbody.insertRow();
         let celdaFecha = fila.insertCell();
         let celdaUsuarioEmisor = fila.insertCell();
         let celdaAsunto = fila.insertCell();
-
-
+        let celdaNombre = fila.insertCell();
+        let NombreCitado = fila.insertCell();
         let btns = fila.insertCell();
 
         // VER ESTO
         let btnVer = document.createElement('a');
-        btnVer.name = listaProyecto[i]['_id'];
+        btnVer.name = listaMensajesRecibidos[i]['_id'];
         btnVer.classList.add('fas');
         btnVer.classList.add('fa-eye');
         btnVer.addEventListener('click', ftnMostrarMensaje);
 
         let btnEliminar = document.createElement('a');
-        btnEliminar.name = listaProyecto[i]['_id'];
+        btnEliminar.name = listaMensajesRecibidos[i]['_id'];
         btnEliminar.classList.add('fas');
         btnEliminar.classList.add('fa-trash');
         btnEliminar.addEventListener('click', ftnEliminarMensaje);
 
+        if (listaMensajesRecibidos[i]['UsuarioEmisor'] == listaUsuarios[i]['_id'] ) { NombreCitado = listaUsuarios[i]['Nombre']  };
 
 
         celdaFecha.innerHTML = listaMensajesRecibidos[i]['Fecha'];
+        celdaNombre.innerHTML = NombreCitado;
         celdaUsuarioEmisor.innerHTML = listaMensajesRecibidos[i]['UsuarioEmisor'];
         celdaAsunto.innerHTML = listaMensajesRecibidos[i]['Asunto'];
-
+       
 
 
 
@@ -64,7 +73,7 @@ function ListarMensajesRecibidos() {
         btns.appendChild(btnEliminar);
 
 
-    }
+    //}
 }
 };
 
