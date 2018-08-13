@@ -96,6 +96,18 @@ a.fa-eye {
   padding-right: 11%;
 }
 
+a.fa-clock {
+
+  cursor: pointer;
+  padding-right: 11%;
+}
+
+a.fa-list-ul {
+
+  cursor: pointer;
+  padding-right: 11%;
+}
+
 .buscador-select{
   display: inline;
 }
