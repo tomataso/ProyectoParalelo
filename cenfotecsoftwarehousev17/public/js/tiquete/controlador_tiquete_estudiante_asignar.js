@@ -74,21 +74,42 @@ function obtenerTiqueteSeleccionado() {
     ftnlistarEncargados();
 };
 
-function filtrarListaConAsignados(listaDatos) {
+// function filtrarListaConAsignados(listaDatos) {
 
-    let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
-    let tiqueteSeleccionadoBD = JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado);
-    let nuevaLista = []; 
+//     let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
+//     let tiqueteSeleccionadoBD = JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado);
+//     let nuevaLista = []; 
 
-    for (let i = 0; i < listaDatos.length; i++) {
-        if (listaDatos[i]._id != tiqueteSeleccionadoBD._id) {
-            nuevaLista.push(listaDatos[i]);
-        }
+//     for (let i = 0; i < listaDatos.length; i++) {
+//         if (listaDatos[i]._id != tiqueteSeleccionadoBD._id) {
+//             nuevaLista.push(listaDatos[i]);
+//         }
         
+//     }
+
+//     return nuevaLista;
+    
+// }
+
+
+function filtrarListaConAsignados(listaDatos) {
+    let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
+    let tiqueteSeleccionadoBD = {};
+    let nuevaLista = [];
+    
+    
+    if (obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado) {tiqueteSeleccionadoBD = JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado);
+    } else {tiqueteSeleccionadoBD._id = "";
+    }
+    
+    for (let i =0; i < listaDatos.length; i++) {
+    if (listaDatos[i]._id != tiqueteSeleccionadoBD._id) {nuevaLista.push(listaDatos[i]);
     }
 
+}
+
     return nuevaLista;
-    
+
 }
 
 

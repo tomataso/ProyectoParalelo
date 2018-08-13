@@ -120,38 +120,89 @@ function registrarEncargado(tiqueteSeleccionado, profesor){
 };
 
 
-function  ftnlistarEncargados (){
+// function  ftnlistarEncargados (){
+//     let listaDatos = [];
+//     let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
+//     listaDatos.push(JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado));
+//     let tbody = document.querySelector('#tblProfesoresAsignados tbody');
+//     tbody.innerHTML = '';
+
+//     if (listaDatos[0] != "" && listaDatos[0].TipoUsuario != 3) {
+//         for(let i = 0; i < listaDatos.length; i++){
+
+//             let fila = tbody.insertRow();
+//             let celdaCedula = fila.insertCell();
+//             let celdaNombre = fila.insertCell();
+//             let btns = fila.insertCell();
+
+//             let btnAsignar = document.createElement('a');
+//             btnAsignar.name = listaDatos[i]['_id'];
+//             btnAsignar.classList.add('fas');
+//             btnAsignar.classList.add('fa-user-minus');
+//             btnAsignar.addEventListener('click', function(){
+//                 // let pDatos = [obtenerIdProyecto(),listaDatos[i]['_id']];
+//                 desasignarEncargado(obtenerTiqueteSeleccionado());
+//             });
+            
+//             celdaCedula.name = listaDatos[i]['_id'];
+//             celdaCedula.innerHTML = listaDatos[i]['Cedula'];
+//             celdaNombre.innerHTML = listaDatos[i]['Nombre'] + " " + listaDatos[i]['Apellido'];
+//             btns.appendChild(btnAsignar);
+//         }
+//     }
+
+// };
+
+
+function ftnlistarEncargados (){
     let listaDatos = [];
     let tiqueteSeleccionado = obtenerTiqueteSeleccionado();
+
+
+    if (obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado) {
     listaDatos.push(JSON.parse(obtenerTiquetePorIdAsignar(tiqueteSeleccionado._id).encargado));
+    } else {listaDatos.push("");}
+    
+    
     let tbody = document.querySelector('#tblProfesoresAsignados tbody');
     tbody.innerHTML = '';
-
-    if (listaDatos[0] != "" && listaDatos[0].TipoUsuario != 3) {
-        for(let i = 0; i < listaDatos.length; i++){
-
-            let fila = tbody.insertRow();
-            let celdaCedula = fila.insertCell();
-            let celdaNombre = fila.insertCell();
-            let btns = fila.insertCell();
-
-            let btnAsignar = document.createElement('a');
-            btnAsignar.name = listaDatos[i]['_id'];
-            btnAsignar.classList.add('fas');
-            btnAsignar.classList.add('fa-user-minus');
-            btnAsignar.addEventListener('click', function(){
-                // let pDatos = [obtenerIdProyecto(),listaDatos[i]['_id']];
-                desasignarEncargado(obtenerTiqueteSeleccionado());
-            });
-            
-            celdaCedula.name = listaDatos[i]['_id'];
-            celdaCedula.innerHTML = listaDatos[i]['Cedula'];
-            celdaNombre.innerHTML = listaDatos[i]['Nombre'] + " " + listaDatos[i]['Apellido'];
-            btns.appendChild(btnAsignar);
+    
+    
+    if (listaDatos[0] != "" && listaDatos[0].TipoUsuario !=3) {
+    for(let i = 0; i < listaDatos.length; i++){
+    
+    let fila = tbody.insertRow();
+    let celdaCedula = fila.insertCell();
+    let celdaNombre = fila.insertCell();
+    let btns = fila.insertCell();
+    let btnAsignar = document.createElement('a');
+    
+    btnAsignar.name = listaDatos[i]['_id'];
+    btnAsignar.classList.add('fas');
+    btnAsignar.classList.add('fa-user-minus');
+    btnAsignar.addEventListener('click',
+    
+    function(){
+    // let pDatos = [obtenerIdProyecto(),listaDatos[i]['_id']];
+    desasignarEncargado(obtenerTiqueteSeleccionado());
+    
+     
+    });
+    
+    
+    celdaCedula.name = listaDatos[i]['_id'];
+    celdaCedula.innerHTML = listaDatos[i]['Cedula'];
+    celdaNombre.innerHTML = listaDatos[i]['Nombre'] + " " + listaDatos[i]['Apellido'];
+    btns.appendChild(btnAsignar);
+    
+     
         }
+    
     }
-
+    
 };
+    
+     
 
 function desasignarEncargado(tiqueteSeleccionado){
 
