@@ -47,7 +47,7 @@ function registrarTiquete(pTiquete){
             usuarioId : pTiquete[7],
             TextoTiquete : pTiquete[8],
             Estado : pTiquete[9],
-            encargado: ""
+            encargado: " "
         }
       });
     

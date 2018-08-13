@@ -80,17 +80,17 @@ function ListarClientes(){
                 ListarClientes();
             });
 
-            let aBorrar = document.createElement('a');
-            aBorrar.classList.add('fas');
-            aBorrar.classList.add('fa-trash'); 
-            aBorrar.dataset._id =  ListaCliente[i]['_id'];
+            // let aBorrar = document.createElement('a');
+            // aBorrar.classList.add('fas');
+            // aBorrar.classList.add('fa-trash'); 
+            // aBorrar.dataset._id =  ListaCliente[i]['_id'];
 
 
-            aBorrar.addEventListener('click', ftnEliminarCliente);
+            // aBorrar.addEventListener('click', ftnEliminarCliente);
 
             cConfiguracion.appendChild(btnModificarEstado);
 
-            cConfiguracion.appendChild(aBorrar);
+            // cConfiguracion.appendChild(aBorrar);
 
         }
     }

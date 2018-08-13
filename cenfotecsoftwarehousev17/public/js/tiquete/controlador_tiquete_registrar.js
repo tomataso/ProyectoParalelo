@@ -18,6 +18,8 @@ inputcodigo_proyecto.setAttribute('disabled',true);
 
 botonRegistrar.addEventListener('click' , obtenerDatos);
 DatalistProyectosDelUsuario();
+ftnGeneradorContrasenna();
+inputcodigo_tiquete.setAttribute('disabled',true);
 
 function DatalistProyectosDelUsuario () {
     let listaProyectos = obtenerListaProyectos();
@@ -64,6 +66,17 @@ function filtrarProyectosPorUsuario(idUsuario, listaProyectos){
     }
     return listaProyectosDeUsuario;
 
+}
+
+function ftnGeneradorContrasenna() {
+
+    let length = 5,
+        charset = "0123456789",
+        retVal = "";
+    for (let i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    inputcodigo_tiquete.value = retVal;
 }
 
 
