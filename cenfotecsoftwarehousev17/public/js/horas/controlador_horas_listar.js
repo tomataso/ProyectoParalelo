@@ -73,7 +73,7 @@ function ListarHoras(){
                 btnEliminar.classList.add('fas');
                 btnEliminar.classList.add('fa-trash');
                 btnEliminar.addEventListener('click', function(){
-                    ftnEliminarHoras(pDatos)
+                    ftnEliminarHoras()
                 });
                 
                 proyecto.innerHTML = dropProyectos[dropProyectos.selectedIndex].innerHTML;
