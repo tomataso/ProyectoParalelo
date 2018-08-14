@@ -72,9 +72,7 @@ function ListarHoras(){
                 btnEliminar.name = listaDatos[i]['_id'];
                 btnEliminar.classList.add('fas');
                 btnEliminar.classList.add('fa-trash');
-                btnEliminar.addEventListener('click', function(){
-                    ftnEliminarHoras()
-                });
+                btnEliminar.addEventListener('click', ftnEliminarHoras);
                 
                 proyecto.innerHTML = dropProyectos[dropProyectos.selectedIndex].innerHTML;
                 titulo.innerHTML = listaDatos[i]['tituloHoras'];
