@@ -41,9 +41,12 @@ function  filtrarTiquetesPorEncargado (){
     let listaTiquetes = obtenerListaTiquetes();
 
     for (let i = 0; i < listaTiquetes.length; i++) {
-        if (JSON.parse(listaTiquetes[i].encargado)._id == getUsuarioAutenticado()._id) {
-            listaDatos.push(listaTiquetes[i]);
+        if (listaTiquetes[i].encargado) {
+            if (JSON.parse(listaTiquetes[i].encargado)._id == getUsuarioAutenticado()._id) {
+                listaDatos.push(listaTiquetes[i]);
+            }
         }
+
         
     }
 
